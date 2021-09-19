@@ -19,7 +19,8 @@ class CCPParserPy:
     def parameters_per_method(self, method_name, target_file):
         with open(target_file) as f:
             for line in f.readlines():
-                if "def" in line and method_name in line:
+                if "def" in line and method_name in line \
+                        and line.strip()[0:4] == "def ":
                     return line.split("(")[-1].strip(
                         "self").strip(",").split(")")[0].strip(" ")
 

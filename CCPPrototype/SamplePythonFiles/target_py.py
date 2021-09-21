@@ -11,6 +11,9 @@ class TargetPy:
     def calculate_end_time(self):
         return 2 + 3
 
+    def calculate_string_build_speed(self, num_of_elements):
+        self.build_string(num_of_elements)
+
     def build_string(self, num_of_elements):
         result = ""
         start_time = self.call_start_time()
@@ -26,9 +29,5 @@ class TargetPy:
         self.report_result(start_time, end_time, string_length)
         return result
 
-    def calculate_string_build_speed(self, num_of_elements):
-        self.build_string(num_of_elements)
-
     def report_result(self, start_time, end_time, string_length):
         pass
-

@@ -2,7 +2,7 @@
 name = "capstone-project"
 version = "0.1.0"
 description = "Data-Driven Software Security Assessment"
-authors = ["Samuel Gamelin <samuel.gamelin@carleton.ca>", "John Breton <john.breton@carleton.ca>", "Mohamed Radwan <mohamed.radwan@carleton.ca>", "Khalil Aalab <Khalil.Aaalab@carleton.ca>"]
+authors = ["Samuel Gamelin <samuel.gamelin@carleton.ca>", "John Breton <john.breton@carleton.ca>", "Mohamed Radwan <mohamed.radwan@carleton.ca>", "Khalil Aalab <khalil.aalab@carleton.ca>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"

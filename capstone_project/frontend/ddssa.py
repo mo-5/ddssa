@@ -30,7 +30,7 @@ def main():
         "-p",
         "--paths",
         nargs="+",
-        help="The list of paths to be used search for files to analyze. Must be directories or files.",
+        help="The list of paths to be used to search for files to analyze. Must be directories or files.",
         required=True,
     )
 

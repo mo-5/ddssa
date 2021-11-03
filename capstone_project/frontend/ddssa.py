@@ -8,7 +8,7 @@ from capstone_project.backend.path_parser import PathParser
 class DDSSA:
     """ DDSSA (Data-Driven Software Security Assessment) is responsible for providing
     a command-line interface to analyze code with the tool. It accepts a list of paths,
-    which may be directories of files. It then proceeds to perform the analysis on the
+    which may be directories or files. It then proceeds to perform the analysis on the
     Python code contained within those directories or files.
     """
     def __init__(self, paths):

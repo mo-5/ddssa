@@ -1,5 +1,4 @@
 import argparse
-import os
 
 from capstone_project.backend.ast_supplier import ASTSupplier
 from capstone_project.backend.path_parser import PathParser

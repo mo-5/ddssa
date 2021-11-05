@@ -24,7 +24,8 @@ class DDSSA:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Command line options for the Data-Driven Software Security Assessment tool"
+        description="Command line options for the Data-Driven Software "
+                    "Security Assessment tool"
     )
     parser.add_argument(
         "-p",

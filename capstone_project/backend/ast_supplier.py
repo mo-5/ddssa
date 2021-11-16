@@ -58,17 +58,3 @@ class ASTSupplier:
         the generated AST.
         """
         print(ast.unparse(self._node))
-
-
-if __name__ == '__main__':
-    # Functionality demonstration. This class will not contain a
-    # main method.
-    ast_test = ASTSupplier()
-    ast_test.create_ast_from_file("ast_coordinator.py")
-    ast_test._print_unparsed_ast()
-    ast_test._print_parsed_ast()
-    print(ast_test.has_loop_nodes())
-    file_loops = ast_test.get_loop_nodes_for_file()
-    print(file_loops)
-    for loop in file_loops:
-        print(ast.unparse(loop))

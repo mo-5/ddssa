@@ -28,8 +28,9 @@ class ASTSupplier:
         deletion_nodes = []
         for i in range(len(loop_nodes)):
             for j in range(len(loop_nodes)):
-                if i > j:
+                if i >= len(loop_nodes):
                     break
+                print(ast.unparse(loop_nodes[j]).replace(" ", ""))
                 if i != j and ast.unparse(loop_nodes[j]).replace(" ", "") \
                         in ast.unparse(loop_nodes[i]).replace(" ", ""):
                     deletion_nodes.append(loop_nodes[j])
@@ -63,7 +64,7 @@ if __name__ == '__main__':
     # Functionality demonstration. This class will not contain a
     # main method.
     ast_test = ASTSupplier()
-    ast_test.create_ast_from_file("path_parser.py")
+    ast_test.create_ast_from_file("ast_coordinator.py")
     ast_test._print_unparsed_ast()
     ast_test._print_parsed_ast()
     print(ast_test.has_loop_nodes())

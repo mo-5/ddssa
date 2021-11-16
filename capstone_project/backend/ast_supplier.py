@@ -18,14 +18,27 @@ class ASTSupplier:
         was generated for a specific file. Loop nodes are
         defined as while, for, and async for loops.
         """
-        # TODO We should update this to only include top level loops,
-        #      since if a loop contains another loop, we will already
-        #      have it from the top-level node being added.
         nodes = ast.walk(self._node)
         loop_nodes = []
         for node in nodes:
             if isinstance(node, self._loops):
                 loop_nodes.append(node)
+
+        # Prune list to remove sub loops
+        deletion_nodes = []
+        for i in range(len(loop_nodes)):
+            for j in range(len(loop_nodes)):
+                if i > j:
+                    break
+                if i != j and ast.unparse(loop_nodes[j]).replace(" ", "") \
+                        in ast.unparse(loop_nodes[i]).replace(" ", ""):
+                    deletion_nodes.append(loop_nodes[j])
+            for deleted in deletion_nodes:
+                try:
+                    loop_nodes.remove(deleted)
+                except ValueError:
+                    continue
+
         return loop_nodes
 
     def has_loop_nodes(self):

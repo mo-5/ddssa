@@ -1,10 +1,13 @@
 import ast
 
+from backend.sr_calculator import SRCalculator
+
 
 class ASTSupplier:
     def __init__(self):
         self._node = None
         self._loops = ast.For, ast.While, ast.AsyncFor
+        self._sr_calculator = None
 
     def create_ast_from_file(self, file):
         with open(file, "rb") as f:
@@ -30,7 +33,6 @@ class ASTSupplier:
             for j in range(len(loop_nodes)):
                 if i >= len(loop_nodes):
                     break
-                print(ast.unparse(loop_nodes[j]).replace(" ", ""))
                 if i != j and ast.unparse(loop_nodes[j]).replace(" ", "") \
                         in ast.unparse(loop_nodes[i]).replace(" ", ""):
                     deletion_nodes.append(loop_nodes[j])
@@ -47,6 +49,19 @@ class ASTSupplier:
         """
         nodes = ast.walk(self._node)
         return any(isinstance(node, self._loops) for node in nodes)
+
+    def sr_request(self, file, filename):
+        """ Request for SR to be calculated. We employ this creation
+        method to avoid needing to instantiate an SRCalculator unless
+        we explicitly need it for analysis.
+        """
+        self.create_ast_from_file(file)
+        nodes = self.get_loop_nodes_for_file()
+        if self._sr_calculator is None:
+            self._sr_calculator = SRCalculator(filename)
+        else:
+            self._sr_calculator.set_filename(filename)
+        self._sr_calculator.calculate_sr(nodes)
 
     def _print_parsed_ast(self):
         """ Logging method to print the generated AST.

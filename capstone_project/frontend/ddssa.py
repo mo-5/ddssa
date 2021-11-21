@@ -18,8 +18,7 @@ class DDSSA:
 
     def analyze(self):
         for file in self._dir_parser.get_file_list():
-            self._ast_supplier.sr_request(
-                self, file, str(file.split(os.path.sep)))
+            self._ast_supplier.sr_request(file, str(file.split(os.path.sep)))
 
 
 def main():

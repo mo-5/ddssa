@@ -1,4 +1,5 @@
 import ast
+import os
 
 
 class SRCalculator:
@@ -15,7 +16,7 @@ class SRCalculator:
 
     def calculate_sr(self, nodes):
         reference = []
-        with open(self._reference_file, "r") as f:
+        with open(os.path.join(os.path.dirname(__file__), self._reference_file), "r") as f:
             reference = f.readline().split(",")
 
         score = 0

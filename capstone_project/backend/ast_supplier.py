@@ -1,6 +1,6 @@
 import ast
 
-from backend.sr_calculator import SRCalculator
+from capstone_project.backend.sr_calculator import SRCalculator
 
 
 class ASTSupplier:

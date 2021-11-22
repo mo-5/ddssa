@@ -29,4 +29,4 @@ class SRCalculator:
                 if any(stall in line for stall in reference[self._sr_access]):
                     score += 1
         print("File {} has a calculated stall ratio of {}".format(
-            self._filename[-1], score))
+            self._filename, score))

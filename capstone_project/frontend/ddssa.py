@@ -1,5 +1,9 @@
 import argparse
 import os
+import sys
+
+# Needed to add the capstone_project module to the system path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from capstone_project.backend.ast_supplier import ASTSupplier
 from capstone_project.backend.path_parser import PathParser

@@ -20,12 +20,11 @@ This is a design of a software security assessment tool using data-driven approa
 
    This will create a folder called `capstone-project`.
 
-2. Open the project in vscode.
+2. Open the project in VSCode.
 
    ```bash
    cd capstone-project
-   code .
-   ```
+   python3 frontend/ddssa.py -p <insert path>
 
 3. Poetry
 

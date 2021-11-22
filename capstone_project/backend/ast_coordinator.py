@@ -26,5 +26,3 @@ class ASTCoordinator:
 
     def _create_ast_suppliers(self):
         self._ast_suppliers = ASTSupplier()
-
-

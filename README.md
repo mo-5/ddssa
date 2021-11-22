@@ -20,17 +20,13 @@ This is a design of a software security assessment tool using data-driven approa
 
    This will create a folder called `capstone-project`.
 
-2. Open the project in VSCode.
-
-   ```bash
-   cd capstone-project
-   python3 frontend/ddssa.py -p <insert path>
-
-3. Poetry
+2. Poetry
 
    1. Install poetry: [instructions](https://python-poetry.org/docs/#installation)
    2. Add the poetry path after installation
    3. Run `poetry install`
+
+3. Open the project in VSCode.
 
 ### Additional Tools
 

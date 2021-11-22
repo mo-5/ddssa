@@ -1,13 +1,13 @@
-# Elevator Subsystem
+# Data-Driven Software Security Assessment
 
-This is a design and implementation of an elevator control system and simulator.
+This is a design of a software security assessment tool using data-driven approach.
 
 ## Development
 
 ### Tools
 
-- Code editor: [VScode](https://code.visualstudio.com/)
-- Python: [3.10.0](https://www.python.org/downloads/)
+- Code editor: [VSCode](https://code.visualstudio.com/)
+- Python: [3.9.0](https://www.python.org/downloads/)
 - Python package manager: [Poetry](https://www.poetry.org/)
 
 ### Getting Started

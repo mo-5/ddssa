@@ -1,12 +1,14 @@
+from capstone_project.backend.path_parser import PathParser
+from capstone_project.backend.ast_supplier import ASTSupplier
+from capstone_project.backend.pdf_generator import pdf_generator
 import argparse
 import os
 import sys
 
-# Needed to add the capstone_project module to the system path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from capstone_project.backend.ast_supplier import ASTSupplier
-from capstone_project.backend.path_parser import PathParser
+# Needed to add the capstone_project module to the system path
+sys.path.insert(0, os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '../..')))
 
 
 class DDSSA:
@@ -16,14 +18,18 @@ class DDSSA:
      It then proceeds to perform the analysis on the Python code
      contained within those directories or files.
     """
+
     def __init__(self, paths):
         self._dir_parser = PathParser(paths)
         self._ast_supplier = ASTSupplier()
 
     def analyze(self):
+        pdf_file = pdf_generator()
+        pdf_file.add_header("Stall Statements:")
         for file in self._dir_parser.get_file_list():
             self._ast_supplier.sr_request(
-                file, file.split(os.path.sep)[-1])
+                file, file.split(os.path.sep)[-1], pdf_file)
+        pdf_file.save_pdf("report.pdf")
 
 
 def main():

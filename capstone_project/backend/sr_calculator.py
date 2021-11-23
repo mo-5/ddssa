@@ -1,6 +1,7 @@
 import ast
 import os
 import json
+import logging
 
 
 class SRCalculator:
@@ -14,10 +15,14 @@ class SRCalculator:
         self._sr_detections = (self._filename, [])
 
     def set_filename(self, filename):
+        if filename is None:
+            raise TypeError
         self._filename = filename
         self._sr_detections = (self._filename, [])
 
     def calculate_sr(self, nodes):
+        if nodes is None:
+            return self._sr_detections
         with open(os.path.join(os.path.dirname(__file__),
                                self._reference_file), "r") as f:
             reference = json.load(f)
@@ -28,11 +33,11 @@ class SRCalculator:
         for node in nodes:
             score = 0
             # Handle simple cases with pattern matching
-            lines = ast.unparse(node).split("\n")
-            for line in lines:
+            lines = ast.unparse(node).splitlines()
+            for index, line in enumerate(lines):
                 if any(stall in line for stall in reference[self._sr_access]):
                     score += 1
-                    self._sr_detections[-1].append((node.lineno, line))
+                    self._sr_detections[-1].append((node.lineno + index, line))
 
             # Handle more complex cases for frivolous operations
             for sub_node in ast.walk(node):
@@ -89,9 +94,11 @@ class SRCalculator:
         else:
             stall_ratio = 0
 
-        print("File {} has {} total stall statements".format(
+        logging.basicConfig(format='%(levelname)s:%(message)s',
+                            level=logging.DEBUG)
+        logging.info("File {} has {} total stall statements".format(
             self._filename, stall_total))
-        print("File {} has a calculated average stall ratio of {}".format(
+        logging.info("File {} has a calculated average stall ratio of {}".format(
               self._filename, stall_ratio))
-        print(self._sr_detections)
+        logging.info(self._sr_detections)
         return self._sr_detections

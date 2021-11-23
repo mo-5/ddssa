@@ -25,4 +25,3 @@ jobs:
       run: |
         python -m unittest discover -s capstone_project/tests
 
-        

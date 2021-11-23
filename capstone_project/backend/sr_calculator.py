@@ -22,9 +22,11 @@ class SRCalculator:
                                self._reference_file), "r") as f:
             reference = json.load(f)
 
-        score = 0
+        score_average = []
+        stall_total = 0
+        stall_ratio = 0
         for node in nodes:
-            print(node.lineno)
+            score = 0
             # Handle simple cases with pattern matching
             lines = ast.unparse(node).split("\n")
             for line in lines:
@@ -77,7 +79,18 @@ class SRCalculator:
                                 self._sr_detections[-1].append(
                                     (node.lineno, ast.unparse(node)))
 
+            stall_total += score
+            score_average.append(score / len(ast.unparse(node).split("\n")))
 
-        print("File {} has {} number of stall statements".format(
-            self._filename, score))
+        for score in score_average:
+            stall_ratio += score
+        if len(score_average) > 0:
+            stall_ratio = stall_ratio / len(score_average)
+        else:
+            stall_ratio = 0
+
+        print("File {} has {} total stall statements".format(
+            self._filename, stall_total))
+        print("File {} has a calculated average stall ratio of {}".format(
+              self._filename, stall_ratio))
         return self._sr_detections

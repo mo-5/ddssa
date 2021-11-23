@@ -1,10 +1,13 @@
 import ast
 
+from capstone_project.backend.sr_calculator import SRCalculator
+
 
 class ASTSupplier:
     def __init__(self):
         self._node = None
         self._loops = ast.For, ast.While, ast.AsyncFor
+        self._sr_calculator = None
 
     def create_ast_from_file(self, file):
         with open(file, "rb") as f:
@@ -28,7 +31,7 @@ class ASTSupplier:
         deletion_nodes = []
         for i in range(len(loop_nodes)):
             for j in range(len(loop_nodes)):
-                if i > j:
+                if i >= len(loop_nodes):
                     break
                 if i != j and ast.unparse(loop_nodes[j]).replace(" ", "") \
                         in ast.unparse(loop_nodes[i]).replace(" ", ""):
@@ -47,6 +50,19 @@ class ASTSupplier:
         nodes = ast.walk(self._node)
         return any(isinstance(node, self._loops) for node in nodes)
 
+    def sr_request(self, file, filename):
+        """ Request for SR to be calculated. We employ this creation
+        method to avoid needing to instantiate an SRCalculator unless
+        we explicitly need it for analysis.
+        """
+        self.create_ast_from_file(file)
+        nodes = self.get_loop_nodes_for_file()
+        if self._sr_calculator is None:
+            self._sr_calculator = SRCalculator(filename)
+        else:
+            self._sr_calculator.set_filename(filename)
+        self._sr_calculator.calculate_sr(nodes)
+
     def _print_parsed_ast(self):
         """ Logging method to print the generated AST.
         """
@@ -57,17 +73,3 @@ class ASTSupplier:
         the generated AST.
         """
         print(ast.unparse(self._node))
-
-
-if __name__ == '__main__':
-    # Functionality demonstration. This class will not contain a
-    # main method.
-    ast_test = ASTSupplier()
-    ast_test.create_ast_from_file("path_parser.py")
-    ast_test._print_unparsed_ast()
-    ast_test._print_parsed_ast()
-    print(ast_test.has_loop_nodes())
-    file_loops = ast_test.get_loop_nodes_for_file()
-    print(file_loops)
-    for loop in file_loops:
-        print(ast.unparse(loop))

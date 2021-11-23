@@ -1,4 +1,9 @@
 import argparse
+import os
+import sys
+
+# Needed to add the capstone_project module to the system path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from capstone_project.backend.ast_supplier import ASTSupplier
 from capstone_project.backend.path_parser import PathParser
@@ -17,9 +22,8 @@ class DDSSA:
 
     def analyze(self):
         for file in self._dir_parser.get_file_list():
-            self._ast_supplier.create_ast_from_file(file)
-            # TODO replace this with real analysis
-            self._ast_supplier._print_parsed_ast()
+            self._ast_supplier.sr_request(
+                file, file.split(os.path.sep)[-1])
 
 
 def main():
@@ -40,6 +44,7 @@ def main():
 
     tool = DDSSA(args.paths)
     tool.analyze()
+
 
 if __name__ == "__main__":
     main()

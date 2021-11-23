@@ -93,4 +93,5 @@ class SRCalculator:
             self._filename, stall_total))
         print("File {} has a calculated average stall ratio of {}".format(
               self._filename, stall_ratio))
+        print(self._sr_detections)
         return self._sr_detections

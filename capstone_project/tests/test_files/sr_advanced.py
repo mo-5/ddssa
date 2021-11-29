@@ -2,7 +2,6 @@
 
 class SRAdvanced:
     def __init__(self):
-        pass
         self.some_stuff = ["test", "test2", "test3"]
 
     def do_something(self):

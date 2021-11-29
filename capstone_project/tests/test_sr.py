@@ -1,3 +1,5 @@
+""" tests contains any unit tests for backend files
+"""
 import unittest
 import os
 
@@ -14,6 +16,9 @@ class TestSR(unittest.TestCase):
         return SRCalculator("test_file"), ASTSupplier()
 
     def test_sr_logic_simple(self):
+        """ Test a simple SR example file to ensure all pattern
+        matching stall occurrences are caught by SRCalculator
+        """
         test_calc, ast_supp = self.setUp()
 
         # Case 1: Simple examples only
@@ -22,10 +27,10 @@ class TestSR(unittest.TestCase):
                          "test_files", "sr_simple.py"))
         test_calc.set_filename("sr_simple.py")
         nodes = test_calc.calculate_sr(ast_supp.get_loop_nodes_for_file())
-        
-        self.assertTrue(nodes[0] == "sr_simple.py", 
+
+        self.assertTrue(nodes[0] == "sr_simple.py",
                         "File name did not match what was expected.")
-        self.assertTrue(len(nodes[1]) == 3, 
+        self.assertTrue(len(nodes[1]) == 3,
                         "Returned detections list was empty when it "
                         "should be of size 3")
         self.assertTrue(nodes[1][0][0] == 5, "Line number of first match did"
@@ -34,10 +39,14 @@ class TestSR(unittest.TestCase):
         # the line numbering (currently failing due to known issue).
         self.assertTrue(nodes[1][0][1] == 7, "Line number of next match did"
                                              " not match what was expected.")
-        
+
     def test_sr_logic_complex(self):
+        """ Test a complex SR example file to ensure all pattern
+        matching stall occurrences and frivolous operations are
+        caught by SRCalculator.
+        """
         test_calc, ast_supp = self.setUp()
-        
+
         # Case 2: Complex example
         ast_supp.create_ast_from_file(
             os.path.join(os.getcwd(), "capstone_project", "tests",
@@ -52,8 +61,12 @@ class TestSR(unittest.TestCase):
         # Check to ensure we got all of the stall statements
         self.assertTrue(len(nodes[1]) == 8, "Number of identified stall "
                                             "statements was not correct.")
-        
+
     def test_sr_logic_none(self):
+        """ Test a file with no stall statements to ensure
+        SRCalcuator does not report stalls when none are
+        present.
+        """
         test_calc, ast_supp = self.setUp()
 
         # Case 3: No stall statement example
@@ -68,10 +81,13 @@ class TestSR(unittest.TestCase):
         self.assertTrue(len(nodes[1]) == 0,
                         "Returned detections list was not empty when it"
                         "should have been")
-        
+
 
     def test_sr_edge(self):
-        test_calc, ast_supp = self.setUp()
+        """ Test edge conditions of SRCalculator to ensure it
+        can handle bad inputs without crashing.
+        """
+        test_calc = self.setUp()
 
         # Case 1: None file path
         try:

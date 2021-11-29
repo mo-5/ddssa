@@ -1,6 +1,5 @@
 import ast
-from capstone_project.backend.pdf_generator import pdf_generator
-
+from capstone_project.backend.pdf_generator import PDFGenerator
 from capstone_project.backend.sr_calculator import SRCalculator
 
 
@@ -12,10 +11,10 @@ class ASTSupplier:
 
     def create_ast_from_file(self, file):
         with open(file, "rb") as f:
-            # TODO  We need to preserve blank lines to keep accurate 
-            #       track of line numbers (AST parses them out). 
-            #       Comments are also ignored, so we need to somehow 
-            #       find a statement that is valid python that does 
+            # TODO  We need to preserve blank lines to keep accurate
+            #       track of line numbers (AST parses them out).
+            #       Comments are also ignored, so we need to somehow
+            #       find a statement that is valid python that does
             #       nothing and is indented correctly to fix this.
             temp = f.read().splitlines()
             final = []
@@ -23,11 +22,11 @@ class ASTSupplier:
                 if not line.decode().split():
                     line = b'#' # Wrong as AST parses this out as well.
                 final.append(line)
-            
+
             ast_bytes = b''
             for curr_byte in final:
                 ast_bytes += curr_byte + b'\n'
-            
+
             self._node = ast.parse(ast_bytes)
 
     def get_ast_list(self):

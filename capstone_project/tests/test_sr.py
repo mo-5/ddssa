@@ -6,6 +6,7 @@ import os
 from capstone_project.backend.sr_calculator import SRCalculator
 from capstone_project.backend.ast_supplier import ASTSupplier
 
+
 class TestSR(unittest.TestCase):
     """ TestSR is responsible for ensuring the correct functionality
     of Stall Ratio calculations and returned objects.
@@ -87,7 +88,7 @@ class TestSR(unittest.TestCase):
         """ Test edge conditions of SRCalculator to ensure it
         can handle bad inputs without crashing.
         """
-        test_calc = self.setUp()
+        test_calc, _ = self.setUp()
 
         # Case 1: None file path
         try:

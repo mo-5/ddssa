@@ -24,8 +24,8 @@ class SRCalculator:
         if nodes is None:
             return self._sr_detections
         with open(os.path.join(os.path.dirname(__file__),
-                               self._reference_file), "r") as f:
-            reference = json.load(f)
+                               self._reference_file), "r") as file:
+            reference = json.load(file)
 
         score_average = []
         stall_total = 0

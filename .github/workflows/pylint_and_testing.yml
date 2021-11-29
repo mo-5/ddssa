@@ -23,5 +23,5 @@ jobs:
         pylint `ls -R|grep .py$|xargs`
     - name: Run all unit tests
       run: |
-        python -m unittest discover -s capstone_project/tests
+        python -m unittest discover -s ../capstone_project/tests
 

@@ -48,7 +48,7 @@ class SRCalculator:
                               and sub_node.left.value == 0) or
                              (isinstance(sub_node.right, ast.Constant)
                               and sub_node.right.value == 0)):
-                        score = self._complex_update_score(node, score)
+                        score = self._complex_update_score(sub_node, score)
                     # Handle the case where 1 is being multiplied or divided
                     elif isinstance(sub_node.op, (ast.Mult, ast.Div,
                                                   ast.FloorDiv)) and \
@@ -56,19 +56,19 @@ class SRCalculator:
                               and sub_node.left.value == 1) or
                              (isinstance(sub_node.right, ast.Constant)
                               and sub_node.right.value == 1)):
-                        score = self._complex_update_score(node, score)
+                        score = self._complex_update_score(sub_node, score)
                 elif isinstance(sub_node, ast.AugAssign):
                     # Handle the case where 0 is being added or subtracted
                     if isinstance(sub_node.op, (ast.Add, ast.Sub)) \
                             and isinstance(sub_node.value, ast.Constant) \
                             and sub_node.value.value == 0:
-                        score = self._complex_update_score(node, score)
+                        score = self._complex_update_score(sub_node, score)
                     # Handle the case where 1 is being multiplied or divided
                     elif isinstance(sub_node.op, (ast.Mult, ast.Div,
                                                   ast.FloorDiv)) \
                             and isinstance(sub_node.value, ast.Constant) \
                             and sub_node.value.value == 1:
-                        score = self._complex_update_score(node, score)
+                        score = self._complex_update_score(sub_node, score)
 
             stall_total += score
             score_average.append(score / len(ast.unparse(node).split("\n")))

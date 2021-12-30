@@ -1,7 +1,7 @@
 from fpdf import FPDF
 
 
-class pdf_generator():
+class PDFGenerator:
     """This class is responsible for generating the pdf report.
     """
 
@@ -9,8 +9,8 @@ class pdf_generator():
         self.pdf = FPDF()
         self.pdf.add_page()
         self.pdf.set_font('Arial', size=20)
-        self.pdf.cell(200, 10, txt="Data-Driven Software Security Assessment Report",
-                      ln=1, align='C')
+        self.pdf.cell(200, 10, txt="Data-Driven Software Security "
+                                   "Assessment Report", ln=1, align='C')
         self.pdf.set_font('Arial', size=12)
 
     def add_header(self, header):

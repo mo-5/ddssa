@@ -1,11 +1,22 @@
-# File contains 0 stall statements
+""" tests contains any unit tests for backend files
+"""
+
 
 class SRNone:
+    """ File contains 0 stall statements
+    """
+
     def __init__(self):
-        pass
+        self.factorial = 0
 
     def no_stall_method(self):
-        factorial = 0
+        """ Method contains 0 stall statements
+        """
         for i in range(1, 5):
-            factorial *= i
-        print(factorial)
+            self.factorial *= i
+        print(self.factorial)
+
+    def simple_method(self):
+        """ Method contains 0 stall statements
+        """
+        print(self.factorial)

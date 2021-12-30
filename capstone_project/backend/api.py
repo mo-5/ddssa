@@ -1,10 +1,4 @@
-import certifi as certifi
-import urllib3
-import json
-
-from furl import furl
-
-http = urllib3.PoolManager(cert_reqs="CERT_REQUIRED", ca_certs=certifi.where())
+import requests as requests
 
 
 def query():
@@ -18,10 +12,8 @@ def query():
         "startIndex": 0,
         "includeDeprecated": True
     }
-    url = str(furl(url).add(default_params))
-    print(url)
-    r = http.request("GET", url)
-    print(json.loads(r.data))
+    r = requests.get(url, params=default_params)
+    print(r.json())
 
 
 if __name__ == '__main__':

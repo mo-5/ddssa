@@ -7,11 +7,11 @@ authors = ["Samuel Gamelin <samuel.gamelin@carleton.ca>", "John Breton <john.bre
 [tool.poetry.dependencies]
 python = "^3.9"
 fpdf = "^1.7.2"
-autopep8 = "^1.6.0"
 requests = "^2.26.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
+autopep8 = "^1.6.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

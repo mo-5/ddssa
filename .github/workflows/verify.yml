@@ -44,4 +44,4 @@ jobs:
     - name: Run tests
       run: |
         source .venv/bin/activate
-        pytest capstone_project/tests
+        python -m unittest capstone_project/tests

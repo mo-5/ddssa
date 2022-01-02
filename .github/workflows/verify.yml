@@ -47,6 +47,7 @@ jobs:
     # Run linting
     - name: Run pylint
       run: |
+        source .venv/bin/activate
         pylint --fail-under=${{ matrix.pylint-fail-under }} capstone_project
 
     # Run tests

@@ -8,7 +8,6 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.9"]
-        pylint-fail-under: ["8.5"]
     steps:
     # Check out the repo
     - name: Check out repository
@@ -48,7 +47,7 @@ jobs:
     - name: Run pylint
       run: |
         source .venv/bin/activate
-        pylint --fail-under=${{ matrix.pylint-fail-under }} capstone_project
+        pylint capstone_project
 
     # Run tests
     - name: Run tests

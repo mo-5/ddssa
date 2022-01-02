@@ -5,6 +5,10 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9"]
+        pylint-fail-under: ["8.5"]
     steps:
     # Check out the repo
     - name: Check out repository
@@ -14,7 +18,7 @@ jobs:
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9
+        python-version: ${{ matrix.python-version }}
 
     # Install poetry
     - name: Install poetry
@@ -39,6 +43,11 @@ jobs:
       run: |
         source .venv/bin/activate
         black --check .
+
+    # Run linting
+    - name: Run pylint
+      run: |
+        pylint --fail-under=${{ matrix.pylint-fail-under }} capstone_project
 
     # Run tests
     - name: Run tests

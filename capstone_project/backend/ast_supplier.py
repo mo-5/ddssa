@@ -20,12 +20,12 @@ class ASTSupplier:
             final = []
             for line in temp:
                 if not line.decode().split():
-                    line = b'#' # Wrong as AST parses this out as well.
+                    line = b"#"  # Wrong as AST parses this out as well.
                 final.append(line)
 
-            ast_bytes = b''
+            ast_bytes = b""
             for curr_byte in final:
-                ast_bytes += curr_byte + b'\n'
+                ast_bytes += curr_byte + b"\n"
 
             self._node = ast.parse(ast_bytes)
 
@@ -33,7 +33,7 @@ class ASTSupplier:
         return self._node
 
     def get_loop_nodes_for_file(self):
-        """ Return the loop nodes from the created AST that
+        """Return the loop nodes from the created AST that
         was generated for a specific file. Loop nodes are
         defined as while, for, and async for loops.
         """
@@ -49,8 +49,9 @@ class ASTSupplier:
             for j in range(len(loop_nodes)):
                 if i >= len(loop_nodes):
                     break
-                if i != j and ast.unparse(loop_nodes[j]).replace(" ", "") \
-                        in ast.unparse(loop_nodes[i]).replace(" ", ""):
+                if i != j and ast.unparse(loop_nodes[j]).replace(
+                    " ", ""
+                ) in ast.unparse(loop_nodes[i]).replace(" ", ""):
                     deletion_nodes.append(loop_nodes[j])
             for deleted in deletion_nodes:
                 try:
@@ -61,13 +62,12 @@ class ASTSupplier:
         return loop_nodes
 
     def has_loop_nodes(self):
-        """ Returns True if for, while, or async for loops are detected.
-        """
+        """Returns True if for, while, or async for loops are detected."""
         nodes = ast.walk(self._node)
         return any(isinstance(node, self._loops) for node in nodes)
 
     def sr_request(self, file, filename, pdf_file):
-        """ Request for SR to be calculated. We employ this creation
+        """Request for SR to be calculated. We employ this creation
         method to avoid needing to instantiate an SRCalculator unless
         we explicitly need it for analysis.
         """
@@ -81,12 +81,11 @@ class ASTSupplier:
         pdf_file.add_sr_data(sr_data)
 
     def _print_parsed_ast(self):
-        """ Logging method to print the generated AST.
-        """
+        """Logging method to print the generated AST."""
         print(self._node.__dict__)
 
     def _print_unparsed_ast(self):
-        """ Logging method to print the unparsed version of
+        """Logging method to print the unparsed version of
         the generated AST.
         """
         print(ast.unparse(self._node))

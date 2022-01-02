@@ -5,9 +5,10 @@ import logging
 
 
 class SRCalculator:
-    """ SRCalculator is responsible for calculation the SR of
+    """SRCalculator is responsible for calculation the SR of
     loop statements.
     """
+
     def __init__(self, filename):
         self._filename = filename
         self._reference_file = "stall_statements.json"
@@ -23,8 +24,9 @@ class SRCalculator:
     def calculate_sr(self, nodes):
         if nodes is None:
             return self._sr_detections
-        with open(os.path.join(os.path.dirname(__file__),
-                               self._reference_file), "r") as file:
+        with open(
+            os.path.join(os.path.dirname(__file__), self._reference_file), "r"
+        ) as file:
             reference = json.load(file)
 
         score_average = []
@@ -43,31 +45,45 @@ class SRCalculator:
             for sub_node in ast.walk(node):
                 if isinstance(sub_node, ast.BinOp):
                     # Handle the case where 0 is being added or subtracted
-                    if isinstance(sub_node.op, (ast.Add, ast.Sub)) and \
-                            ((isinstance(sub_node.left, ast.Constant)
-                              and sub_node.left.value == 0) or
-                             (isinstance(sub_node.right, ast.Constant)
-                              and sub_node.right.value == 0)):
+                    if isinstance(sub_node.op, (ast.Add, ast.Sub)) and (
+                        (
+                            isinstance(sub_node.left, ast.Constant)
+                            and sub_node.left.value == 0
+                        )
+                        or (
+                            isinstance(sub_node.right, ast.Constant)
+                            and sub_node.right.value == 0
+                        )
+                    ):
                         score = self._complex_update_score(sub_node, score)
                     # Handle the case where 1 is being multiplied or divided
-                    elif isinstance(sub_node.op, (ast.Mult, ast.Div,
-                                                  ast.FloorDiv)) and \
-                            ((isinstance(sub_node.left, ast.Constant)
-                              and sub_node.left.value == 1) or
-                             (isinstance(sub_node.right, ast.Constant)
-                              and sub_node.right.value == 1)):
+                    elif isinstance(
+                        sub_node.op, (ast.Mult, ast.Div, ast.FloorDiv)
+                    ) and (
+                        (
+                            isinstance(sub_node.left, ast.Constant)
+                            and sub_node.left.value == 1
+                        )
+                        or (
+                            isinstance(sub_node.right, ast.Constant)
+                            and sub_node.right.value == 1
+                        )
+                    ):
                         score = self._complex_update_score(sub_node, score)
                 elif isinstance(sub_node, ast.AugAssign):
                     # Handle the case where 0 is being added or subtracted
-                    if isinstance(sub_node.op, (ast.Add, ast.Sub)) \
-                            and isinstance(sub_node.value, ast.Constant) \
-                            and sub_node.value.value == 0:
+                    if (
+                        isinstance(sub_node.op, (ast.Add, ast.Sub))
+                        and isinstance(sub_node.value, ast.Constant)
+                        and sub_node.value.value == 0
+                    ):
                         score = self._complex_update_score(sub_node, score)
                     # Handle the case where 1 is being multiplied or divided
-                    elif isinstance(sub_node.op, (ast.Mult, ast.Div,
-                                                  ast.FloorDiv)) \
-                            and isinstance(sub_node.value, ast.Constant) \
-                            and sub_node.value.value == 1:
+                    elif (
+                        isinstance(sub_node.op, (ast.Mult, ast.Div, ast.FloorDiv))
+                        and isinstance(sub_node.value, ast.Constant)
+                        and sub_node.value.value == 1
+                    ):
                         score = self._complex_update_score(sub_node, score)
 
             stall_total += score
@@ -80,17 +96,18 @@ class SRCalculator:
         else:
             stall_ratio = 0
 
-        logging.basicConfig(format='%(levelname)s:%(message)s',
-                            level=logging.DEBUG)
-        logging.info(f'File {self._filename} has {stall_ratio} '
-                     f'total stall statements')
-        logging.info(f'File {self._filename} '
-                     f'has a calculated average stall ratio of {stall_ratio}')
+        logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.DEBUG)
+        logging.info(
+            f"File {self._filename} has {stall_ratio} " f"total stall statements"
+        )
+        logging.info(
+            f"File {self._filename} "
+            f"has a calculated average stall ratio of {stall_ratio}"
+        )
         logging.info(self._sr_detections)
         return self._sr_detections
 
     def _complex_update_score(self, node, score):
         score += 1
-        self._sr_detections[-1].append(
-            (node.lineno, ast.unparse(node)))
+        self._sr_detections[-1].append((node.lineno, ast.unparse(node)))
         return score

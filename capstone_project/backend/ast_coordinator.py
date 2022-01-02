@@ -4,11 +4,12 @@ from capstone_project.backend.ast_supplier import ASTSupplier
 
 
 class ASTCoordinator:
-    """ ASTCoordinator is responsible for passing individual files
+    """ASTCoordinator is responsible for passing individual files
     retrieved by the directory parser and then passing them on to
     ASTSupplier. The goal is to spawn multiple threads each controlling
     an ASTSupplier to improve static analysis for larger systems.
     """
+
     def __init__(self):
         # TODO Redo this class and introduce multi-threading
         self._ast_suppliers = None

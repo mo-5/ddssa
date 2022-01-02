@@ -1,0 +1,47 @@
+name: Lint, check formatting, and run tests
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Check out the repo
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    # Set up Python
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    # Install poetry
+    - name: Install poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-in-project: true
+
+    # Load cached virtual environment if cache exists
+    - name: Load cached venv
+      uses: actions/cache@v2
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+    # Install dependencies if cache does not exist
+    - name: Install dependencies
+      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      run: poetry install --no-interaction --no-root
+
+    # Run formatting check
+    - name: Run formatting check
+      run: |
+        source .venv/bin/activate
+        black --check .
+
+    # Run tests
+    - name: Run tests
+      run: |
+        source .venv/bin/activate
+        pytest capstone_project/tests

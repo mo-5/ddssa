@@ -7,7 +7,7 @@ import warnings
 
 for i in range(8):
     if i == 7:
-        warnings.warn("The loop is about to end!") #Stall
+        warnings.warn("The loop is about to end!")  # Stall
 
-    print("Hello, World!") #Stall
-    time.sleep(0.01) #Stall
+    print("Hello, World!")  # Stall
+    time.sleep(0.01)  # Stall

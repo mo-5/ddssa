@@ -1,5 +1,5 @@
 import ast
-from capstone_project.backend.pdf_generator import PDFGenerator
+from capstone_project.backend.html_generator import HTMLGenerator
 from capstone_project.backend.sr_calculator import SRCalculator
 
 
@@ -20,7 +20,7 @@ class ASTSupplier:
             final = []
             for line in temp:
                 if not line.decode().split():
-                    line = b'#' # Wrong as AST parses this out as well.
+                    line = b'#'  # Wrong as AST parses this out as well.
                 final.append(line)
 
             ast_bytes = b''
@@ -66,7 +66,7 @@ class ASTSupplier:
         nodes = ast.walk(self._node)
         return any(isinstance(node, self._loops) for node in nodes)
 
-    def sr_request(self, file, filename, pdf_file):
+    def sr_request(self, file, filename, html_file):
         """ Request for SR to be calculated. We employ this creation
         method to avoid needing to instantiate an SRCalculator unless
         we explicitly need it for analysis.
@@ -78,7 +78,7 @@ class ASTSupplier:
         else:
             self._sr_calculator.set_filename(filename)
         sr_data = self._sr_calculator.calculate_sr(nodes)
-        pdf_file.add_sr_data(sr_data)
+        html_file.add_sr_data(sr_data)
 
     def _print_parsed_ast(self):
         """ Logging method to print the generated AST.

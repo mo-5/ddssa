@@ -2,9 +2,10 @@ import os
 
 
 class PathParser:
-    """ PathParser provides utilities to obtain a list of Python files
+    """PathParser provides utilities to obtain a list of Python files
     given a list of paths.
     """
+
     def __init__(self, paths):
         self._paths = paths
 

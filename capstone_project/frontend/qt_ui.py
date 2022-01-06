@@ -54,8 +54,14 @@ class Ui_main_window(object):
 
     def retranslateUi(self, main_window):
         _translate = QtCore.QCoreApplication.translate
-        main_window.setWindowTitle(_translate("main_window", "Data-Driven Software Security Assessment"))
-        self.file_select_btn.setText(_translate("main_window", "Choose a File or Directory"))
+        main_window.setWindowTitle(
+            _translate(
+                "main_window", "Data-Driven Software Security Assessment"
+            )
+        )
+        self.file_select_btn.setText(
+            _translate("main_window", "Choose a File or Directory")
+        )
         self.menuOptions.setTitle(_translate("main_window", "Options"))
         self.menu_action_help.setText(_translate("main_window", "Help"))
         self.menu_action_quit.setText(_translate("main_window", "Quit"))

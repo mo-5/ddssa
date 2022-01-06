@@ -25,14 +25,19 @@ class TestSR(unittest.TestCase):
         # Case 1: Simple examples only
         ast_supp.create_ast_from_file(
             os.path.join(
-                os.getcwd(), "capstone_project", "tests", "test_files", "sr_simple.py"
+                os.getcwd(),
+                "capstone_project",
+                "tests",
+                "test_files",
+                "sr_simple.py",
             )
         )
         test_calc.set_filename("sr_simple.py")
         nodes = test_calc.calculate_sr(ast_supp.get_loop_nodes_for_file())
 
         self.assertTrue(
-            nodes[0] == "sr_simple.py", "File name did not match what was expected."
+            nodes[0] == "sr_simple.py",
+            "File name did not match what was expected.",
         )
         self.assertTrue(
             len(nodes[1]) == 3,
@@ -59,14 +64,19 @@ class TestSR(unittest.TestCase):
         # Case 2: Complex example
         ast_supp.create_ast_from_file(
             os.path.join(
-                os.getcwd(), "capstone_project", "tests", "test_files", "sr_advanced.py"
+                os.getcwd(),
+                "capstone_project",
+                "tests",
+                "test_files",
+                "sr_advanced.py",
             )
         )
         test_calc.set_filename("sr_advanced.py")
         nodes = test_calc.calculate_sr(ast_supp.get_loop_nodes_for_file())
 
         self.assertTrue(
-            nodes[0] == "sr_advanced.py", "File name did not match what was expected."
+            nodes[0] == "sr_advanced.py",
+            "File name did not match what was expected.",
         )
         self.assertTrue(
             nodes[1][0][0] == 10,
@@ -88,14 +98,19 @@ class TestSR(unittest.TestCase):
         # Case 3: No stall statement example
         ast_supp.create_ast_from_file(
             os.path.join(
-                os.getcwd(), "capstone_project", "tests", "test_files", "sr_none.py"
+                os.getcwd(),
+                "capstone_project",
+                "tests",
+                "test_files",
+                "sr_none.py",
             )
         )
         test_calc.set_filename("sr_none.py")
         nodes = test_calc.calculate_sr(ast_supp.get_loop_nodes_for_file())
 
         self.assertTrue(
-            nodes[0] == "sr_none.py", "File name did not match what was expected."
+            nodes[0] == "sr_none.py",
+            "File name did not match what was expected.",
         )
         self.assertTrue(
             len(nodes[1]) == 0,

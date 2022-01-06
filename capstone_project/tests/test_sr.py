@@ -28,7 +28,7 @@ class TestSR(unittest.TestCase):
                 os.getcwd(),
                 "capstone_project",
                 "tests",
-                "test_files",
+                "python_test_files",
                 "sr_simple.py",
             )
         )
@@ -67,7 +67,7 @@ class TestSR(unittest.TestCase):
                 os.getcwd(),
                 "capstone_project",
                 "tests",
-                "test_files",
+                "python_test_files",
                 "sr_advanced.py",
             )
         )
@@ -101,7 +101,7 @@ class TestSR(unittest.TestCase):
                 os.getcwd(),
                 "capstone_project",
                 "tests",
-                "test_files",
+                "python_test_files",
                 "sr_none.py",
             )
         )

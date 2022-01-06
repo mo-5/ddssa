@@ -7,9 +7,7 @@ from capstone_project.backend.pdf_generator import PDFGenerator
 
 
 # Needed to add the capstone_project module to the system path
-sys.path.insert(
-    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-)
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 
 class DDSSA:
@@ -28,9 +26,7 @@ class DDSSA:
         pdf_file = PDFGenerator()
         pdf_file.add_header("Stall Statements:")
         for file in self._dir_parser.get_file_list():
-            self._ast_supplier.sr_request(
-                file, file.split(os.path.sep)[-1], pdf_file
-            )
+            self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1], pdf_file)
         pdf_file.save_pdf("report.pdf")
 
 

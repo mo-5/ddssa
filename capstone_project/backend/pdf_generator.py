@@ -24,11 +24,7 @@ class PDFGenerator:
 
     def add_sr_data(self, data):
         text = (
-            "File: "
-            + data[0]
-            + " contains: "
-            + str(len(data[1]))
-            + " stall statements"
+            "File: " + data[0] + " contains: " + str(len(data[1])) + " stall statements"
         )
         if len(data[1]) > 0:
             text += "\nThe following statements are stall statements: "

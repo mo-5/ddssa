@@ -14,9 +14,7 @@ class RequirementsParser(PackageParser):
     def parse_packages(self):
         """Parse out package information from a
         requirements.txt file"""
-        with open(
-            os.path.join(os.path.dirname(__file__), self._filename), "r"
-        ) as file:
+        with open(os.path.join(os.path.dirname(__file__), self._filename), "r") as file:
             for i, line in enumerate(file.readlines()):
                 name = line.split(">")[0].split("~")[0].split("=")[0]
                 version = [line.split("=")[-1].strip("=").strip()]

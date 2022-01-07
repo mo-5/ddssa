@@ -1,8 +1,8 @@
 import argparse
 import os
 import sys
-from capstone_project.backend.path_parser import PathParser
-from capstone_project.backend.ast_supplier import ASTSupplier
+from capstone_project.backend.parsing.path_parser import PathParser
+from capstone_project.backend.ast.ast_supplier import ASTSupplier
 from capstone_project.backend.pdf_generator import PDFGenerator
 
 
@@ -19,14 +19,19 @@ class DDSSA:
     """
 
     def __init__(self, paths):
+        print(paths)
         self._dir_parser = PathParser(paths)
         self._ast_supplier = ASTSupplier()
 
     def analyze(self):
         pdf_file = PDFGenerator()
         pdf_file.add_header("Stall Statements:")
-        for file in self._dir_parser.get_file_list():
+        for file in self._dir_parser.get_python_file_list():
+            print(file)
             self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1], pdf_file)
+        print()
+        for file in self._dir_parser.get_requirement_file_list():
+            print(file)
         pdf_file.save_pdf("report.pdf")
 
 

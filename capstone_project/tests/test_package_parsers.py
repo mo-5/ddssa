@@ -7,9 +7,9 @@ import requirements
 from pip._internal.utils import packaging
 from pkg_resources import extern
 
-from capstone_project.backend.package_ids import PackageIds
-from capstone_project.backend.package_parser import PackageParser
-from capstone_project.backend.req_parser import RequirementsParser
+from capstone_project.backend.parsing.package_ids import PackageIds
+from capstone_project.backend.parsing.package_parser import PackageParser
+from capstone_project.backend.parsing.req_parser import RequirementsParser
 from capstone_project.tests.test_utils import TestUtils
 
 

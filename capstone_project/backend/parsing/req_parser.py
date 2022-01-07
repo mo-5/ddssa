@@ -1,7 +1,7 @@
 import requirements
 
-from capstone_project.backend.package_ids import PackageIds
-from capstone_project.backend.package_parser import PackageParser
+from capstone_project.backend.parsing.package_ids import PackageIds
+from capstone_project.backend.parsing.package_parser import PackageParser
 
 
 class RequirementsParser(PackageParser):
@@ -41,8 +41,3 @@ class RequirementsParser(PackageParser):
     def get_data(self):
         """Return the collected package information"""
         return self._package_data
-
-
-if __name__ == "__main__":
-    rp = RequirementsParser("../tests/package_test_files/requirements.txt")
-    rp.begin_analysis()

@@ -3,8 +3,8 @@
 import unittest
 import os
 
-from capstone_project.backend.sr_calculator import SRCalculator
-from capstone_project.backend.ast_supplier import ASTSupplier
+from capstone_project.backend.metrics.sr_calculator import SRCalculator
+from capstone_project.backend.ast.ast_supplier import ASTSupplier
 from capstone_project.tests.test_utils import TestUtils
 
 

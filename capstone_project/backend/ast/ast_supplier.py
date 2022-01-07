@@ -1,6 +1,6 @@
 import ast
 from capstone_project.backend.pdf_generator import PDFGenerator
-from capstone_project.backend.sr_calculator import SRCalculator
+from capstone_project.backend.metrics.sr_calculator import SRCalculator
 
 
 class ASTSupplier:

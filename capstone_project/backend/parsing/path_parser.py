@@ -5,13 +5,13 @@ class PathParser:
     """PathParser provides utilities to obtain a list of Python
     and requirement files given a list of paths."""
 
-    REQUIREMENT_FILE_NAMES = [
+    REQUIREMENT_FILE_NAMES = {
         "requirements.txt",
         "Pipfile",
         "pyproject.toml",
         "setup.py",
         "setup.cfg",
-    ]
+    }
 
     def __init__(self, paths):
         self._paths = paths

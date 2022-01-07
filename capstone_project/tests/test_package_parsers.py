@@ -3,9 +3,15 @@
 import os
 import unittest
 
+import pyparsing
+import requirements
+from pip._internal.utils import packaging
+from pkg_resources import extern
+
 from capstone_project.backend.package_ids import PackageIds
 from capstone_project.backend.package_parser import PackageParser
 from capstone_project.backend.req_parser import RequirementsParser
+from capstone_project.tests.test_utils import TestUtils
 
 
 def create_parser(file):
@@ -18,15 +24,16 @@ class TestPackageParsers(unittest.TestCase):
     package parsers that are used to determine the packages associated
     with a Python project."""
 
+    def setUp(self):
+        self._test_path = TestUtils().get_test_path()
+
     def test_req_parser(self):
         """Test a typical requirements.txt file to ensure all packages,
         versions, and search ranges are correctly identified.
         """
         req_parser = create_parser(
             os.path.join(
-                os.getcwd(),
-                "capstone_project",
-                "tests",
+                self._test_path,
                 "package_test_files",
                 "requirements.txt",
             )
@@ -91,15 +98,31 @@ class TestPackageParsers(unittest.TestCase):
             f"Expected 2 but got {len(version[0])}.",
         )
 
-    def test_req_parser_error(self):
-        """Test a malformed requirements.txt file to an error is thrown
-        such that is can be caught during actual analysis.
+        # Check to see that compatible versions are correctly changed to be
+        # a range between PEP defined compatible package versions
+        version = req_parser.get_data()["9"].to_numpy()[1]
+        self.assertTrue(
+            len(version[0]) == 2,
+            f"The number of versions for the compatible requirement was not correct. "
+            f"Expected 2 but got {len(version[0])}.",
+        )
+
+        # Check to see that wildcard versions are correctly changed to be
+        # a range between PEP defined compatible package versions
+        version = req_parser.get_data()["8"].to_numpy()[1]
+        self.assertTrue(
+            len(version[0]) == 2,
+            f"The number of versions for the wildcard requirement was not correct. "
+            f"Expected 2 but got {len(version[0])}.",
+        )
+
+    def test_req_parser_no_req(self):
+        """Test a malformed requirements.txt file to ensure an error is
+        thrown such that is can be caught during actual analysis.
         """
         req_parser = create_parser(
             os.path.join(
-                os.getcwd(),
-                "capstone_project",
-                "tests",
+                self._test_path,
                 "package_test_files",
                 "bad_requirements.txt",
             )
@@ -109,8 +132,30 @@ class TestPackageParsers(unittest.TestCase):
         try:
             req_parser.begin_analysis()
             self.fail(
-                "Analysis should not complete successfully for an "
-                "incorrectly formatted requirements.txt file"
+                "Analysis should not complete successfully for a file that "
+                "does not contain any requirements."
             )
-        except Exception:
+        except IndexError:
+            pass
+
+    def test_req_parser_bad_req(self):
+        """Test a malformed requirements.txt file to ensure an error is
+        thrown such that is can be caught during actual analysis.
+        """
+        req_parser = create_parser(
+            os.path.join(
+                self._test_path,
+                "package_test_files",
+                "bad_requirements_2.txt",
+            )
+        )
+        req_parser.__class__ = RequirementsParser
+
+        try:
+            req_parser.begin_analysis()
+            self.fail(
+                "Analysis should not complete successfully for a file that "
+                "contains malformed requirements."
+            )
+        except extern.packaging.requirements.InvalidRequirement:
             pass

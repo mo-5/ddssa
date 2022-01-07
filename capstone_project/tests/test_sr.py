@@ -5,6 +5,7 @@ import os
 
 from capstone_project.backend.sr_calculator import SRCalculator
 from capstone_project.backend.ast_supplier import ASTSupplier
+from capstone_project.tests.test_utils import TestUtils
 
 
 class TestSR(unittest.TestCase):
@@ -14,6 +15,7 @@ class TestSR(unittest.TestCase):
 
     def setUp(self):
         # Clear object instance for each test
+        self._test_path = TestUtils().get_test_path()
         return SRCalculator("test_file"), ASTSupplier()
 
     def test_sr_logic_simple(self):
@@ -25,9 +27,7 @@ class TestSR(unittest.TestCase):
         # Case 1: Simple examples only
         ast_supp.create_ast_from_file(
             os.path.join(
-                os.getcwd(),
-                "capstone_project",
-                "tests",
+                self._test_path,
                 "python_test_files",
                 "sr_simple.py",
             )
@@ -64,9 +64,7 @@ class TestSR(unittest.TestCase):
         # Case 2: Complex example
         ast_supp.create_ast_from_file(
             os.path.join(
-                os.getcwd(),
-                "capstone_project",
-                "tests",
+                self._test_path,
                 "python_test_files",
                 "sr_advanced.py",
             )
@@ -98,9 +96,7 @@ class TestSR(unittest.TestCase):
         # Case 3: No stall statement example
         ast_supp.create_ast_from_file(
             os.path.join(
-                os.getcwd(),
-                "capstone_project",
-                "tests",
+                self._test_path,
                 "python_test_files",
                 "sr_none.py",
             )

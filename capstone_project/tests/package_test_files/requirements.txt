@@ -6,7 +6,7 @@ certifi==2021.10.8
 numpy>=1.19.0
 requests==2.26.0
 beautifulsoup4==4.10.0
-jsonschema==4.1.0
+jsonschema==4.1.*
 rarfile~=4.0
 Django>=1.5,<1.6
 nodegraphqt>=0.1.7

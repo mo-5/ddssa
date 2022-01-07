@@ -3,7 +3,6 @@
 import os
 import unittest
 
-import pyparsing
 import requirements
 from pip._internal.utils import packaging
 from pkg_resources import extern

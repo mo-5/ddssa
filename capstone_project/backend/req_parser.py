@@ -25,8 +25,6 @@ class RequirementsParser(PackageParser):
 
                 self._package_data[str(i)] = [req.name, req.specs, search_range]
 
-        print(self._package_data.to_string())
-
     def get_data(self):
         """Return the collected package information"""
         return self._package_data

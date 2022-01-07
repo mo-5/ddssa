@@ -19,7 +19,6 @@ class DDSSA:
     """
 
     def __init__(self, paths):
-        print(paths)
         self._dir_parser = PathParser(paths)
         self._ast_supplier = ASTSupplier()
 
@@ -27,11 +26,10 @@ class DDSSA:
         pdf_file = PDFGenerator()
         pdf_file.add_header("Stall Statements:")
         for file in self._dir_parser.get_python_file_list():
-            print(file)
             self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1], pdf_file)
-        print()
         for file in self._dir_parser.get_requirement_file_list():
-            print(file)
+            # TODO Analyze dependencies
+            pass
         pdf_file.save_pdf("report.pdf")
 
 

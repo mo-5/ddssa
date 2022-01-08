@@ -6,7 +6,7 @@ import unittest
 class TestASTSupplier(unittest.TestCase):
     """TestASTSupplier is responsible for ensuring the correct
     functionality of created and supplied AST nodes derived from
-    Python files..
+    Python files.
     """
 
     def test_something(self):

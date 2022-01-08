@@ -1,9 +1,9 @@
 import argparse
 import os
 import sys
+from capstone_project.backend.parsing.path_parser import PathParser
+from capstone_project.backend.ast.ast_supplier import ASTSupplier
 from capstone_project.backend.html_generator import HTMLGenerator
-from capstone_project.backend.path_parser import PathParser
-from capstone_project.backend.ast_supplier import ASTSupplier
 
 
 # Needed to add the capstone_project module to the system path
@@ -25,10 +25,13 @@ class DDSSA:
 
     def analyze(self):
         html_file = HTMLGenerator()
-        for file in self._dir_parser.get_file_list():
+        for file in self._dir_parser.get_python_file_list():
             self._ast_supplier.sr_request(
-                file, file.split(os.path.sep)[-1], html_file)
-        html_file.save_html("report.pdf")
+                file, file.split(os.path.sep)[-1], HTMLGenerator)
+        for file in self._dir_parser.get_requirement_file_list():
+            # TODO Analyze dependencies
+            pass
+        HTMLGenerator.save_html("report.html")
 
 
 def main():

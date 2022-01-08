@@ -2,15 +2,20 @@ import os
 import sys
 from os.path import expanduser
 
-from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QApplication, \
-    QFileDialog, QMessageBox
+from PyQt5.QtWidgets import (
+    QMainWindow,
+    QDesktopWidget,
+    QApplication,
+    QFileDialog,
+    QMessageBox,
+)
 
 from capstone_project.frontend import qt_ui
 from capstone_project.frontend.ddssa import DDSSA
 
 
 class UI(QMainWindow):
-    """ UI Represents the main graphical user interface
+    """UI Represents the main graphical user interface
     that serves as the entry-point for the application.
 
     This class relies on the qt_ui.py file that is generated
@@ -61,10 +66,10 @@ class UI(QMainWindow):
         self._display_report()
 
     def _get_file_path(self):
-        """ Attempt to get the
-        """
+        """Attempt to get the"""
         input_dir = QFileDialog.getExistingDirectory(
-            None, 'Select a directory or .py file', expanduser("~"))
+            None, "Select a directory or .py file", expanduser("~")
+        )
         if input_dir == "" or not os.path.isdir(input_dir):
             self.msg.setWindowTitle("Invalid Selection")
             self.msg.setIcon(QMessageBox.Information)
@@ -75,15 +80,16 @@ class UI(QMainWindow):
         return input_dir
 
     def _display_report(self):
-        """ Display the path to the generated report upon
+        """Display the path to the generated report upon
         completion of analysis.
         Not triggered directly.
         """
         self.ui.text_browser.setText(
-            f'Report generated at {os.path.join(os.getcwd(), "report.pdf")}')
+            f'Report generated at {os.path.join(os.getcwd(), "report.pdf")}'
+        )
 
     def _display_help(self):
-        """ Display helpful information that includes how to use
+        """Display helpful information that includes how to use
         the application, alongside an explanation of what the
         application will be doing.
         """
@@ -104,10 +110,11 @@ class UI(QMainWindow):
             "statements identified in a loop. The recommendation is to move "
             "any detected Stall Statements outside of the loop to improve "
             "program efficiency to decrease impacts to accessibility when "
-            "user's use your program.")
+            "user's use your program."
+        )
 
     def _try_quit(self):
-        """ Attempt to safely exit the application.
+        """Attempt to safely exit the application.
         Triggered via a menu action.
         """
         self.close()

@@ -1,6 +1,6 @@
 import ast
 
-from capstone_project.backend.ast_supplier import ASTSupplier
+from capstone_project.backend.ast.ast_supplier import ASTSupplier
 
 
 class ASTCoordinator:

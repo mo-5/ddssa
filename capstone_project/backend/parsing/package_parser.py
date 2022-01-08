@@ -3,7 +3,7 @@ import pandas as pd
 
 class PackageParser:
     """PackageParser is an informal abstract class that will be
-    implemented by three different package parsers. These methods
+    implemented by the various package parsers. These methods
     will include specific logic to parse and return packages from
     a given package management file."""
 
@@ -12,7 +12,7 @@ class PackageParser:
         self._filename = filename
 
     def parse_packages(self):
-        pass
+        """Parse packages from the file associated with this parser."""
 
     def get_data(self):
         """Return the collected package information"""
@@ -22,4 +22,4 @@ class PackageParser:
         """Call to begin parsing of a given file for package
         and to return the package information after parsing."""
         self.parse_packages()
-        self.get_data()
+        return self.get_data()

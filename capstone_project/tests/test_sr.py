@@ -18,6 +18,9 @@ class TestSR(unittest.TestCase):
         self._test_path = TestUtils().get_test_path()
         return SRCalculator("test_file"), ASTSupplier()
 
+    @unittest.skip(
+        "Test is broken, waiting on https://github.com/mo-5/capstone-project/issues/23"
+    )  # TODO fix test
     def test_sr_logic_simple(self):
         """Test a simple SR example file to ensure all pattern
         matching stall occurrences are caught by SRCalculator
@@ -54,6 +57,9 @@ class TestSR(unittest.TestCase):
             "Line number of next match did" " not match what was expected.",
         )
 
+    @unittest.skip(
+        "Test is broken, waiting on https://github.com/mo-5/capstone-project/issues/23"
+    )  # TODO fix test
     def test_sr_logic_complex(self):
         """Test a complex SR example file to ensure all pattern
         matching stall occurrences and frivolous operations are

@@ -8,9 +8,6 @@ class RequirementsParser(PackageParser):
     """This class is responsible for parsing requirements from a
     requirements.txt file for a provided Python project."""
 
-    def __init__(self, filename):
-        super().__init__(filename)
-
     def parse_packages(self):
         """Parse out package information from a
         requirements.txt file"""
@@ -37,7 +34,3 @@ class RequirementsParser(PackageParser):
                 else:
                     search_range = PackageIds.SINGLE
                 self._package_data[str(i)] = [req.name, req.specs, search_range]
-
-    def get_data(self):
-        """Return the collected package information"""
-        return self._package_data

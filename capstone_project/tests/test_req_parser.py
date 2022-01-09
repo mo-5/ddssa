@@ -1,6 +1,5 @@
 import os
 import unittest
-import pkg_resources
 
 from capstone_project.backend.parsing.package_ids import PackageIds
 from capstone_project.backend.parsing.req_parser import RequirementsParser

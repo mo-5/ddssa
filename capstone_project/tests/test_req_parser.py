@@ -120,7 +120,7 @@ class TestReqParser(unittest.TestCase):
                 "Analysis should not complete successfully for a file that "
                 "does not contain any requirements."
             )
-        except IndexError:
+        except RuntimeError:
             pass
 
     def test_req_parser_bad_req(self):
@@ -141,5 +141,5 @@ class TestReqParser(unittest.TestCase):
                 "Analysis should not complete successfully for a file that "
                 "contains malformed requirements."
             )
-        except pkg_resources.packaging.requirements.InvalidRequirement:
+        except RuntimeError:
             pass

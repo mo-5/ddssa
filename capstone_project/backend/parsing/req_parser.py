@@ -40,5 +40,5 @@ class RequirementsParser(PackageParser):
                     else:
                         search_range = PackageIds.SINGLE
                     self._package_data[str(i)] = [req.name, req.specs, search_range]
-            except pkg_resources.packaging.requirements.InvalidRequirement or IndexError as e:
-                raise RuntimeError("requirements.txt file is invalid") from e
+            except pkg_resources.packaging.requirements.InvalidRequirement or IndexError:
+                raise RuntimeError("requirements.txt file is invalid")

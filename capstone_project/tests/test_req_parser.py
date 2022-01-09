@@ -1,3 +1,5 @@
+""" tests contains any unit tests for backend files
+"""
 import os
 import unittest
 
@@ -21,6 +23,7 @@ class TestReqParser(unittest.TestCase):
             os.path.join(
                 self._test_path,
                 "package_test_files",
+                "requirements",
                 "requirements.txt",
             )
         )
@@ -35,8 +38,10 @@ class TestReqParser(unittest.TestCase):
             f"but got {size}",
         )
 
+        col_0 = data["0"].to_numpy()
+
         # Check to see if the first search range was correctly identified.
-        search_range = data["0"].to_numpy()[2]
+        search_range = col_0[2]
         self.assertTrue(
             search_range == PackageIds.MAX,
             f"The search range for the requirement was not correct. Expected "
@@ -44,7 +49,7 @@ class TestReqParser(unittest.TestCase):
         )
 
         # Check to see if the first name was correctly identified.
-        name = data["0"].to_numpy()[0]
+        name = col_0[0]
         self.assertTrue(
             name == "psutil",
             f"The name for the requirement was not correct. Expected psutil "
@@ -52,11 +57,19 @@ class TestReqParser(unittest.TestCase):
         )
 
         # Check to see if the first version was correctly identified.
-        version = data["0"].to_numpy()[1]
+        version = col_0[1]
         self.assertTrue(
             version[0] == (">=", "5.7.0"),
             f"The version for the requirement was not correct. "
             f'Expected (">=", "5.7.0") but got {version}.',
+        )
+
+        # Check to see that the size of the versions array in a requirement
+        # with a RANGE is 2.
+        self.assertTrue(
+            len(version[0]) == 2,
+            f"The number of versions for the requirement was not correct. "
+            f"Expected 2 but got {len(version[0])}.",
         )
 
         # Check to see if each range is identified correctly.
@@ -72,15 +85,6 @@ class TestReqParser(unittest.TestCase):
             search_range == PackageIds.RANGE,
             f"The search range for the requirement was not correct. Expected "
             f"RANGE but got {search_range}",
-        )
-
-        # Check to see that the size of the versions array in a requirement
-        # with a RANGE is 2.
-        version = data["0"].to_numpy()[1]
-        self.assertTrue(
-            len(version[0]) == 2,
-            f"The number of versions for the requirement was not correct. "
-            f"Expected 2 but got {len(version[0])}.",
         )
 
         # Check to see that compatible versions are correctly changed to be
@@ -109,6 +113,7 @@ class TestReqParser(unittest.TestCase):
             os.path.join(
                 self._test_path,
                 "package_test_files",
+                "requirements",
                 "bad_requirements.txt",
             )
         )
@@ -130,6 +135,7 @@ class TestReqParser(unittest.TestCase):
             os.path.join(
                 self._test_path,
                 "package_test_files",
+                "requirements",
                 "bad_requirements_2.txt",
             )
         )

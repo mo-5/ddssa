@@ -12,3 +12,4 @@ class PackageIds(Enum):
     SINGLE = 1
     RANGE = 2
     MAX = 3
+    NO_VER = 4

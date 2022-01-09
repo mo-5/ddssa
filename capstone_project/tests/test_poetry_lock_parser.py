@@ -1,3 +1,5 @@
+""" tests contains any unit tests for backend files
+"""
 import os
 import unittest
 
@@ -20,6 +22,7 @@ class TestReqParser(unittest.TestCase):
             os.path.join(
                 self._test_path,
                 "package_test_files",
+                "poetry",
                 "valid.poetry.lock",
             )
         )
@@ -90,6 +93,7 @@ class TestReqParser(unittest.TestCase):
             os.path.join(
                 self._test_path,
                 "package_test_files",
+                "poetry",
                 "invalid.poetry.lock",
             )
         )

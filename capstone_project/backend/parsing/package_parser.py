@@ -33,6 +33,8 @@ class PackageParser:
             ]
         elif ">" in req.specs[0][0] and len(req.specs) == 1:
             search_range = PackageIds.MAX
+        elif "!" in req.specs[0][0] and len(req.specs) == 1:
+            search_range = PackageIds.EXCLUDE
         else:
             search_range = PackageIds.SINGLE
         self._package_data[str(i)] = [req.name, req.specs, search_range]

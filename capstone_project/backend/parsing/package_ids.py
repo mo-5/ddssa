@@ -13,3 +13,4 @@ class PackageIds(Enum):
     RANGE = 2
     MAX = 3
     NO_VER = 4
+    EXCLUDE = 5

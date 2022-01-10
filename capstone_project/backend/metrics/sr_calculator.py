@@ -95,15 +95,6 @@ class SRCalculator:
         else:
             stall_ratio = 0
 
-        # logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.DEBUG)
-        # logging.info(
-        #     f"File {self._filename} has {stall_ratio} " f"total stall statements"
-        # )
-        # logging.info(
-        #     f"File {self._filename} "
-        #     f"has a calculated average stall ratio of {stall_ratio}"
-        # )
-        # logging.info(self._sr_detections)
         return self._sr_detections
 
     def _complex_update_score(self, node, score):

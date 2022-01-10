@@ -27,8 +27,6 @@ class HTMLGenerator:
                     + "</li>"
                 )
             self.html.append("</ol></div>")
-            print(data)
-            print(self.html)
 
     def get_html(self):
         return "".join(self.html)

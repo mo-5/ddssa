@@ -17,6 +17,7 @@ class TestHTMLGenerator(unittest.TestCase):
         )
 
     def test_add_sr_data_with_list(self):
+        """Test the addition of sr statements that includes a list to the html report."""
         html = HTMLGenerator()
         html.add_sr_data(("ast_coordinator.py", [(26, "    print(loop)")]))
         file = html.get_html()
@@ -33,6 +34,7 @@ class TestHTMLGenerator(unittest.TestCase):
         )
 
     def test_add_sr_data_without_list(self):
+        """Test the addition of sr statements that doesnot include a list to the html report."""
         html = HTMLGenerator()
         html.add_sr_data(("ast_coordinator.py", []))
         file = html.get_html()

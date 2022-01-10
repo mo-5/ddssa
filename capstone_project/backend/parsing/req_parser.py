@@ -1,3 +1,4 @@
+import pkg_resources
 import requirements
 
 from capstone_project.backend.parsing.package_ids import PackageIds
@@ -12,25 +13,15 @@ class RequirementsParser(PackageParser):
         """Parse out package information from a
         requirements.txt file"""
         with open(self._filename, "r") as f:
-            for i, req in enumerate(requirements.parse(f)):
-                if len(req.specs) > 1:
-                    search_range = PackageIds.RANGE
-                elif (
-                    "~" in req.specs[0][0]
-                    or "*" in req.specs[0][1]
-                    and len(req.specs) == 1
-                ):
-                    search_range = PackageIds.RANGE
-                    req.specs = [
-                        (">=", req.specs[0][1]),
-                        (
-                            "<",
-                            req.specs[0][1].rsplit(".", 1)[0][:-1]
-                            + (str(float(req.specs[0][1].rsplit(".", 1)[0][-1]) + 1)),
-                        ),
-                    ]
-                elif ">" in req.specs[0][0] and len(req.specs) == 1:
-                    search_range = PackageIds.MAX
-                else:
-                    search_range = PackageIds.SINGLE
-                self._package_data[str(i)] = [req.name, req.specs, search_range]
+            try:
+                for i, req in enumerate(requirements.parse(f)):
+                    if len(req.specs) == 0:
+                        self._package_data[str(i)] = [req, "", PackageIds.NO_VER]
+                    else:
+                        self.basic_req_parse(i, req)
+            except pkg_resources.packaging.requirements.InvalidRequirement as e:
+                raise RuntimeError(
+                    "requirements.txt file contains an unknown requirement"
+                ) from e
+            except IndexError:
+                raise RuntimeError("requirements.txt file is invalid")

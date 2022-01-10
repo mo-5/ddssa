@@ -6,7 +6,6 @@ authors = ["Samuel Gamelin <samuel.gamelin@carleton.ca>", "John Breton <john.bre
 
 [tool.poetry.dependencies]
 python = "^3.9"
-fpdf = "^1.7.2"
 requests = "^2.26.0"
 PyQt5 = "^5.15.6"
 pandas = "^1.3.5"

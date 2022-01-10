@@ -1,10 +1,10 @@
 import argparse
 import os
 import sys
-from capstone_project.backend.parsing.path_parser import PathParser
-from capstone_project.backend.ast.ast_supplier import ASTSupplier
-from capstone_project.backend.pdf_generator import PDFGenerator
 
+from capstone_project.backend.ast.ast_supplier import ASTSupplier
+from capstone_project.backend.file_generator.html_generator import HTMLGenerator
+from capstone_project.backend.parsing.path_parser import PathParser
 
 # Needed to add the capstone_project module to the system path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
@@ -23,14 +23,18 @@ class DDSSA:
         self._ast_supplier = ASTSupplier()
 
     def analyze(self):
-        pdf_file = PDFGenerator()
-        pdf_file.add_header("Stall Statements:")
+        html_file = HTMLGenerator()
+
         for file in self._dir_parser.get_python_file_list():
-            self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1], pdf_file)
+            html_file.add_sr_data(
+                self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1])
+            )
         for file in self._dir_parser.get_requirement_file_list():
             # TODO Analyze dependencies
             pass
-        pdf_file.save_pdf("report.pdf")
+
+        html = html_file.get_html()
+        return html
 
 
 def main():

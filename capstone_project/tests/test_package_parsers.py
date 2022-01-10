@@ -3,8 +3,6 @@
 import os
 import unittest
 
-import requirements
-from pip._internal.utils import packaging
 from pkg_resources import extern
 
 from capstone_project.backend.parsing.package_ids import PackageIds

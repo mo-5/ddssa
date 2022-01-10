@@ -1,5 +1,5 @@
 import ast
-from capstone_project.backend.html_generator import HTMLGenerator
+
 from capstone_project.backend.metrics.sr_calculator import SRCalculator
 
 
@@ -50,7 +50,7 @@ class ASTSupplier:
                 if i >= len(loop_nodes):
                     break
                 if i != j and ast.unparse(loop_nodes[j]).replace(
-                    " ", ""
+                        " ", ""
                 ) in ast.unparse(loop_nodes[i]).replace(" ", ""):
                     deletion_nodes.append(loop_nodes[j])
             for deleted in deletion_nodes:
@@ -66,7 +66,7 @@ class ASTSupplier:
         nodes = ast.walk(self._node)
         return any(isinstance(node, self._loops) for node in nodes)
 
-    def sr_request(self, file, filename, html_file):
+    def sr_request(self, file, filename):
         """Request for SR to be calculated. We employ this creation
         method to avoid needing to instantiate an SRCalculator unless
         we explicitly need it for analysis.
@@ -78,7 +78,8 @@ class ASTSupplier:
         else:
             self._sr_calculator.set_filename(filename)
         sr_data = self._sr_calculator.calculate_sr(nodes)
-        html_file.add_sr_data(sr_data)
+
+        return sr_data
 
     def _print_parsed_ast(self):
         """Logging method to print the generated AST."""

@@ -19,9 +19,9 @@ class RequirementsParser(PackageParser):
                 if len(req.specs) > 1:
                     search_range = PackageIds.RANGE
                 elif (
-                    "~" in req.specs[0][0]
-                    or "*" in req.specs[0][1]
-                    and len(req.specs) == 1
+                        "~" in req.specs[0][0]
+                        or "*" in req.specs[0][1]
+                        and len(req.specs) == 1
                 ):
                     search_range = PackageIds.RANGE
                     req.specs = [

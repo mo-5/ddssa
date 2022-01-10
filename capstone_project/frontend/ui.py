@@ -78,8 +78,7 @@ class UI(QMainWindow):
         return input_dir
 
     def _display_report(self, report_html):
-        """
-        """
+        """ """
         self.ui.text_browser.setText(report_html)
 
     def _display_help(self):

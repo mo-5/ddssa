@@ -3,8 +3,7 @@ from capstone_project.backend.file_generator.html_generator import HTMLGenerator
 
 
 class TestHTMLGenerator(unittest.TestCase):
-    """Test the html generator to ensure that the html is being generated.
-    """
+    """Test the html generator to ensure that the html is being generated."""
 
     def test_initial_html(self):
         html = HTMLGenerator()
@@ -19,7 +18,7 @@ class TestHTMLGenerator(unittest.TestCase):
 
     def test_add_sr_data_with_list(self):
         html = HTMLGenerator()
-        html.add_sr_data(('ast_coordinator.py', [(26, '    print(loop)')]))
+        html.add_sr_data(("ast_coordinator.py", [(26, "    print(loop)")]))
         file = html.get_html()
         self.assertEqual(
             "<h1>Data-Driven Software Security Assessment Report</h1><h2>Stall Statements:</h2><div>File: "
@@ -35,7 +34,7 @@ class TestHTMLGenerator(unittest.TestCase):
 
     def test_add_sr_data_without_list(self):
         html = HTMLGenerator()
-        html.add_sr_data(('ast_coordinator.py', []))
+        html.add_sr_data(("ast_coordinator.py", []))
         file = html.get_html()
         self.assertEqual(
             "<h1>Data-Driven Software Security Assessment Report</h1><h2>Stall Statements:</h2><div>File: "

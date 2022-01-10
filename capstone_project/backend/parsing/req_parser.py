@@ -16,8 +16,7 @@ class RequirementsParser(PackageParser):
             try:
                 for i, req in enumerate(requirements.parse(f)):
                     if len(req.specs) == 0:
-                        self._package_data[str(i)] = [
-                            req, "", PackageIds.NO_VER]
+                        self._package_data[str(i)] = [req, "", PackageIds.NO_VER]
                     else:
                         self.basic_req_parse(i, req)
             except pkg_resources.packaging.requirements.InvalidRequirement as e:

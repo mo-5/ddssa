@@ -7,8 +7,7 @@ from capstone_project.backend.file_generator.html_generator import HTMLGenerator
 from capstone_project.backend.parsing.path_parser import PathParser
 
 # Needed to add the capstone_project module to the system path
-sys.path.insert(0, os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "../..")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 
 class DDSSA:
@@ -27,8 +26,9 @@ class DDSSA:
         html_file = HTMLGenerator()
 
         for file in self._dir_parser.get_python_file_list():
-            html_file.add_sr_data(self._ast_supplier.sr_request(
-                file, file.split(os.path.sep)[-1]))
+            html_file.add_sr_data(
+                self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1])
+            )
         for file in self._dir_parser.get_requirement_file_list():
             # TODO Analyze dependencies
             pass
@@ -40,14 +40,14 @@ class DDSSA:
 def main():
     parser = argparse.ArgumentParser(
         description="Command line options for the Data-Driven Software "
-                    "Security Assessment tool"
+        "Security Assessment tool"
     )
     parser.add_argument(
         "-p",
         "--paths",
         nargs="+",
         help="The list of paths to be used to search for files to "
-             "analyze. Must be directories or files.",
+        "analyze. Must be directories or files.",
         required=True,
     )
 

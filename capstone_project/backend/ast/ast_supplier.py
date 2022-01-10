@@ -20,7 +20,7 @@ class ASTSupplier:
             final = []
             for line in temp:
                 if not line.decode().split():
-                    line = b'#'  # Wrong as AST parses this out as well.
+                    line = b"#"  # Wrong as AST parses this out as well.
                 final.append(line)
 
             ast_bytes = b""

@@ -24,7 +24,7 @@ class SRCalculator:
         if nodes is None:
             return self._sr_detections
         with open(
-                os.path.join(os.path.dirname(__file__), self._reference_file), "r"
+            os.path.join(os.path.dirname(__file__), self._reference_file), "r"
         ) as file:
             reference = json.load(file)
 
@@ -45,43 +45,43 @@ class SRCalculator:
                 if isinstance(sub_node, ast.BinOp):
                     # Handle the case where 0 is being added or subtracted
                     if isinstance(sub_node.op, (ast.Add, ast.Sub)) and (
-                            (
-                                    isinstance(sub_node.left, ast.Constant)
-                                    and sub_node.left.value == 0
-                            )
-                            or (
-                                    isinstance(sub_node.right, ast.Constant)
-                                    and sub_node.right.value == 0
-                            )
+                        (
+                            isinstance(sub_node.left, ast.Constant)
+                            and sub_node.left.value == 0
+                        )
+                        or (
+                            isinstance(sub_node.right, ast.Constant)
+                            and sub_node.right.value == 0
+                        )
                     ):
                         score = self._complex_update_score(sub_node, score)
                     # Handle the case where 1 is being multiplied or divided
                     elif isinstance(
-                            sub_node.op, (ast.Mult, ast.Div, ast.FloorDiv)
+                        sub_node.op, (ast.Mult, ast.Div, ast.FloorDiv)
                     ) and (
-                            (
-                                    isinstance(sub_node.left, ast.Constant)
-                                    and sub_node.left.value == 1
-                            )
-                            or (
-                                    isinstance(sub_node.right, ast.Constant)
-                                    and sub_node.right.value == 1
-                            )
+                        (
+                            isinstance(sub_node.left, ast.Constant)
+                            and sub_node.left.value == 1
+                        )
+                        or (
+                            isinstance(sub_node.right, ast.Constant)
+                            and sub_node.right.value == 1
+                        )
                     ):
                         score = self._complex_update_score(sub_node, score)
                 elif isinstance(sub_node, ast.AugAssign):
                     # Handle the case where 0 is being added or subtracted
                     if (
-                            isinstance(sub_node.op, (ast.Add, ast.Sub))
-                            and isinstance(sub_node.value, ast.Constant)
-                            and sub_node.value.value == 0
+                        isinstance(sub_node.op, (ast.Add, ast.Sub))
+                        and isinstance(sub_node.value, ast.Constant)
+                        and sub_node.value.value == 0
                     ):
                         score = self._complex_update_score(sub_node, score)
                     # Handle the case where 1 is being multiplied or divided
                     elif (
-                            isinstance(sub_node.op, (ast.Mult, ast.Div, ast.FloorDiv))
-                            and isinstance(sub_node.value, ast.Constant)
-                            and sub_node.value.value == 1
+                        isinstance(sub_node.op, (ast.Mult, ast.Div, ast.FloorDiv))
+                        and isinstance(sub_node.value, ast.Constant)
+                        and sub_node.value.value == 1
                     ):
                         score = self._complex_update_score(sub_node, score)
 

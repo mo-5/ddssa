@@ -45,14 +45,14 @@ class ASTSupplier:
 
         # Prune list to remove sub loops
         deletion_nodes = []
-        for i in range(len(loop_nodes)):
-            for j in range(len(loop_nodes)):
+        for i, node_i in enumerate(loop_nodes):
+            for j, node_j in enumerate(loop_nodes):
                 if i >= len(loop_nodes):
                     break
-                if i != j and ast.unparse(loop_nodes[j]).replace(
-                        " ", ""
-                ) in ast.unparse(loop_nodes[i]).replace(" ", ""):
-                    deletion_nodes.append(loop_nodes[j])
+                if i != j and ast.unparse(node_j).replace(" ", "") in ast.unparse(
+                    node_i
+                ).replace(" ", ""):
+                    deletion_nodes.append(node_i)
             for deleted in deletion_nodes:
                 try:
                     loop_nodes.remove(deleted)

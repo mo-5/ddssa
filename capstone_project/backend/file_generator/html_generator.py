@@ -18,6 +18,8 @@ class HTMLGenerator:
                 self.html.append(
                     "<li> Line number: " + str(data[1][i][0]) + ", statement: " + data[1][i][1].strip() + "</li>")
             self.html.append("</ol></div>")
+            print(data)
+            print(self.html)
 
     def get_html(self):
-        return " ".join(self.html)
+        return "".join(self.html)

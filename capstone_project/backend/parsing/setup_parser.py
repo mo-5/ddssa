@@ -50,8 +50,8 @@ class SetupParser(PackageParser):
                     self.basic_req_parse(i, temp)
         except pkg_resources.packaging.requirements.InvalidRequirement as e:
             raise RuntimeError("setup.cfg file contains an unknown requirement") from e
-        except IndexError:
-            raise RuntimeError("setup.cfg file is invalid")
+        except IndexError as e:
+            raise RuntimeError("setup.cfg file is invalid") from e
 
     def _convert_to_cfg(self):
         """Converts a setup.py file to a setup.cfg file"""

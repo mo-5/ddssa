@@ -1,5 +1,3 @@
-""" tests contains any unit tests for backend files
-"""
 import os
 import unittest
 
@@ -8,7 +6,7 @@ from capstone_project.backend.parsing.package_ids import PackageIds
 from capstone_project.backend.parsing.poetry_lock_parser import PoetryLockParser
 
 
-class TestReqParser(unittest.TestCase):
+class TestPoetryLockParser(unittest.TestCase):
     """TestPoetryLockParser is responsible for testing the poetry.lock package
     parser."""
 

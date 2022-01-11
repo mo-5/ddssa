@@ -3,11 +3,9 @@ import os
 import sys
 
 import pkg_resources
-import requirements
 import setup_cfg_fmt
 import setup_py_upgrade
 
-from capstone_project.backend.parsing.package_ids import PackageIds
 from capstone_project.backend.parsing.package_parser import PackageParser
 
 
@@ -41,13 +39,7 @@ class SetupParser(PackageParser):
 
         try:
             for i, req in enumerate(packages):
-                if "=" not in req:
-                    # setup.cfg doesn't need to specify a version, we need to
-                    # take that into account.
-                    self._package_data[str(i)] = [req, "", PackageIds.NO_VER]
-                else:
-                    temp = list(requirements.parse(req))[0]
-                    self.basic_req_parse(i, temp)
+                self.basic_req_parse(i, req)
         except pkg_resources.packaging.requirements.InvalidRequirement as e:
             raise RuntimeError("setup.cfg file contains an unknown requirement") from e
         except IndexError as e:

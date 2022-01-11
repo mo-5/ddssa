@@ -9,14 +9,14 @@ class HTMLGenerator:
 
     def add_sr_data(self, data):
         """Add sr data data to html report"""
-        self.html.append(
-            "<div>File: "
-            + data[0]
-            + " contains: "
-            + str(len(data[1]))
-            + " stall statements</div>"
-        )
         if len(data[1]) > 0:
+            self.html.append(
+                "<div>File: "
+                + data[0]
+                + " contains: "
+                + str(len(data[1]))
+                + " stall statements</div>"
+            )
             self.html.append(
                 "<div><div>The following statements are stall statements:</div><ol>"
             )

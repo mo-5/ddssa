@@ -31,7 +31,7 @@ class TestSR(unittest.TestCase):
         ast_supp.create_ast_from_file(
             os.path.join(
                 self._test_path,
-                "python_test_files",
+                "static_test_files",
                 "sr_simple.py",
             )
         )
@@ -71,7 +71,7 @@ class TestSR(unittest.TestCase):
         ast_supp.create_ast_from_file(
             os.path.join(
                 self._test_path,
-                "python_test_files",
+                "static_test_files",
                 "sr_advanced.py",
             )
         )
@@ -103,7 +103,7 @@ class TestSR(unittest.TestCase):
         ast_supp.create_ast_from_file(
             os.path.join(
                 self._test_path,
-                "python_test_files",
+                "static_test_files",
                 "sr_none.py",
             )
         )

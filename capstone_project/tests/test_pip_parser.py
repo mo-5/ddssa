@@ -35,7 +35,7 @@ class TestPipParser(unittest.TestCase):
 
         self.assertTrue(
             size == 4,
-            f"Number of requirements identified was not correct. Expected 3 "
+            f"Number of requirements identified was not correct. Expected 4 "
             f"but got {size}",
         )
 

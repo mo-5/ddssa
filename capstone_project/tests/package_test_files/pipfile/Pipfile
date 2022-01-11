@@ -1,0 +1,17 @@
+[[source]]
+
+url = "http://some.pypi.mirror.server.org/simple"
+verify_ssl = false
+name = "pypi"
+
+
+[packages]
+
+django = "==2.0"
+djangorestframework = "*"
+django-allauth = "*"
+
+
+[dev-packages]
+
+toml = "*"

@@ -1,6 +1,6 @@
 # Data-Driven Software Security Assessment
 
-This is a design of a software security assessment tool using data-driven approach.
+This is a design for a software security assessment tool using a data-driven approach.
 
 ## Development
 

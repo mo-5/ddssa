@@ -48,14 +48,14 @@ class TestSetupParser(unittest.TestCase):
         self.assertTrue(
             search_range == PackageIds.NO_VER,
             f"The search range for the requirement was not correct. Expected "
-            f"MAX but got {search_range}",
+            f"NO_VER but got {search_range}",
         )
 
         # Check to see if the first name was correctly identified.
         name = col_0[0]
         self.assertTrue(
             name == "docutils",
-            f"The name for the requirement was not correct. Expected psutil "
+            f"The name for the requirement was not correct. Expected docutils "
             f"but got {name}",
         )
 
@@ -72,7 +72,7 @@ class TestSetupParser(unittest.TestCase):
         self.assertTrue(
             len(version) == 2,
             f"The number of version for the requirement was not correct. "
-            f"Expected 1 but got {len(version)}.",
+            f"Expected 2 but got {len(version)}.",
         )
 
     @unittest.skip(
@@ -110,7 +110,7 @@ class TestSetupParser(unittest.TestCase):
         self.assertTrue(
             len(version) == 2,
             f"The number of version for the requirement was not correct. "
-            f"Expected 1 but got {len(version)}.",
+            f"Expected 2 but got {len(version)}.",
         )
 
     def test_setup_parser_cfg_bad(self):

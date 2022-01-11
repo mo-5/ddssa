@@ -39,8 +39,7 @@ class TestHTMLGenerator(unittest.TestCase):
         html.add_sr_data(("ast_coordinator.py", []))
         file = html.get_html()
         self.assertEqual(
-            "<h1>Data-Driven Software Security Assessment Report</h1><h2>Stall Statements:</h2><div>File: "
-            "ast_coordinator.py contains: 0 stall statements</div>",
+            "<h1>Data-Driven Software Security Assessment Report</h1><h2>Stall Statements:</h2>",
             file,
             f"The addition was not correct. Expected: <h1>Data-Driven Software Security Assessment "
             f"Report</h1><h2>Stall Statements:</h2><div>File: "

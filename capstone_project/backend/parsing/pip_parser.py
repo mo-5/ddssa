@@ -26,11 +26,4 @@ class PipParser(PackageParser):
             except Exception:
                 raise RuntimeError(f"{file_type} is invalid.")
             for i, package in enumerate(data.dependencies):
-                if "=" not in str(package.specs):
-                    # Account for the possible lack of a version identifier
-                    self._package_data[str(i)] = [package.name, "", PackageIds.NO_VER]
-                else:
-                    # Ignore hashes with split
-                    self.basic_req_parse(
-                        i, list(requirements.parse(package.line.split(" ")[0]))[0]
-                    )
+                self.basic_req_parse(i, package.line.split(" ")[0])

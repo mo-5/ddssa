@@ -1,7 +1,5 @@
-import requirements
 import tomli
 
-from capstone_project.backend.parsing.package_ids import PackageIds
 from capstone_project.backend.parsing.package_parser import PackageParser
 
 
@@ -21,10 +19,6 @@ class PyprojectParser(PackageParser):
                     raise RuntimeError("pyproject file is invalid")
 
                 for i, req in enumerate(packages):
-                    # Handle the case for a package without a version
-                    if "=" not in req:
-                        self._package_data[str(i)] = [req, "", PackageIds.NO_VER]
-                    else:
-                        self.basic_req_parse(i, list(requirements.parse(req))[0])
+                    self.basic_req_parse(i, req)
             except (tomli.TOMLDecodeError, KeyError) as e:
                 raise RuntimeError("pyproject file is invalid") from e

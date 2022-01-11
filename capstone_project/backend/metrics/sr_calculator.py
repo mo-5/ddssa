@@ -15,12 +15,16 @@ class SRCalculator:
         self._sr_detections = (self._filename, [])
 
     def set_filename(self, filename):
+        """Set the filename of that is currently being analyzed and
+        remove any previous stall statements previously identified."""
         if filename is None:
             raise TypeError
         self._filename = filename
         self._sr_detections = (self._filename, [])
 
     def calculate_sr(self, nodes):
+        """Calculate the Stall Ratio for a given file by identifying
+        the stall statements contained within the file."""
         if nodes is None:
             return self._sr_detections
         with open(

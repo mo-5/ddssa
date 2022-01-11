@@ -1,4 +1,5 @@
 import pandas as pd
+import requirements
 
 from capstone_project.backend.parsing.package_ids import PackageIds
 
@@ -16,10 +17,13 @@ class PackageParser:
     def parse_packages(self):
         """Parse packages from the file associated with this parser."""
 
-    def basic_req_parse(self, i, req):
-        """Parse requirement information from the syntax req==ver
-        The req object is returned from requirements.parse()"""
-        if len(req.specs) > 1:
+    def basic_req_parse(self, i, req_string):
+        """Parse requirement information from the syntax req==ver"""
+        req = list(requirements.parse(req_string))[0]
+
+        if len(req.specs) == 0:
+            search_range = PackageIds.NO_VER
+        elif len(req.specs) > 1:
             search_range = PackageIds.RANGE
         elif "~" in req.specs[0][0] or "*" in req.specs[0][1] and len(req.specs) == 1:
             search_range = PackageIds.RANGE

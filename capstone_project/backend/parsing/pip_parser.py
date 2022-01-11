@@ -23,7 +23,6 @@ class PipParser(PackageParser):
         with open(self._filename, "r") as f:
             try:
                 data = parse(f.read(), file_type)
-                print(len(data.dependencies))
             except Exception:
                 raise RuntimeError(f"{file_type} is invalid.")
             for i, package in enumerate(data.dependencies):

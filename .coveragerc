@@ -1,3 +1,2 @@
 [run]
-data_file = .coverage
 omit = capstone_project/tests/*

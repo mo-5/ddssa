@@ -53,12 +53,5 @@ jobs:
     - name: Run tests
       run: |
         source .venv/bin/activate
-        coverage run -m pytest
-
-    # Upload coverage
-    - name: "Upload coverage to Codecov"
-      uses: codecov/codecov-action@v2
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./.coverage
-        fail_ci_if_error: true
+        coverage run -m unittest discover -s capstone_project/tests
+        coverage report --fail-under=80

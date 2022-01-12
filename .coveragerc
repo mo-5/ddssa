@@ -1,0 +1,2 @@
+[run]
+omit = capstone_project/tests/*

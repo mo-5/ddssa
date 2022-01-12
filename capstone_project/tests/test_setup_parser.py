@@ -9,6 +9,7 @@ from capstone_project.backend.parsing.setup_parser import SetupParser
 from capstone_project.tests.test_utils import TestUtils
 
 
+@unittest.skip
 class TestSetupParser(unittest.TestCase):
     """TestSetupParser is responsible for testing the setup.py
     and setup.cfg package parser."""

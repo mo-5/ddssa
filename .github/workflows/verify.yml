@@ -54,6 +54,7 @@ jobs:
       run: |
         source .venv/bin/activate
         coverage run -m unittest discover -s capstone_project/tests
+        coverage report -m
 
     # Upload coverage
     - name: "Upload coverage to Codecov"

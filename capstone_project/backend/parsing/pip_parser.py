@@ -1,6 +1,3 @@
-import requirements
-
-from capstone_project.backend.parsing.package_ids import PackageIds
 from capstone_project.backend.parsing.package_parser import PackageParser
 from dparse import parse, filetypes
 

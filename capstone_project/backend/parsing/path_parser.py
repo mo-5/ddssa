@@ -11,6 +11,8 @@ class PathParser:
         "pyproject.toml",
         "setup.py",
         "setup.cfg",
+        "Pipfile.lock",
+        "poetry.lock"
     }
 
     def __init__(self, paths):

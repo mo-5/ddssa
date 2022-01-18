@@ -12,7 +12,7 @@ class PathParser:
         "setup.py",
         "setup.cfg",
         "Pipfile.lock",
-        "poetry.lock"
+        "poetry.lock",
     }
 
     def __init__(self, paths):

@@ -9,6 +9,7 @@ class TestASTSupplier(unittest.TestCase):
     Python files.
     """
 
-    def test_something(self):
+    @staticmethod
+    def test_something():
         """To be written."""
         print("Hello, World!")

@@ -21,7 +21,7 @@ class HTMLGenerator:
             self.html.append(
                 "<div><div>The following statements are stall statements:</div><ol>"
             )
-            for i in range(len(data[1])):
+            for i, _ in enumerate(data[1]):
                 self.html.append(
                     "<li> Line number: "
                     + str(data[1][i][0])

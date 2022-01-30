@@ -3,37 +3,36 @@ class HTMLGenerator:
 
     def __init__(self) -> None:
         """Initialize html report"""
-        self.html = [
-            "<h1>Data-Driven Software Security Assessment Report</h1>",
-            "<h2>Stall Statements</h2>",
-        ]
+        self.html = ["<h1>Data-Driven Software Security Assessment Report</h1>"]
 
-    def add_sr_data(self, data):
+    def add_sr_data(self, sr_data):
         """Add SR data to the HTML report"""
-        if len(data[1]) > 0:
-            self.html.append(
-                "<div>File "
-                + "<b>"
-                + data[0]
-                + "</b>"
-                + " contains "
-                + str(len(data[1]))
-                + (
-                    " stall statements:</div>"
-                    if len(data[1]) > 1
-                    else " stall statement:</div>"
-                )
-            )
-            self.html.append("<div><ol>")
-            for i, _ in enumerate(data[1]):
+        if len(sr_data) > 0:
+            self.html.append("<h2>Stall Statements</h2>")
+            for sr_detection in sr_data:
                 self.html.append(
-                    "<li> Line number: "
-                    + str(data[1][i][0])
-                    + ", statement: "
-                    + data[1][i][1].strip()
-                    + "</li>"
+                    "<div>File "
+                    + "<b>"
+                    + sr_detection[0]
+                    + "</b>"
+                    + " contains "
+                    + str(len(sr_detection[1]))
+                    + (
+                        " stall statements:</div>"
+                        if len(sr_detection[1]) > 1
+                        else " stall statement:</div>"
+                    )
                 )
-            self.html.append("</ol></div>")
+                self.html.append("<div><ol>")
+                for i, _ in enumerate(sr_detection[1]):
+                    self.html.append(
+                        "<li> Line number: "
+                        + str(sr_detection[1][i][0])
+                        + ", statement: "
+                        + sr_detection[1][i][1].strip()
+                        + "</li>"
+                    )
+                self.html.append("</ol></div>")
 
     def add_dependency_vulnerability_data(self, df):
         """Add depdencency vulnerability data to the html report"""
@@ -42,28 +41,40 @@ class HTMLGenerator:
             self.html.append(
                 "<div><div>The following dependencies have vulnerabilities:</div><ol>"
                 if df.shape[1] > 1
-                else "<div><div>The following dependency has a vulnerability:</div><ol>"
+                else "<div><div>The following dependency has vulnerabilities:</div><ol>"
             )
             for _, col_data in df.iteritems():
                 self.html.append(
-                    "<li> Dependency: "
+                    "<li>"
                     + str(col_data.values[0])
-                    + (
-                        ", vulnerabilities: "
-                        if len(col_data.values[1]) > 1
-                        else ", vulnerability: "
-                    )
-                    + ", ".join(
-                        "<a href="
+                    + self._parse_version_list(col_data.values[1])
+                    + "<ul>"
+                )
+                for cve in col_data.values[2]:
+                    self.html.append(
+                        "<li><a href="
                         + "https://nvd.nist.gov/vuln/detail/"
                         + cve
                         + ">"
                         + cve
-                        + "</a>"
-                        for cve in col_data.values[1]
+                        + "</a></li>"
                     )
-                )
-                self.html.append("</ol></li>")
+            self.html.append("</ul></ol></li>")
+
+    def _parse_version_list(self, version):
+        """Parse the version tuple and return a neatly-formatted string"""
+        if len(version) == 1:
+            return " " + version[0][0] + " " + version[0][1]
+        return (
+            " "
+            + version[0][0]
+            + " "
+            + version[0][1]
+            + ", "
+            + version[1][0]
+            + " "
+            + version[1][1]
+        )
 
     def get_html(self):
         """Return html report"""

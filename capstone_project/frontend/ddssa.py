@@ -27,10 +27,18 @@ class DDSSA:
     def analyze(self):
         html_file = HTMLGenerator()
 
+        sr_data = []
         for file in self._dir_parser.get_python_file_list():
-            html_file.add_sr_data(
+            sr_data.append(
                 self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1])
             )
+
+        # Add SR analysis data, filtering out files without stall statements
+        html_file.add_sr_data(
+            [sr_detection for sr_detection in sr_data if len(sr_detection[1]) > 0]
+        )
+
+        # Add dependency vulnerability data
         html_file.add_dependency_vulnerability_data(
             self._package_supplier.package_request(
                 self._dir_parser.get_requirement_file_list()[-2]

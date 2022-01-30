@@ -37,7 +37,7 @@ class DDSSA:
         #    )
         html_file.add_package_data(
             self._package_supplier.package_request(
-                self._dir_parser.get_requirement_file_list()[-1]
+                self._dir_parser.get_requirement_file_list()[-2]
             )
         )
 

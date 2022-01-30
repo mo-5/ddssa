@@ -2,6 +2,7 @@ import os
 import sys
 from os.path import expanduser
 
+from PyQt5 import QtGui
 from PyQt5.QtWidgets import (
     QMainWindow,
     QDesktopWidget,
@@ -29,6 +30,10 @@ class UI(QMainWindow):
 
     def __init__(self):
         super().__init__()
+
+        # Set the icon
+        self.setWindowIcon(QtGui.QIcon("capstone_project/frontend/assets/icon.png"))
+
         self.ui = main.Ui_main_window()
         self.ui.setupUi(self)
 

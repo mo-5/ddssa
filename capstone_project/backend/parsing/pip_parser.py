@@ -1,5 +1,5 @@
-from capstone_project.backend.parsing.package_parser import PackageParser
 from dparse import parse, filetypes
+from capstone_project.backend.parsing.package_parser import PackageParser
 
 
 class PipParser(PackageParser):
@@ -17,10 +17,10 @@ class PipParser(PackageParser):
             file_type = filetypes.pipfile
 
         # Parse out requirement strings and pass them along
-        with open(self._filename, "r") as f:
+        with open(self._filename, "r", encoding="UTF-8") as f:
             try:
                 data = parse(f.read(), file_type)
-            except Exception:
-                raise RuntimeError(f"{file_type} is invalid.")
+            except Exception as e:
+                raise RuntimeError(f"{file_type} is invalid.") from e
             for i, package in enumerate(data.dependencies):
                 self.basic_req_parse(i, package.line.split(" ")[0])

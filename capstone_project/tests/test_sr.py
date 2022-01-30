@@ -123,7 +123,7 @@ class TestSR(unittest.TestCase):
         """Test edge conditions of SRCalculator to ensure it
         can handle bad inputs without crashing.
         """
-        test_calc, ast_supp = self._calculator
+        test_calc, _ = self._calculator
 
         # Case 1: None file path
         try:

@@ -10,7 +10,7 @@ class RequirementsParser(PackageParser):
     def parse_packages(self):
         """Parse out package information from a
         requirements.txt file"""
-        with open(self._filename, "r") as f:
+        with open(self._filename, "r", encoding="UTF-8") as f:
             try:
                 for i, req in enumerate(f.readlines()):
                     self.basic_req_parse(i, req)

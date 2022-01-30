@@ -11,4 +11,3 @@ class TestASTSupplier(unittest.TestCase):
 
     def test_something(self):
         """To be written."""
-        print("Hello, World!")

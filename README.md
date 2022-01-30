@@ -7,8 +7,8 @@ This is a design for a software security assessment tool using a data-driven app
 ### Tools
 
 - Code editor: [VSCode](https://code.visualstudio.com/)
-- Python: [3.9.0](https://www.python.org/downloads/)
-- Python package manager: [Poetry](https://www.poetry.org/)
+- Python: [3.10](https://www.python.org/downloads/)
+- Python package manager: [Poetry](https://www.python-poetry.org/)
 
 ### Getting Started
 

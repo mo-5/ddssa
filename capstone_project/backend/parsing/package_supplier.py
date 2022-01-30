@@ -30,8 +30,6 @@ class PackageSupplier:
         elif path[-11:] == "poetry.lock":
             self._package_parser = PoetryLockParser(path)
 
-        print(type(self._package_parser))
-
         # Analyze for dependencies and built out the data frame
         self._package_data = self._package_parser.begin_analysis()
 

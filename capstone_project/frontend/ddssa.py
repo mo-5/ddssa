@@ -31,11 +31,7 @@ class DDSSA:
             html_file.add_sr_data(
                 self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1])
             )
-        # for file in self._dir_parser.get_requirement_file_list():
-        #    html_file.add_package_data(
-        #        self._package_supplier.package_request(file)
-        #    )
-        html_file.add_package_data(
+        html_file.add_dependency_vulnerability_data(
             self._package_supplier.package_request(
                 self._dir_parser.get_requirement_file_list()[-2]
             )

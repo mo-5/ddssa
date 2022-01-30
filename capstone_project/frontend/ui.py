@@ -40,6 +40,9 @@ class UI(QMainWindow):
         # Prepare a message box
         self.msg = QMessageBox()
 
+        # Open external links in the text browser
+        self.ui.text_browser.setOpenExternalLinks(True)
+
         # Center the application on launch.
         frame = self.frameGeometry()
         center = QDesktopWidget().availableGeometry().center()

@@ -3,7 +3,7 @@ import unittest
 
 from capstone_project.tests.test_utils import TestUtils
 from capstone_project.backend.parsing.package_ids import PackageIds
-from capstone_project.backend.parsing.pyproject_parser import PyprojectParser
+from capstone_project.backend.parsing.pyproject_parser import PyProjectParser
 
 
 class TestPyprojectParser(unittest.TestCase):
@@ -16,7 +16,7 @@ class TestPyprojectParser(unittest.TestCase):
     def test_pyproject_parser(self):
         """Test that the parser can extract all requirements from a properly-formatted
         pyproject.toml file."""
-        parser = PyprojectParser(
+        parser = PyProjectParser(
             os.path.join(
                 self._test_path,
                 "package_test_files",
@@ -93,7 +93,7 @@ class TestPyprojectParser(unittest.TestCase):
     def test_pyproject_parser_bad_req_1(self):
         """Test that a malformed pyproject.toml file causes an error to be raised
         during parsing."""
-        parser = PyprojectParser(
+        parser = PyProjectParser(
             os.path.join(
                 self._test_path,
                 "package_test_files",
@@ -114,7 +114,7 @@ class TestPyprojectParser(unittest.TestCase):
     def test_pyproject_parser_bad_req_2(self):
         """Test that a malformed pyproject.toml file causes an error to be raised
         during parsing."""
-        parser = PyprojectParser(
+        parser = PyProjectParser(
             os.path.join(
                 self._test_path,
                 "package_test_files",

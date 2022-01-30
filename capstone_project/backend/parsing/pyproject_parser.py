@@ -3,7 +3,7 @@ import tomli
 from capstone_project.backend.parsing.package_parser import PackageParser
 
 
-class PyprojectParser(PackageParser):
+class PyProjectParser(PackageParser):
     """This class is responsible for parsing requirements from a
     pyproject.toml file for a provided Python project."""
 

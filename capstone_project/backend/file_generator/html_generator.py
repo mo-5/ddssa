@@ -6,7 +6,7 @@ class HTMLGenerator:
         self.html = ["<h1>Data-Driven Software Security Assessment Report</h1>"]
 
     def add_sr_data(self, data):
-        """Add SR data to html report"""
+        """Add SR data to the HTML report"""
         if len(data[1]) > 0:
             self.html.append("<h2>Stall Statements:</h2>")
             self.html.append(

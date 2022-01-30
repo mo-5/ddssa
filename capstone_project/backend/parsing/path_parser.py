@@ -26,7 +26,7 @@ class PathParser:
         valid_files = [p for p in self._paths if os.path.isfile(p)]
 
         for directory in valid_directories:
-            for root, _dirs, files in os.walk(directory):
+            for root, _, files in os.walk(directory):
                 for file in files:
                     if file.endswith(".py"):
                         self._python_files.append(os.path.join(root, file))

@@ -4,6 +4,7 @@ import sys
 
 from capstone_project.backend.ast.ast_supplier import ASTSupplier
 from capstone_project.backend.file_generator.html_generator import HTMLGenerator
+from capstone_project.backend.parsing.package_supplier import PackageSupplier
 from capstone_project.backend.parsing.path_parser import PathParser
 
 # Needed to add the capstone_project module to the system path
@@ -21,6 +22,7 @@ class DDSSA:
     def __init__(self, paths):
         self._dir_parser = PathParser(paths)
         self._ast_supplier = ASTSupplier()
+        self._package_supplier = PackageSupplier()
 
     def analyze(self):
         html_file = HTMLGenerator()
@@ -29,9 +31,15 @@ class DDSSA:
             html_file.add_sr_data(
                 self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1])
             )
-        for file in self._dir_parser.get_requirement_file_list():
-            # TODO Analyze dependencies
-            pass
+        # for file in self._dir_parser.get_requirement_file_list():
+        #    html_file.add_package_data(
+        #        self._package_supplier.package_request(file)
+        #    )
+        html_file.add_package_data(
+            self._package_supplier.package_request(
+                self._dir_parser.get_requirement_file_list()[-2]
+            )
+        )
 
         html = html_file.get_html()
         return html

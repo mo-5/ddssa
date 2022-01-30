@@ -11,7 +11,7 @@ class PackageParser:
     a given package management file."""
 
     def __init__(self, filename):
-        self._package_data = pd.DataFrame(index=["Name", "Version", "Range"])
+        self._package_data = pd.DataFrame(index=["Name", "Version", "Mode"])
         self._filename = filename
 
     def parse_packages(self):

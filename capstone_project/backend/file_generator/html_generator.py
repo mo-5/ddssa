@@ -9,7 +9,7 @@ class HTMLGenerator:
         ]
 
     def add_sr_data(self, data):
-        """Add sr data data to html report"""
+        """Add sr data to the HTML report"""
         if len(data[1]) > 0:
             self.html.append(
                 "<div>File: "
@@ -30,6 +30,11 @@ class HTMLGenerator:
                     + "</li>"
                 )
             self.html.append("</ol></div>")
+
+    def add_package_data(self, data):
+        """Add detected CVEs to the HTML report"""
+        self.html.append("<h2>Detected Vulnerabilities:</h2>")
+        print(data)
 
     def get_html(self):
         """Return html report"""

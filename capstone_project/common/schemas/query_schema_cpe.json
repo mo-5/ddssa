@@ -23,7 +23,7 @@
     "addOns": {
       "$id": "#/properties/addOns",
       "default": "",
-      "description": "This parameter is part of the URL query. cves By default, the response returns all CPE that meet the search criteria. Including addOns=cves adds the vulnerabilities associated with the CPE.",
+      "description": "This parameter is part of the URL query. By default, the response returns all CPE that meet the search criteria. Including addOns=cves adds the vulnerabilities associated with the CPE.",
       "examples": [
         "cves"
       ],

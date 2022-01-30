@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (
     QMessageBox,
 )
 
-from capstone_project.frontend import qt_ui
+from capstone_project.frontend import main
 from capstone_project.frontend.ddssa import DDSSA
 
 
@@ -18,9 +18,9 @@ class UI(QMainWindow):
     """UI Represents the main graphical user interface
     that serves as the entry-point for the application.
 
-    This class relies on the qt_ui.py file that is generated
+    This class relies on the main.py file that is generated
     by running the following command from the frontend directory:
-      pyuic5 -o qt_ui.py main.ui
+      pyuic5 -o main.py main.ui
 
     Run the application from the root project directory using
     the following command (note os.sep might need to change)
@@ -29,7 +29,7 @@ class UI(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.ui = qt_ui.Ui_main_window()
+        self.ui = main.Ui_main_window()
         self.ui.setupUi(self)
 
         # Prepare connections

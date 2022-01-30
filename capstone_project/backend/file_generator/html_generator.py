@@ -3,14 +3,12 @@ class HTMLGenerator:
 
     def __init__(self) -> None:
         """Initialize html report"""
-        self.html = [
-            "<h1>Data-Driven Software Security Assessment Report</h1>",
-            "<h2>Stall Statements:</h2>",
-        ]
+        self.html = ["<h1>Data-Driven Software Security Assessment Report</h1>"]
 
     def add_sr_data(self, data):
-        """Add sr data data to html report"""
+        """Add SR data to html report"""
         if len(data[1]) > 0:
+            self.html.append("<h2>Stall Statements:</h2>")
             self.html.append(
                 "<div>File: "
                 + data[0]
@@ -30,6 +28,10 @@ class HTMLGenerator:
                     + "</li>"
                 )
             self.html.append("</ol></div>")
+
+    def add_dependency_vulnerability_data(self, data):
+        """Add depdencency vulnerability data to the html report"""
+        pass
 
     def get_html(self):
         """Return html report"""

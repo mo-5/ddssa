@@ -59,7 +59,8 @@ class HTMLGenerator:
                         + cve
                         + "</a></li>"
                     )
-            self.html.append("</ul></ol></li>")
+                self.html.append("</ul></li>")
+            self.html.append("</ol>")
 
     def _parse_version_list(self, version):
         """Parse the version tuple and return a neatly-formatted string"""

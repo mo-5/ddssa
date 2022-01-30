@@ -28,7 +28,9 @@ class SRCalculator:
         if nodes is None:
             return self._sr_detections
         with open(
-            os.path.join(os.path.dirname(__file__), self._reference_file), "r"
+            os.path.join(os.path.dirname(__file__), self._reference_file),
+            "r",
+            encoding="UTF-8",
         ) as file:
             reference = json.load(file)
 

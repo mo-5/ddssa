@@ -6,7 +6,7 @@ from capstone_project.backend.parsing.package_ids import PackageIds
 from capstone_project.backend.parsing.pyproject_parser import PyProjectParser
 
 
-class TestPyprojectParser(unittest.TestCase):
+class TestPyProjectParser(unittest.TestCase):
     """TestPyprojectParser is responsible for testing the pyproject.toml package
     parser."""
 

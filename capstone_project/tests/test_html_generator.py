@@ -98,18 +98,18 @@ class TestHTMLGenerator(unittest.TestCase):
             "<h1>Data-Driven Software Security Assessment Report</h1><h2>Dependency "
             "Vulnerabilities</h2><div><div>The following dependency has "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-1>CVE-1</a></li>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-2>CVE-2</a></li>"
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a></li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a></li>'
             "</ul></li></ol>",
             file,
             "<h1>Data-Driven Software Security Assessment Report</h1><h2>Dependency "
             "Vulnerabilities</h2><div><div>The following dependencies have "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-1>CVE-1</a></li>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-2>CVE-2</a></li>"
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a></li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a></li>'
             "</ul></li>"
             "<li>two >= 1.1, < 2.2<ul>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-3>CVE-3</a></li>"
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3">CVE-3</a></li>'
             "</ul></li></ol>"
             f"but got {file}",
         )
@@ -136,21 +136,21 @@ class TestHTMLGenerator(unittest.TestCase):
             "<h1>Data-Driven Software Security Assessment Report</h1><h2>Dependency "
             "Vulnerabilities</h2><div><div>The following dependencies have "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-1>CVE-1</a></li>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-2>CVE-2</a></li>"
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a></li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a></li>'
             "</ul></li>"
             "<li>two >= 1.1, < 2.2<ul>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-3>CVE-3</a></li>"
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3">CVE-3</a></li>'
             "</ul></li></ol>",
             file,
             "<h1>Data-Driven Software Security Assessment Report</h1><h2>Dependency "
             "Vulnerabilities</h2><div><div>The following dependencies have "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-1>CVE-1</a></li>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-2>CVE-2</a></li>"
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1>CVE-1"</a></li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2>CVE-2"</a></li>'
             "</ul></li>"
             "<li>two >= 1.1, < 2.2<ul>"
-            "<li><a href=https://nvd.nist.gov/vuln/detail/CVE-3>CVE-3</a></li>"
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3>"CVE-3</a></li>'
             "</ul></li></ol>"
             f"but got {file}",
         )

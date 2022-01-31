@@ -9,24 +9,24 @@ from PyQt5.QtWidgets import (
     QFileDialog,
     QMessageBox,
     QWidget,
-    QLabel
+    QLabel,
 )
 
 from capstone_project.frontend import main
 from capstone_project.frontend.ddssa import DDSSA
 
 
-class LoadingScreen(QMainWindow):
+class LoadingScreen(QWidget):
     def __init__(self):
         super(LoadingScreen, self).__init__()
         self.setFixedSize(200, 200)
-        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint |
-                            QtCore.Qt.CustomizeWindowHint)
-        self.label_animatin = QLabel(self)
+        self.setWindowFlags(
+            QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.CustomizeWindowHint
+        )
+        self.label_animation = QLabel(self)
 
-        self.movie = QtGui.QMovie(
-            'capstone_project/frontend/assets/Loading.gif')
-        self.label_animatin.setMovie(self.movie)
+        self.movie = QtGui.QMovie(os.path.join(os.getcwd(), "assets", "Loading.gif"))
+        self.label_animation.setMovie(self.movie)
 
     def start_animation(self):
         self.movie.start()
@@ -53,12 +53,11 @@ class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
 
-        # Set the icon
-        self.setWindowIcon(QtGui.QIcon(
-            "capstone_project/frontend/assets/icon.png"))
-
         self.ui = main.Ui_main_window()
         self.ui.setupUi(self)
+
+        # Set the icon
+        self.setWindowIcon(QtGui.QIcon(os.path.join(os.getcwd(), "assets", "icon.png")))
 
         # Prepare connections
         self.ui.menu_action_quit.triggered.connect(self._try_quit)
@@ -83,7 +82,6 @@ class UI(QMainWindow):
         self.loading_screen = LoadingScreen()
 
     def _analyze(self):
-
         # Get our target directory or Python file
         target = self._get_file_path()
         if target is None:
@@ -103,7 +101,7 @@ class UI(QMainWindow):
         self.show()
 
     def _get_file_path(self):
-        """Attempt to get the"""
+        """Attempt to get the file path the user specifies"""
         input_dir = QFileDialog.getExistingDirectory(
             None, "Select a directory or .py file", expanduser(".")
         )

@@ -60,11 +60,6 @@ class UI(QMainWindow):
                 )
             )
         )
-        print(
-            os.path.join(
-                os.getcwd(), "capstone_project", "frontend", "assets", "icon.png"
-            )
-        )
 
         # Prepare connections
         self.ui.menu_action_quit.triggered.connect(self._try_quit)
@@ -98,7 +93,7 @@ class UI(QMainWindow):
         if target is None:
             return
 
-        self._loading_ON()
+        self._loading_on()
 
         # Deal with PyQt bug that uses the wrong file separators for
         # Windows based operating systems.
@@ -164,7 +159,7 @@ class UI(QMainWindow):
         """Export the HTML report to a file."""
         FileExport.export_pdf("report.pdf", self.ui.text_browser.toHtml())
 
-    def _loading_ON(self):
+    def _loading_on(self):
         self.loading_screen.start_animation()
         self.hide()
 

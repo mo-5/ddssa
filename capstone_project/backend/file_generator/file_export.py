@@ -5,8 +5,8 @@ class FileExport:
         """Export html report to a file"""
         with open(filename, "w") as f:
             f.write(content)
-    
+
     @staticmethod
-    def export_pdf(filename):
+    def export_pdf(filename, content):
         """Export pdf report to a file"""
         pass

@@ -23,8 +23,12 @@ class LoadingScreen(QWidget):
         super(LoadingScreen, self).__init__()
         self.setFixedSize(200, 200)
         self.setWindowFlags(
-            QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.CustomizeWindowHint
+            QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.CustomizeWindowHint | QtCore.Qt.FramelessWindowHint
         )
+
+        # make background transparent
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
         self.label_animation = QLabel(self)
 
         self.movie = QtGui.QMovie(os.path.join(
@@ -88,6 +92,10 @@ class UI(QMainWindow):
 
         # export files
         self.ui.menu_action_export_HTML.triggered.connect(self._export_html)
+        self.ui.menu_action_export_PDF.triggered.connect(self._export_pdf)
+
+        # until it has been implemented
+        self.ui.menu_action_export_PDF.setEnabled(False)
 
         # Prepare a message box
         self.msg = QMessageBox()
@@ -170,6 +178,10 @@ class UI(QMainWindow):
     def _export_html(self):
         """Export the HTML report to a file."""
         FileExport.export_html("report.html", self.ui.text_browser.toHtml())
+
+    def _export_pdf(self):
+        """Export the HTML report to a file."""
+        FileExport.export_pdf("report.pdf", self.ui.text_browser.toHtml())
 
     def _loading_ON(self):
         self.loading_screen.start_animation()

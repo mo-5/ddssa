@@ -1,7 +1,6 @@
-
-
 class FileExport:
-    """ Class for exporting files """
+    """Class for exporting files"""
+
     @staticmethod
     def export_html(filename, content):
         """Static method to export html report to a file"""

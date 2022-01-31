@@ -53,10 +53,18 @@ class UI(QMainWindow):
         self.worker.finished.connect(self._display_report)
 
         # Set the icon
-        self.setWindowIcon(QtGui.QIcon(
-            os.path.join(os.getcwd(), "capstone_project", "frontend", "assets", "icon.png")))
-        print(os.path.join(os.getcwd(), "capstone_project",
-              "frontend", "assets", "icon.png"))
+        self.setWindowIcon(
+            QtGui.QIcon(
+                os.path.join(
+                    os.getcwd(), "capstone_project", "frontend", "assets", "icon.png"
+                )
+            )
+        )
+        print(
+            os.path.join(
+                os.getcwd(), "capstone_project", "frontend", "assets", "icon.png"
+            )
+        )
 
         # Prepare connections
         self.ui.menu_action_quit.triggered.connect(self._try_quit)

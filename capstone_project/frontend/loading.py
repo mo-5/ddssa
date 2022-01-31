@@ -14,7 +14,9 @@ class LoadingScreen(QWidget):
         super(LoadingScreen, self).__init__()
         self.setFixedSize(200, 200)
         self.setWindowFlags(
-            QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.CustomizeWindowHint | QtCore.Qt.FramelessWindowHint
+            QtCore.Qt.WindowStaysOnTopHint
+            | QtCore.Qt.CustomizeWindowHint
+            | QtCore.Qt.FramelessWindowHint
         )
 
         # make background transparent
@@ -22,8 +24,11 @@ class LoadingScreen(QWidget):
 
         self.label_animation = QLabel(self)
 
-        self.movie = QtGui.QMovie(os.path.join(
-            os.getcwd(), "capstone_project", "frontend", "assets", "Loading.gif"))
+        self.movie = QtGui.QMovie(
+            os.path.join(
+                os.getcwd(), "capstone_project", "frontend", "assets", "Loading.gif"
+            )
+        )
         self.label_animation.setMovie(self.movie)
 
     def start_animation(self):

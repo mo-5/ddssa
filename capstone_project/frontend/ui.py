@@ -9,39 +9,12 @@ from PyQt5.QtWidgets import (
     QApplication,
     QFileDialog,
     QMessageBox,
-    QWidget,
-    QLabel,
 )
 
 from capstone_project.frontend import main
 from capstone_project.frontend.ddssa import DDSSA
 from capstone_project.backend.file_generator.file_export import FileExport
-
-
-class LoadingScreen(QWidget):
-    def __init__(self):
-        super(LoadingScreen, self).__init__()
-        self.setFixedSize(200, 200)
-        self.setWindowFlags(
-            QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.CustomizeWindowHint | QtCore.Qt.FramelessWindowHint
-        )
-
-        # make background transparent
-        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-
-        self.label_animation = QLabel(self)
-
-        self.movie = QtGui.QMovie(os.path.join(
-            os.getcwd(), "capstone_project", "frontend", "assets", "Loading.gif"))
-        self.label_animation.setMovie(self.movie)
-
-    def start_animation(self):
-        self.movie.start()
-        self.show()
-
-    def stop_animation(self):
-        self.movie.stop()
-        self.close()
+from capstone_project.frontend.loading import LoadingScreen
 
 
 class AnalysisWorker(QtCore.QObject):

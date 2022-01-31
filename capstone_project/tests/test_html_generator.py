@@ -25,8 +25,7 @@ class TestHTMLGenerator(unittest.TestCase):
     def test_add_sr_data_with_list(self):
         """Test that the addition of one file with one sr statement includes a list in
         the html report."""
-        self.html.add_sr_data(
-            [("ast_coordinator.py", [(26, "    print(loop)")])])
+        self.html.add_sr_data([("ast_coordinator.py", [(26, "    print(loop)")])])
         file = self.html.get_html()
         self.assertEqual(
             "<h1>Data-Driven Software Security Assessment Report</h1><h2>Stall "
@@ -48,8 +47,7 @@ class TestHTMLGenerator(unittest.TestCase):
         self.html.add_sr_data(
             [
                 ("ast_coordinator.py", [(26, "    print(loop)")]),
-                ("ast_supplier.py", [
-                 (27, "print(loop)"), (28, "time.sleep(1)")]),
+                ("ast_supplier.py", [(27, "print(loop)"), (28, "time.sleep(1)")]),
             ]
         )
         file = self.html.get_html()
@@ -73,8 +71,7 @@ class TestHTMLGenerator(unittest.TestCase):
 
     def test_add_dependency_vulnerability_data_without_vulnerabilities(self):
         """Test that not adding any vulnerabilities produces the correct html report."""
-        vulnerability_data = pd.DataFrame(
-            index=["Name", "Version", "CVEs", "Mode"])
+        vulnerability_data = pd.DataFrame(index=["Name", "Version", "CVEs", "Mode"])
         self.html.add_dependency_vulnerability_data(vulnerability_data)
         file = self.html.get_html()
         self.assertEqual(
@@ -88,8 +85,7 @@ class TestHTMLGenerator(unittest.TestCase):
     def test_add_dependency_vulnerability_data_with_single_dependency(self):
         """Test that a single dependency with vulnerabilities produces the correct html
         report."""
-        vulnerability_data = pd.DataFrame(
-            index=["Name", "Version", "CVEs", "Mode"])
+        vulnerability_data = pd.DataFrame(index=["Name", "Version", "CVEs", "Mode"])
         vulnerability_data["0"] = [
             "one",
             [("==", "1.1.1")],
@@ -121,8 +117,7 @@ class TestHTMLGenerator(unittest.TestCase):
     def test_add_dependency_vulnerability_data_with_multiple_dependencies(self):
         """Test that multiple dependencies with vulnerabilities produces the correct
         html report."""
-        vulnerability_data = pd.DataFrame(
-            index=["Name", "Version", "CVEs", "Mode"])
+        vulnerability_data = pd.DataFrame(index=["Name", "Version", "CVEs", "Mode"])
         vulnerability_data["0"] = [
             "one",
             [("==", "1.1.1")],

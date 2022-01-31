@@ -3,8 +3,7 @@ class HTMLGenerator:
 
     def __init__(self) -> None:
         """Initialize html report"""
-        self.html = [
-            "<h1>Data-Driven Software Security Assessment Report</h1>"]
+        self.html = ["<h1>Data-Driven Software Security Assessment Report</h1>"]
 
     def add_sr_data(self, sr_data):
         """Add SR data to the HTML report"""

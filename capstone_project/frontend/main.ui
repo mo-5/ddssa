@@ -59,8 +59,8 @@
     <property name="title">
      <string>Export</string>
     </property>
-    <addaction name="export_HTML"/>
-    <addaction name="export_PDF"/>
+    <addaction name="menu_action_export_HTML"/>
+    <addaction name="menu_action_export_PDF"/>
    </widget>
    <addaction name="menuOptions"/>
    <addaction name="menuExport"/>
@@ -75,12 +75,12 @@
     <string>Quit</string>
    </property>
   </action>
-  <action name="export_HTML">
+  <action name="menu_action_export_HTML">
    <property name="text">
     <string>HTML</string>
    </property>
   </action>
-  <action name="export_PDF">
+  <action name="menu_action_export_PDF">
    <property name="text">
     <string>PDF</string>
    </property>

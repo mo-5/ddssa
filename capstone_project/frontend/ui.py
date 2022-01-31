@@ -1,18 +1,40 @@
 import os
 import sys
 from os.path import expanduser
-
-from PyQt5 import QtGui
+from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import (
     QMainWindow,
     QDesktopWidget,
     QApplication,
     QFileDialog,
     QMessageBox,
+    QWidget,
+    QLabel
 )
 
 from capstone_project.frontend import main
 from capstone_project.frontend.ddssa import DDSSA
+
+
+class LoadingScreen(QMainWindow):
+    def __init__(self):
+        super(LoadingScreen, self).__init__()
+        self.setFixedSize(200, 200)
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint |
+                            QtCore.Qt.CustomizeWindowHint)
+        self.label_animatin = QLabel(self)
+
+        self.movie = QtGui.QMovie(
+            'capstone_project/frontend/assets/Loading.gif')
+        self.label_animatin.setMovie(self.movie)
+
+    def start_animation(self):
+        self.movie.start()
+        self.show()
+
+    def stop_animation(self):
+        self.movie.stop()
+        self.close()
 
 
 class UI(QMainWindow):
@@ -29,10 +51,11 @@ class UI(QMainWindow):
     """
 
     def __init__(self):
-        super().__init__()
+        super(UI, self).__init__()
 
         # Set the icon
-        self.setWindowIcon(QtGui.QIcon("capstone_project/frontend/assets/icon.png"))
+        self.setWindowIcon(QtGui.QIcon(
+            "capstone_project/frontend/assets/icon.png"))
 
         self.ui = main.Ui_main_window()
         self.ui.setupUi(self)
@@ -41,6 +64,9 @@ class UI(QMainWindow):
         self.ui.menu_action_quit.triggered.connect(self._try_quit)
         self.ui.file_select_btn.clicked.connect(self._analyze)
         self.ui.menu_action_help.triggered.connect(self._display_help)
+
+        # export files
+        self.ui.menu_action_export_HTML.triggered.connect(self._export_html)
 
         # Prepare a message box
         self.msg = QMessageBox()
@@ -53,14 +79,18 @@ class UI(QMainWindow):
         center = QDesktopWidget().availableGeometry().center()
         frame.moveCenter(center)
         self.move(frame.topLeft())
+        # set loading screen
+        self.loading_screen = LoadingScreen()
 
     def _analyze(self):
+
         # Get our target directory or Python file
         target = self._get_file_path()
         if target is None:
             return
 
-        self.ui.text_browser.setText("Analyzing...")
+        self.loading_screen.start_animation()
+        self.hide()
         # Deal with PyQt bug that uses the wrong file separators for
         # Windows based operating systems.
         target = target.replace("/", "\\")
@@ -69,6 +99,8 @@ class UI(QMainWindow):
         # Display our report after analysis
         html = tool.analyze()
         self._display_report(html)
+        self.loading_screen.stop_animation()
+        self.show()
 
     def _get_file_path(self):
         """Attempt to get the"""
@@ -118,6 +150,10 @@ class UI(QMainWindow):
         Triggered via a menu action.
         """
         self.close()
+
+    def _export_html(self):
+        """Export the HTML report to a file."""
+        print(self.ui.text_browser.toHtml())
 
 
 if __name__ == "__main__":

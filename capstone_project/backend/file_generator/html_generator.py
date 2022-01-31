@@ -50,3 +50,8 @@ class HTMLGenerator:
     def get_html(self):
         """Return html report"""
         return "".join(self.html)
+
+    def export_html(self, filename):
+        """Export html report to a file"""
+        with open(filename, "w") as f:
+            f.write(self.get_html())

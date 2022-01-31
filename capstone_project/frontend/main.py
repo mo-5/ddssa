@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main.ui'
+# Form implementation generated from reading ui file '.\capstone_project\frontend\main.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -41,14 +41,23 @@ class Ui_main_window(object):
         self.menubar.setObjectName("menubar")
         self.menuOptions = QtWidgets.QMenu(self.menubar)
         self.menuOptions.setObjectName("menuOptions")
+        self.menuExport = QtWidgets.QMenu(self.menubar)
+        self.menuExport.setObjectName("menuExport")
         main_window.setMenuBar(self.menubar)
         self.menu_action_help = QtWidgets.QAction(main_window)
         self.menu_action_help.setObjectName("menu_action_help")
         self.menu_action_quit = QtWidgets.QAction(main_window)
         self.menu_action_quit.setObjectName("menu_action_quit")
+        self.export_HTML = QtWidgets.QAction(main_window)
+        self.export_HTML.setObjectName("export_HTML")
+        self.export_PDF = QtWidgets.QAction(main_window)
+        self.export_PDF.setObjectName("export_PDF")
         self.menuOptions.addAction(self.menu_action_help)
         self.menuOptions.addAction(self.menu_action_quit)
+        self.menuExport.addAction(self.export_HTML)
+        self.menuExport.addAction(self.export_PDF)
         self.menubar.addAction(self.menuOptions.menuAction())
+        self.menubar.addAction(self.menuExport.menuAction())
 
         self.retranslateUi(main_window)
         QtCore.QMetaObject.connectSlotsByName(main_window)
@@ -58,5 +67,8 @@ class Ui_main_window(object):
         main_window.setWindowTitle(_translate("main_window", "Data-Driven Software Security Assessment"))
         self.file_select_btn.setText(_translate("main_window", "Choose a File or Directory"))
         self.menuOptions.setTitle(_translate("main_window", "Options"))
+        self.menuExport.setTitle(_translate("main_window", "Export"))
         self.menu_action_help.setText(_translate("main_window", "Help"))
         self.menu_action_quit.setText(_translate("main_window", "Quit"))
+        self.export_HTML.setText(_translate("main_window", "HTML"))
+        self.export_PDF.setText(_translate("main_window", "PDF"))

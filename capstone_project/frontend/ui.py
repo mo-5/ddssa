@@ -56,10 +56,9 @@ class UI(QMainWindow):
 
     def _analyze(self):
         # Get our target directory or Python file
-        while True:
-            target = self._get_file_path()
-            if target is not None:
-                break
+        target = self._get_file_path()
+        if target is None:
+            return
 
         self.ui.text_browser.setText("Analyzing...")
         # Deal with PyQt bug that uses the wrong file separators for
@@ -74,7 +73,7 @@ class UI(QMainWindow):
     def _get_file_path(self):
         """Attempt to get the"""
         input_dir = QFileDialog.getExistingDirectory(
-            None, "Select a directory or .py file", expanduser("~")
+            None, "Select a directory or .py file", expanduser(".")
         )
         if input_dir == "" or not os.path.isdir(input_dir):
             self.msg.setWindowTitle("Invalid Selection")

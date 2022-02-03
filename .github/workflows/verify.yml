@@ -9,49 +9,52 @@ jobs:
       matrix:
         python-version: ["3.10"]
     steps:
-    # Check out the repo
-    - name: Check out repository
-      uses: actions/checkout@v2
+      # Check out the repo
+      - name: Check out repository
+        uses: actions/checkout@v2
 
-    # Set up Python
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+      # Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    # Install poetry
-    - name: Install poetry
-      uses: snok/install-poetry@v1
-      with:
-        virtualenvs-in-project: true
+      # cache poetry
+      - name: Load cached $HOME/.local
+        uses: actions/cache@v2.1.6
+        with:
+          path: ~/.local
+          key: dotlocal-${{ runner.os }}-${{ hashFiles('.github/workflows/verify.yml') }}
 
-    # Load cached virtual environment if cache exists
-    - name: Load cached venv
-      uses: actions/cache@v2
-      with:
-        path: .venv
-        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      # Install poetry
+      - name: Install poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-in-project: true
 
-    # Install dependencies if cache does not exist
-    - name: Install dependencies
-      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: poetry install --no-interaction --no-root
+      # Load cached virtual environment if cache exists
+      - name: Load cached venv
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-v2-${{ hashFiles('**/poetry.lock') }}
 
-    # Run formatting check
-    - name: Run formatting check
-      run: |
-        source .venv/bin/activate
-        black --check .
+      # Install dependencies if cache does not exist
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
 
-    # Run linting
-    - name: Run pylint
-      run: |
-        source .venv/bin/activate
-        pylint capstone_project
+      # Run formatting check
+      - name: Run formatting check
+        run: poetry run black --check .
 
-    # Run tests
-    - name: Run tests
-      run: |
-        source .venv/bin/activate
-        coverage run -m unittest discover -s capstone_project/tests
-        coverage report --fail-under=80
+      # Run linting
+      - name: Run pylint
+        run: poetry run pylint capstone_project
+
+      # Run tests
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          coverage run -m unittest discover -s capstone_project/tests
+          coverage report --fail-under=80

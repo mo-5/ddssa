@@ -46,15 +46,11 @@ jobs:
 
       # Run formatting check
       - name: Run formatting check
-        run: |
-          source .venv/bin/activate
-          black --check .
+        run: poetry run black --check .
 
       # Run linting
       - name: Run pylint
-        run: |
-          source .venv/bin/activate
-          pylint capstone_project
+        run: poetry run pylint capstone_project
 
       # Run tests
       - name: Run tests

@@ -19,18 +19,25 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      # Load cached virtual environment if cache exists
-      - name: Load cached venv
-        uses: actions/cache@v2
+      # cache poetry
+      - name: Load cached $HOME/.local
+        uses: actions/cache@v2.1.6
         with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          path: ~/.local
+          key: dotlocal-${{ runner.os }}-${{ hashFiles('.github/workflows/verify.yml') }}
 
       # Install poetry
       - name: Install poetry
         uses: snok/install-poetry@v1
         with:
           virtualenvs-in-project: true
+
+      # Load cached virtual environment if cache exists
+      - name: Load cached venv
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
       # Install dependencies if cache does not exist
       - name: Install dependencies

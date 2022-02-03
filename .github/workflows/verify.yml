@@ -32,12 +32,12 @@ jobs:
         with:
           virtualenvs-in-project: true
 
-      # Load cached virtual environment if cache exists
-      - name: Load cached venv
-        uses: actions/cache@v2
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      # # Load cached virtual environment if cache exists
+      # - name: Load cached venv
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: .venv
+      #     key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
       # Install dependencies if cache does not exist
       - name: Install dependencies

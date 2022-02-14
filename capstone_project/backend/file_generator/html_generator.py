@@ -34,9 +34,9 @@ class HTMLGenerator:
                     + self._parse_version_list(col_data.values[1])
                     + "<ul>"
                 )
-                for cve in col_data.values[2]:
+                for i, cve in enumerate(col_data.values[2]):
                     self.html.append(
-                        f'<li><a href="https://nvd.nist.gov/vuln/detail/{cve}">{cve}</a></li>'
+                        f'<li><a href="https://nvd.nist.gov/vuln/detail/{cve}">{cve}</a> CVSS: {col_data.values[4][i]}</li>'
                     )
                 self.html.append("</ul></li>")
             self.html.append("</ol>")

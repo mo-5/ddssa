@@ -19,7 +19,7 @@ class DDSSA:
     contained within those directories or files.
     """
 
-    def __init__(self, paths, api_key):
+    def __init__(self, paths, api_key=None):
         self._dir_parser = PathParser(paths)
         self._ast_supplier = ASTSupplier()
         self._package_supplier = PackageSupplier(api_key)

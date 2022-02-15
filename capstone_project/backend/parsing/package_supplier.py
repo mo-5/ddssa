@@ -12,10 +12,10 @@ class PackageSupplier:
     file that has been requested to be analyzed.
     """
 
-    def __init__(self):
+    def __init__(self, api_key):
         self._package_parser = None
         self._package_data = None
-        self._vul_api = VulnerabilityQuery.instance()
+        self._vul_api = VulnerabilityQuery.instance(api_key)
 
     def package_request(self, path):
         # Pass it to the appropriate parser

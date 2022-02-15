@@ -19,10 +19,10 @@ class DDSSA:
     contained within those directories or files.
     """
 
-    def __init__(self, paths):
+    def __init__(self, paths, api_key):
         self._dir_parser = PathParser(paths)
         self._ast_supplier = ASTSupplier()
-        self._package_supplier = PackageSupplier()
+        self._package_supplier = PackageSupplier(api_key)
 
     def analyze(self):
         html_file = HTMLGenerator()
@@ -62,10 +62,15 @@ def main():
         "analyze. Must be directories or files.",
         required=True,
     )
+    parser.add_argument(
+        "-k",
+        "--api-key",
+        help="The NIST NVD API key. Optional.",
+    )
 
     args = parser.parse_args()
 
-    tool = DDSSA(args.paths)
+    tool = DDSSA(args.paths, args.api_key)
     tool.analyze()
 
 

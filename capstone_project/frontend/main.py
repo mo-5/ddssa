@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\capstone_project\frontend\main.ui'
+# Form implementation generated from reading ui file 'main.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -33,11 +33,12 @@ class Ui_main_window(object):
         self.file_select_btn.setObjectName("file_select_btn")
         self.verticalLayout.addWidget(self.file_select_btn)
         self.text_browser = QtWidgets.QTextBrowser(self.centralwidget)
+        self.text_browser.setStyleSheet("font: 12pt \"MS Shell Dlg 2\";")
         self.text_browser.setObjectName("text_browser")
         self.verticalLayout.addWidget(self.text_browser)
         main_window.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(main_window)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 27))
         self.menubar.setObjectName("menubar")
         self.menuOptions = QtWidgets.QMenu(self.menubar)
         self.menuOptions.setObjectName("menuOptions")
@@ -66,6 +67,11 @@ class Ui_main_window(object):
         _translate = QtCore.QCoreApplication.translate
         main_window.setWindowTitle(_translate("main_window", "Data-Driven Software Security Assessment"))
         self.file_select_btn.setText(_translate("main_window", "Choose a File or Directory"))
+        self.text_browser.setHtml(_translate("main_window", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Times New Roman\';\"><br /></p></body></html>"))
         self.menuOptions.setTitle(_translate("main_window", "Options"))
         self.menuExport.setTitle(_translate("main_window", "Export"))
         self.menu_action_help.setText(_translate("main_window", "Help"))

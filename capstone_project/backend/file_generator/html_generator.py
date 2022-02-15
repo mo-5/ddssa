@@ -3,7 +3,9 @@ class HTMLGenerator:
 
     def __init__(self) -> None:
         """Initialize html report"""
-        self.html = ["<h1>Data-Driven Software Security Assessment Report</h1>"]
+        self.html = [
+            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>'
+        ]
 
     def add_sr_data(self, sr_data):
         """Add SR data to the HTML report"""
@@ -21,7 +23,7 @@ class HTMLGenerator:
                 self.html.append("</ol></div>")
 
     def add_dependency_vulnerability_data(self, df):
-        """Add depdencency vulnerability data to the html report"""
+        """Add dependency vulnerability data to the html report"""
         if len(df.columns) > 0:
             self.html.append("<h2>Dependency Vulnerabilities</h2>")
             self.html.append(

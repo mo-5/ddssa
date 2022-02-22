@@ -147,19 +147,19 @@ class UI(QMainWindow):
             "</br>"
             "The <a href='https://csrc.nist.gov/glossary/term/software_vulnerability'>National Institute of Standards and Technology</a> defines a "
             "software vulnerability as being a, "
-            "<blockquote>\"A security flaw, glitch, or "
-            "weakness found in software code that could be exploited by an attacker (threat source).\""
+            '<blockquote>"A security flaw, glitch, or '
+            'weakness found in software code that could be exploited by an attacker (threat source)."'
             "</blockquote>"
             "<h3>Dependency Vulnerabilities</h3>"
             "The reality about software projects is that they often depend on other "
             "libraries and packages in order to gain functionality from them. "
             "</br>"
-            "When it comes to these dependencies, they can have vulnerabilities. "            
+            "When it comes to these dependencies, they can have vulnerabilities. "
             "<a href=https://docs.github.com/en/code-security/supply-chain-security/managing-vulnerabilities-in-your-projects-dependencies/about-alerts-for-vulnerable-dependencies>"
             "One source</a> sums it up by saying, "
             "<blockquote>"
-            "\"When your code depends on a package that has a security vulnerability, this vulnerable dependency can cause a range "
-            "of problems for your project or the people who use it.\""
+            '"When your code depends on a package that has a security vulnerability, this vulnerable dependency can cause a range '
+            'of problems for your project or the people who use it."'
             "</blockquote>"
             "This tool, the Data-Driven Security Assessment Tool, works by searching software projects to find all the packages "
             "that the project depends on. The tool then queries the <a href='https://nvd.nist.gov/developers/products'>CPE database</a> "

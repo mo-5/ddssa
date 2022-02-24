@@ -164,10 +164,10 @@ class UI(QMainWindow):
             "This tool, the Data-Driven Security Assessment Tool, works by searching software projects to find all the packages "
             "that the project depends on. The tool then queries the <a href='https://nvd.nist.gov/developers/products'>CPE database</a> "
             "with the package names and version information "
-            "in order to see if any of the packages have known vulnerabilites. "
+            "to see if any of the packages have known vulnerabilities. "
             "The final report which the tool generates will then inform the user about package vulnerabilities in order for them to "
             "consider these vulnerabilities. As an example, the user may decide to update their package version to the latest version "
-            "in order to avoid vulnerabilities in an older version."
+            "to avoid vulnerabilities in an older version."
         )
 
     def _try_quit(self):

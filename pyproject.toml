@@ -13,6 +13,7 @@ requirements-parser = "^0.3.1"
 setup-py-upgrade = "^1.2.1"
 setup-cfg-fmt = "^1.20.0"
 dparse = "^0.5.1"
+jsonschema = "^4.4.0"
 numpy = "^1.22.2"
 
 [tool.poetry.dev-dependencies]

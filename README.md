@@ -30,7 +30,7 @@ This is a design for a software security assessment tool using a data-driven app
 
 ### Additional Tools
 
-- [Draw.io](https://app.diagrams.net/) for diagrams
+- [diagrams.net](https://app.diagrams.net/) for diagrams
 - Contributions are made through GitHub, on this repository
 - GitHub issues are used for task and ticket tracking
 

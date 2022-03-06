@@ -186,8 +186,7 @@ class UI(QMainWindow):
 
     def _export_pdf(self):
         """Export the HTML report to a file."""
-        export = QtPrintSupport.QPrinter(
-            QtPrintSupport.QPrinter.HighResolution)
+        export = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
         export.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
         export.setOutputFileName("report.pdf")
         self.ui.text_browser.print(export)

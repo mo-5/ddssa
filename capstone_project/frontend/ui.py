@@ -2,7 +2,7 @@ import os
 import sys
 from functools import partial
 from os.path import expanduser
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtPrintSupport
 from PyQt5.QtWidgets import (
     QMainWindow,
     QDesktopWidget,
@@ -69,9 +69,6 @@ class UI(QMainWindow):
         # export files
         self.ui.menu_action_export_HTML.triggered.connect(self._export_html)
         self.ui.menu_action_export_PDF.triggered.connect(self._export_pdf)
-
-        # until it has been implemented
-        self.ui.menu_action_export_PDF.setEnabled(False)
 
         # Prepare a message box
         self.msg = QMessageBox()
@@ -189,7 +186,11 @@ class UI(QMainWindow):
 
     def _export_pdf(self):
         """Export the HTML report to a file."""
-        FileExport.export_pdf("report.pdf", self.ui.text_browser.toHtml())
+        export = QtPrintSupport.QPrinter(
+            QtPrintSupport.QPrinter.HighResolution)
+        export.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
+        export.setOutputFileName("report.pdf")
+        self.ui.text_browser.print(export)
 
     def _loading_on(self):
         self.loading_screen.start_animation()

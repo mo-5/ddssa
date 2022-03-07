@@ -16,7 +16,7 @@ class TestHTMLGenerator(unittest.TestCase):
         file = self.html.get_html()
         self.assertEqual(
             '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>',
+            "Data-Driven Software Security Assessment Report</h1>",
             file,
             "The initial html is not correct. Expected: "
             "<h1>Data-Driven Software Security Assessment Report</h1>"
@@ -30,14 +30,14 @@ class TestHTMLGenerator(unittest.TestCase):
         file = self.html.get_html()
         self.assertEqual(
             '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>'
+            "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Stall Statements</h2><div>File <b>ast_coordinator.py</b> contains 1 stall "
             "statement:</div><div><ol><li> Line number: 26, statement: print(loop)"
             "</li></ol></div>",
             file,
             "The generated html is not correct. Expected: "
             '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>'
+            "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Stall Statements</h2><div>File <b>ast_coordinator.py</b> contains 1 stall "
             "statement:</div><div><ol><li> Line number: 26, statement: print(loop)"
             "</li></ol></div>"
@@ -56,7 +56,7 @@ class TestHTMLGenerator(unittest.TestCase):
         file = self.html.get_html()
         self.assertEqual(
             '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>'
+            "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Stall Statements</h2><div>File <b>ast_coordinator.py</b> contains 1 stall "
             "statement:</div><div><ol><li> Line number: 26, statement: print(loop)"
             "</li></ol></div><div>File <b>ast_supplier.py</b> contains 2 stall "
@@ -65,7 +65,7 @@ class TestHTMLGenerator(unittest.TestCase):
             file,
             "The generated html is not correct. Expected: "
             '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>'
+            "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Stall Statements</h2><div>File <b>ast_coordinator.py</b> contains 1 stall "
             "statement:</div><div><ol><li> Line number: 26, statement: print(loop)"
             "</li></ol></div><div>File <b>ast_supplier.py</b> contains 2 stall "
@@ -81,7 +81,7 @@ class TestHTMLGenerator(unittest.TestCase):
         file = self.html.get_html()
         self.assertEqual(
             '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>',
+            "Data-Driven Software Security Assessment Report</h1>",
             file,
             f"The initial html is not correct. Expected <h1>Data-Driven Software"
             f"Security Assessment Report</h1>"
@@ -105,7 +105,7 @@ class TestHTMLGenerator(unittest.TestCase):
         file = self.html.get_html()
         self.assertEqual(
             '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>'
+            "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Dependency Vulnerabilities</h2><div><div>The following dependency has "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
             '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a> CVSS: 5.0</li>'
@@ -113,7 +113,7 @@ class TestHTMLGenerator(unittest.TestCase):
             "</ul></li></ol>",
             file,
             '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>'
+            "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Dependency Vulnerabilities</h2><div><div>The following dependencies have "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
             '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a> CVSS: 5.0</li>'
@@ -149,7 +149,7 @@ class TestHTMLGenerator(unittest.TestCase):
         file = self.html.get_html()
         self.assertEqual(
             '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>'
+            "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Dependency Vulnerabilities</h2><div><div>The following dependencies have "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
             '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a> CVSS: 5.0</li>'
@@ -160,7 +160,7 @@ class TestHTMLGenerator(unittest.TestCase):
             "</ul></li></ol>",
             file,
             '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>'
+            "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Dependency Vulnerabilities</h2><div><div>The following dependencies have "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
             '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1>CVE-1"</a> CVSS: 5.0</li>'

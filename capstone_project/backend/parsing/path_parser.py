@@ -1,3 +1,5 @@
+""" This module contains the PathParser class"""
+
 import os
 
 
@@ -43,7 +45,9 @@ class PathParser:
         self._requirement_files.sort()
 
     def get_python_file_list(self):
+        """Get list of Python source files"""
         return self._python_files
 
     def get_requirement_file_list(self):
+        """Get list of requirement files"""
         return self._requirement_files

@@ -1,3 +1,6 @@
+"""This module contains the RequirementsParser class"""
+
+
 import pkg_resources
 
 from capstone_project.backend.parsing.package_parser import PackageParser

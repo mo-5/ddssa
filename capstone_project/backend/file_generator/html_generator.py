@@ -1,10 +1,15 @@
+"""This module contains the HTMLGenerator class"""
+
+
 class HTMLGenerator:
     """Generate html report from analysis data"""
 
     def __init__(self) -> None:
         """Initialize html report"""
         self.html = [
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>'
+            '<h1 style="text-align: center; padding: 75px;'
+            ' background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>"
         ]
 
     def add_sr_data(self, sr_data):
@@ -13,12 +18,15 @@ class HTMLGenerator:
             self.html.append("<h2>Stall Statements</h2>")
             for sr_detection in sr_data:
                 self.html.append(
-                    f'<div>File <b>{sr_detection[0]}</b> contains {str(len(sr_detection[1]))}{" stall statements:</div>" if len(sr_detection[1]) > 1 else " stall statement:</div>"}'
+                    f"<div>File <b>"
+                    f"{sr_detection[0]}</b> contains {str(len(sr_detection[1]))}"
+                    f'{" stall statements:</div>" if len(sr_detection[1]) > 1 else " stall statement:</div>"}'
                 )
                 self.html.append("<div><ol>")
                 for i, _ in enumerate(sr_detection[1]):
                     self.html.append(
-                        f"<li> Line number: {str(sr_detection[1][i][0])}, statement: {sr_detection[1][i][1].strip()}</li>"
+                        f"<li> Line number: {str(sr_detection[1][i][0])},"
+                        f" statement: {sr_detection[1][i][1].strip()}</li>"
                     )
                 self.html.append("</ol></div>")
 

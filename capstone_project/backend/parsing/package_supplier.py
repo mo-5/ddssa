@@ -1,3 +1,6 @@
+""" This module contains the PackageSupplier class"""
+
+
 from capstone_project.backend.api.vulnerability_query import VulnerabilityQuery
 from capstone_project.backend.parsing.pip_parser import PipParser
 from capstone_project.backend.parsing.poetry_lock_parser import PoetryLockParser
@@ -18,6 +21,8 @@ class PackageSupplier:
         self._vul_api = VulnerabilityQuery.instance(api_key)
 
     def package_request(self, path):
+        """Handle a package request"""
+
         # Pass it to the appropriate parser
         if path[-7:] == "Pipfile" or path[-12:] == "Pipfile.lock":
             self._package_parser = PipParser(path)

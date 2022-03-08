@@ -1,3 +1,5 @@
+"""This module contains the SrIds enum class"""
+
 from enum import Enum
 
 

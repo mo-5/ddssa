@@ -1,3 +1,6 @@
+"""This module containts the TestHTMLGenerator test class"""
+
+
 import unittest
 import pandas as pd
 
@@ -15,7 +18,9 @@ class TestHTMLGenerator(unittest.TestCase):
         """Test that the initial HTML is generated properly."""
         file = self.html.get_html()
         self.assertEqual(
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>',
+            '<h1 style="text-align: center; padding: 75px; '
+            'background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>",
             file,
             "The initial html is not correct. Expected: "
             "<h1>Data-Driven Software Security Assessment Report</h1>"
@@ -28,14 +33,21 @@ class TestHTMLGenerator(unittest.TestCase):
         self.html.add_sr_data([("ast_coordinator.py", [(26, "    print(loop)")])])
         file = self.html.get_html()
         self.assertEqual(
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>'
-            "<h2>Stall Statements</h2><div>File <b>ast_coordinator.py</b> contains 1 stall "
-            "statement:</div><div><ol><li> Line number: 26, statement: print(loop)"
+            '<h1 style="text-align: center; padding: 75px; '
+            'background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>"
+            "<h2>Stall Statements</h2><div>File "
+            "<b>ast_coordinator.py</b> contains 1 stall "
+            "statement:</div><div><ol><li> Line number: 26, "
+            "statement: print(loop)"
             "</li></ol></div>",
             file,
             "The generated html is not correct. Expected: "
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>'
-            "<h2>Stall Statements</h2><div>File <b>ast_coordinator.py</b> contains 1 stall "
+            '<h1 style="text-align: center; padding: 75px; '
+            'background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>"
+            "<h2>Stall Statements</h2><div>File "
+            "<b>ast_coordinator.py</b> contains 1 stall "
             "statement:</div><div><ol><li> Line number: 26, statement: print(loop)"
             "</li></ol></div>"
             f"but got {file}",
@@ -52,16 +64,22 @@ class TestHTMLGenerator(unittest.TestCase):
         )
         file = self.html.get_html()
         self.assertEqual(
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>'
-            "<h2>Stall Statements</h2><div>File <b>ast_coordinator.py</b> contains 1 stall "
+            '<h1 style="text-align: center; padding: 75px; '
+            'background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>"
+            "<h2>Stall Statements</h2><div>File "
+            "<b>ast_coordinator.py</b> contains 1 stall "
             "statement:</div><div><ol><li> Line number: 26, statement: print(loop)"
             "</li></ol></div><div>File <b>ast_supplier.py</b> contains 2 stall "
             "statements:</div><div><ol><li> Line number: 27, statement: print(loop)"
             "</li><li> Line number: 28, statement: time.sleep(1)</li></ol></div>",
             file,
             "The generated html is not correct. Expected: "
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>'
-            "<h2>Stall Statements</h2><div>File <b>ast_coordinator.py</b> contains 1 stall "
+            '<h1 style="text-align: center; padding: 75px; '
+            'background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>"
+            "<h2>Stall Statements</h2><div>File "
+            "<b>ast_coordinator.py</b> contains 1 stall "
             "statement:</div><div><ol><li> Line number: 26, statement: print(loop)"
             "</li></ol></div><div>File <b>ast_supplier.py</b> contains 2 stall "
             "statements:</div><div><ol><li> Line number: 27, statement: print(loop)"
@@ -75,7 +93,9 @@ class TestHTMLGenerator(unittest.TestCase):
         self.html.add_dependency_vulnerability_data(vulnerability_data)
         file = self.html.get_html()
         self.assertEqual(
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>',
+            '<h1 style="text-align: center; padding: 75px; '
+            'background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>",
             file,
             f"The initial html is not correct. Expected <h1>Data-Driven Software"
             f"Security Assessment Report</h1>"
@@ -98,21 +118,32 @@ class TestHTMLGenerator(unittest.TestCase):
         self.html.add_dependency_vulnerability_data(vulnerability_data)
         file = self.html.get_html()
         self.assertEqual(
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>'
-            "<h2>Dependency Vulnerabilities</h2><div><div>The following dependency has "
+            '<h1 style="text-align: center; padding: 75px; '
+            'background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>"
+            "<h2>Dependency Vulnerabilities</h2>"
+            "<div><div>The following dependency has "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a> CVSS: 5.0</li>'
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a> CVSS: 6.0</li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">'
+            "CVE-1</a> CVSS: 5.0</li>"
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">'
+            "CVE-2</a> CVSS: 6.0</li>"
             "</ul></li></ol>",
             file,
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>'
-            "<h2>Dependency Vulnerabilities</h2><div><div>The following dependencies have "
+            '<h1 style="text-align: center; padding: 75px; '
+            'background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>"
+            "<h2>Dependency Vulnerabilities</h2>"
+            "<div><div>The following dependencies have "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a> CVSS: 5.0</li>'
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a> CVSS: 6.0</li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">'
+            "CVE-1</a> CVSS: 5.0</li>"
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">'
+            "CVE-2</a> CVSS: 6.0</li>"
             "</ul></li>"
             "<li>two >= 1.1, < 2.2<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3">CVE-3</a></li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3">'
+            "CVE-3</a></li>"
             "</ul></li></ol>"
             f"but got {file}",
         )
@@ -140,24 +171,36 @@ class TestHTMLGenerator(unittest.TestCase):
         self.html.add_dependency_vulnerability_data(vulnerability_data)
         file = self.html.get_html()
         self.assertEqual(
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>'
-            "<h2>Dependency Vulnerabilities</h2><div><div>The following dependencies have "
+            '<h1 style="text-align: center; padding: 75px; '
+            'background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>"
+            "<h2>Dependency Vulnerabilities</h2>"
+            "<div><div>The following dependencies have "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a> CVSS: 5.0</li>'
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a> CVSS: 6.0</li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">'
+            "CVE-1</a> CVSS: 5.0</li>"
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">'
+            "CVE-2</a> CVSS: 6.0</li>"
             "</ul></li>"
             "<li>two >= 1.1, < 2.2<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3">CVE-3</a> CVSS: 5.0</li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3">'
+            "CVE-3</a> CVSS: 5.0</li>"
             "</ul></li></ol>",
             file,
-            '<h1 style="text-align: center; padding: 75px; background: #87cefa; color: white;">Data-Driven Software Security Assessment Report</h1>'
-            "<h2>Dependency Vulnerabilities</h2><div><div>The following dependencies have "
+            '<h1 style="text-align: center; padding: 75px; '
+            'background: #87cefa; color: white;">'
+            "Data-Driven Software Security Assessment Report</h1>"
+            "<h2>Dependency Vulnerabilities</h2>"
+            "<div><div>The following dependencies have "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1>CVE-1"</a> CVSS: 5.0</li>'
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2>CVE-2"</a> CVSS: 6.0</li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1>'
+            'CVE-1"</a> CVSS: 5.0</li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2>'
+            'CVE-2"</a> CVSS: 6.0</li>'
             "</ul></li>"
             "<li>two >= 1.1, < 2.2<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3>"CVE-3</a> CVSS: 5.0</li>'
+            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3>'
+            '"CVE-3</a> CVSS: 5.0</li>'
             "</ul></li></ol>"
             f"but got {file}",
         )

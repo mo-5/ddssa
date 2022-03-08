@@ -1,3 +1,6 @@
+"""This module contains the LoadingScreen class"""
+
+
 import os
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import (

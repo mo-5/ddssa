@@ -1,3 +1,6 @@
+"""This module contains the DDSSA class and a main method"""
+
+
 import argparse
 import os
 import sys
@@ -30,6 +33,7 @@ class DDSSA:
         target directory. Once analysis concludes, return the HTML to be
         displayed on the frontend to the user.
         """
+
         html_file = HTMLGenerator()
 
         sr_thread = threading.Thread(target=self._static_analysis(html_file))
@@ -63,6 +67,8 @@ class DDSSA:
 
 
 def main():
+    """Use command-line arguments to to parse and analyze a project"""
+
     parser = argparse.ArgumentParser(
         description="Command line options for the Data-Driven Software "
         "Security Assessment tool"

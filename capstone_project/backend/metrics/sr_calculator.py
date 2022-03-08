@@ -1,3 +1,6 @@
+"""This module contains the SRCalculator class"""
+
+
 import ast
 import json
 import os

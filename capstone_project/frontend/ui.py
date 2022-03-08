@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import (
     QApplication,
     QFileDialog,
     QMessageBox,
+    QInputDialog,
 )
 
 from capstone_project.frontend import main
@@ -20,9 +21,9 @@ from capstone_project.frontend.loading import LoadingScreen
 class AnalysisWorker(QtCore.QObject):
     finished = QtCore.pyqtSignal(str)
 
-    def run(self, target):
+    def run(self, target, api_key=None):
         """Perform analysis"""
-        tool = DDSSA([target])
+        tool = DDSSA([target], api_key)
         # Display our report after analysis
         html = tool.analyze()
         self.finished.emit(html)
@@ -34,7 +35,7 @@ class UI(QMainWindow):
 
     This class relies on the main.py file that is generated
     by running the following command from the frontend directory:
-      pyuic5 -o main.py main.ui
+      pyuic5 -o ./capstone_project/frontend/main.py ./capstone_project/frontend/main.ui
 
     Run the application from the root project directory using
     the following command (note os.sep might need to change)
@@ -43,6 +44,9 @@ class UI(QMainWindow):
 
     def __init__(self):
         super(UI, self).__init__()
+
+        # Setup user settings
+        self.settings = QtCore.QSettings("DDSSA", "DDSSA")
 
         self.ui = main.Ui_main_window()
         self.ui.setupUi(self)
@@ -61,14 +65,13 @@ class UI(QMainWindow):
             )
         )
 
-        # Prepare connections
-        self.ui.menu_action_quit.triggered.connect(self._try_quit)
-        self.ui.file_select_btn.clicked.connect(self._analyze)
+        # Prepare connections for menu actions and UI buttons
         self.ui.menu_action_help.triggered.connect(self._display_help)
-
-        # export files
+        self.ui.menu_action_add_api_key.triggered.connect(self._add_api_key)
+        self.ui.menu_action_quit.triggered.connect(self._try_quit)
         self.ui.menu_action_export_HTML.triggered.connect(self._export_html)
         self.ui.menu_action_export_PDF.triggered.connect(self._export_pdf)
+        self.ui.file_select_btn.clicked.connect(self._analyze)
 
         # Prepare a message box
         self.msg = QMessageBox()
@@ -92,10 +95,12 @@ class UI(QMainWindow):
 
         self._loading_on()
 
-        # Deal with PyQt bug that uses the wrong file separators for
-        # Windows based operating systems.
-        target = target.replace("/", "\\")
-        self.thread.started.connect(partial(self.worker.run, target))
+        # Use the correct file separators for Windows based operating systems
+        if os.name == "nt":
+            target = target.replace("/", "\\")
+        self.thread.started.connect(
+            partial(self.worker.run, target, self.settings.value("api_key"))
+        )
         self.thread.start()
 
     def _get_file_path(self):
@@ -173,6 +178,15 @@ class UI(QMainWindow):
             "consider these vulnerabilities. As an example, the user may decide to update their package version to the latest version "
             "to avoid vulnerabilities in an older version."
         )
+
+    def _add_api_key(self):
+        dialog = QInputDialog(self)
+        dialog.resize(450, 150)
+        dialog.setWindowTitle("NIST NVD API Key Input")
+        dialog.setLabelText("Enter your NIST NVD API key: ")
+        confirm = dialog.exec_()
+        if confirm:
+            self.settings.setValue("api_key", dialog.textValue().strip())
 
     def _try_quit(self):
         """Attempt to safely exit the application.

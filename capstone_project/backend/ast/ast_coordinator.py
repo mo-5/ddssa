@@ -19,7 +19,7 @@ class ASTCoordinator:
 
     def perform_static_analysis(self, files):
         """Performs static analysis of the code"""
-        
+
         # Determine how many threads to create
         self._create_ast_suppliers()
 

@@ -9,7 +9,6 @@ from capstone_project.backend.metrics.sr_calculator import SRCalculator
 class ASTSupplier:
     """Creates an AST from a file and sends it off to have SR calculated"""
 
-
     def __init__(self):
         self._node = None
         self._loops = ast.For, ast.While, ast.AsyncFor

@@ -1,3 +1,6 @@
+"""This module contains the ASTCoordinator class"""
+
+
 import ast
 
 from capstone_project.backend.ast.ast_supplier import ASTSupplier
@@ -15,6 +18,8 @@ class ASTCoordinator:
         self._ast_suppliers = None
 
     def perform_static_analysis(self, files):
+        """Performs static analysis of the code"""
+        
         # Determine how many threads to create
         self._create_ast_suppliers()
 

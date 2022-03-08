@@ -1,3 +1,6 @@
+""""This module contians the PyProjectParser class"""
+
+
 import tomli
 
 from capstone_project.backend.parsing.package_parser import PackageParser

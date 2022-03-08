@@ -1,3 +1,6 @@
+"""This module contains the PoetryLockParser class"""
+
+
 import tomli
 
 from capstone_project.backend.parsing.package_ids import PackageIds

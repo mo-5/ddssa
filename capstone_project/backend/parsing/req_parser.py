@@ -21,5 +21,5 @@ class RequirementsParser(PackageParser):
                 raise RuntimeError(
                     "requirements.txt file contains an unknown requirement"
                 ) from e
-            except IndexError:
+            except IndexError as e:
                 raise RuntimeError("requirements.txt file is invalid") from e

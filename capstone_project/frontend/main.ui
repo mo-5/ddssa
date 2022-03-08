@@ -56,7 +56,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>27</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOptions">
@@ -64,6 +64,7 @@ p, li { white-space: pre-wrap; }
      <string>Options</string>
     </property>
     <addaction name="menu_action_help"/>
+    <addaction name="menu_action_add_api_key"/>
     <addaction name="menu_action_quit"/>
    </widget>
    <widget class="QMenu" name="menuExport">
@@ -85,6 +86,9 @@ p, li { white-space: pre-wrap; }
    <property name="text">
     <string>Quit</string>
    </property>
+   <property name="toolTip">
+    <string>Quit the program</string>
+   </property>
   </action>
   <action name="menu_action_export_HTML">
    <property name="text">
@@ -94,6 +98,17 @@ p, li { white-space: pre-wrap; }
   <action name="menu_action_export_PDF">
    <property name="text">
     <string>PDF</string>
+   </property>
+  </action>
+  <action name="menu_action_add_api_key">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Add API Key</string>
+   </property>
+   <property name="toolTip">
+    <string>Add your NIST NVD API Key</string>
    </property>
   </action>
  </widget>

@@ -50,7 +50,7 @@ class DDSSA:
         # Add dependency vulnerability data
         html_file.add_dependency_vulnerability_data(
             self._package_supplier.package_request(
-                self._dir_parser.get_requirement_file_list()[-1]
+                self._dir_parser.get_requirement_file_list()[-2]
             )
         )
 

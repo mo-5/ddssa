@@ -1,6 +1,7 @@
 import argparse
 import os
 import sys
+import threading
 
 from capstone_project.backend.ast.ast_supplier import ASTSupplier
 from capstone_project.backend.file_generator.html_generator import HTMLGenerator
@@ -25,19 +26,23 @@ class DDSSA:
         self._package_supplier = PackageSupplier(api_key)
 
     def analyze(self):
+        """Perform both static and dependency vulnerability analysis on a
+        target directory. Once analysis concludes, return the HTML to be
+        displayed on the frontend to the user.
+        """
         html_file = HTMLGenerator()
 
-        sr_data = []
-        for file in self._dir_parser.get_python_file_list():
-            sr_data.append(
-                self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1])
-            )
+        sr_thread = threading.Thread(target=self._static_analysis(html_file))
+        vul_thread = threading.Thread(target=self._vulnerability_analysis(html_file))
+        sr_thread.start()
+        vul_thread.start()
+        sr_thread.join()
+        vul_thread.join()
 
-        # Add SR analysis data, filtering out files without stall statements
-        html_file.add_sr_data(
-            [sr_detection for sr_detection in sr_data if len(sr_detection[1]) > 0]
-        )
+        html = html_file.get_html()
+        return html
 
+    def _vulnerability_analysis(self, html_file):
         # Add dependency vulnerability data
         html_file.add_dependency_vulnerability_data(
             self._package_supplier.package_request(
@@ -45,8 +50,16 @@ class DDSSA:
             )
         )
 
-        html = html_file.get_html()
-        return html
+    def _static_analysis(self, html_file):
+        sr_data = []
+        for file in self._dir_parser.get_python_file_list():
+            sr_data.append(
+                self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1])
+            )
+        # Add SR analysis data, filtering out files without stall statements
+        html_file.add_sr_data(
+            [sr_detection for sr_detection in sr_data if len(sr_detection[1]) > 0]
+        )
 
 
 def main():

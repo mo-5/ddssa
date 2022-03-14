@@ -1,7 +1,7 @@
 """ This module contains the PackageSupplier class"""
-
-
-from capstone_project.backend.api.vulnerability_query import VulnerabilityQuery
+from capstone_project.backend.api.vulnerability_aggregator import (
+    VulnerabilityAggregator,
+)
 from capstone_project.backend.parsing.pip_parser import PipParser
 from capstone_project.backend.parsing.poetry_lock_parser import PoetryLockParser
 from capstone_project.backend.parsing.pyproject_parser import PyProjectParser
@@ -18,7 +18,7 @@ class PackageSupplier:
     def __init__(self, api_key):
         self._package_parser = None
         self._package_data = None
-        self._vul_api = VulnerabilityQuery.instance(api_key)
+        self._vul_api = VulnerabilityAggregator(api_key)
 
     def package_request(self, path):
         """Handle a package request"""
@@ -39,4 +39,4 @@ class PackageSupplier:
         self._package_data = self._package_parser.begin_analysis()
 
         # Build out a new dataframe from the returned query results
-        return self._vul_api.query(self._package_parser.begin_analysis())
+        return self._vul_api.coordinate_queries(self._package_parser.begin_analysis())

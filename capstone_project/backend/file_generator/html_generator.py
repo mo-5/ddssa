@@ -46,7 +46,7 @@ class HTMLGenerator:
                 )
                 for i, cve in enumerate(col_data.values[2]):
                     self.html.append(
-                        f'<li><a href="https://nvd.nist.gov/vuln/detail/{cve}">{cve}</a> CVSS: {col_data.values[4][i]}</li>'
+                        f'<li><a href="https://nvd.nist.gov/vuln/detail/{cve}">{cve}</a> <b>CVSS:</b> {col_data.values[4][i]}</li><ul><li> <b>Name:</b> {col_data.values[5][i]}</li><li> <b>Summary:</b> {col_data.values[6][i]}</li><li> <b>Solution:</b> {col_data.values[7][i]}</li></ul><br/>'
                     )
                 self.html.append("</ul></li>")
             self.html.append("</ol>")

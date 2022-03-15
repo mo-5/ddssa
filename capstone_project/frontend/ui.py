@@ -11,7 +11,6 @@ from PyQt5.QtWidgets import (
     QMessageBox,
     QInputDialog,
 )
-from timeit import default_timer as timer
 
 from capstone_project.frontend import main
 from capstone_project.frontend.ddssa import DDSSA
@@ -26,9 +25,7 @@ class AnalysisWorker(QtCore.QObject):
         """Perform analysis"""
         tool = DDSSA([target], api_key)
         # Display our report after analysis
-        start = timer()
         html = tool.analyze()
-        end = timer()
         print(end - start)
         self.finished.emit(html)
 

@@ -1,5 +1,7 @@
 """ This module contains the PackageSupplier class"""
-from capstone_project.backend.api.vulnerability_aggregator import VulnerabilityAggregator
+from capstone_project.backend.api.vulnerability_aggregator import (
+    VulnerabilityAggregator,
+)
 from capstone_project.backend.parsing.pip_parser import PipParser
 from capstone_project.backend.parsing.poetry_lock_parser import PoetryLockParser
 from capstone_project.backend.parsing.pyproject_parser import PyProjectParser

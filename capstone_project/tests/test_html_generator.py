@@ -89,7 +89,18 @@ class TestHTMLGenerator(unittest.TestCase):
 
     def test_add_dependency_vulnerability_data_without_vulnerabilities(self):
         """Test that not adding any vulnerabilities produces the correct html report."""
-        vulnerability_data = pd.DataFrame(index=["Name", "Version", "CVEs", "Mode"])
+        vulnerability_data = pd.DataFrame(
+            index=[
+                "Name",
+                "Version",
+                "CVEs",
+                "Mode",
+                "CVSS",
+                "CVEName",
+                "Summary",
+                "Solution",
+            ]
+        )
         self.html.add_dependency_vulnerability_data(vulnerability_data)
         file = self.html.get_html()
         self.assertEqual(
@@ -106,7 +117,16 @@ class TestHTMLGenerator(unittest.TestCase):
         """Test that a single dependency with vulnerabilities produces the correct html
         report."""
         vulnerability_data = pd.DataFrame(
-            index=["Name", "Version", "CVEs", "Mode", "CVSS"]
+            index=[
+                "Name",
+                "Version",
+                "CVEs",
+                "Mode",
+                "CVSS",
+                "CVEName",
+                "Summary",
+                "Solution",
+            ]
         )
         vulnerability_data["0"] = [
             "one",
@@ -114,6 +134,9 @@ class TestHTMLGenerator(unittest.TestCase):
             ["CVE-1", "CVE-2"],
             PackageIds.SINGLE,
             ["5.0", "6.0"],
+            ["Test", "Test2"],
+            ["Summary of Test", "Summary of Test2"],
+            ["Fix this", "Fix that"],
         ]
         self.html.add_dependency_vulnerability_data(vulnerability_data)
         file = self.html.get_html()
@@ -125,25 +148,33 @@ class TestHTMLGenerator(unittest.TestCase):
             "<div><div>The following dependency has "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
             '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">'
-            "CVE-1</a> CVSS: 5.0</li>"
+            "CVE-1</a> <b>CVSS:</b> 5.0</li>"
+            "<ul><li> <b>Name:</b> Test</li><li> "
+            "<b>Summary:</b> Summary of Test</li><li> "
+            "<b>Solution:</b> Fix this</li></ul><br/>"
             '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">'
-            "CVE-2</a> CVSS: 6.0</li>"
+            "CVE-2</a> <b>CVSS:</b> 6.0</li>"
+            "<ul><li> <b>Name:</b> Test2</li><li>"
+            " <b>Summary:</b> Summary of Test2</li><li>"
+            " <b>Solution:</b> Fix that</li></ul><br/>"
             "</ul></li></ol>",
             file,
             '<h1 style="text-align: center; padding: 75px; '
             'background: #87cefa; color: white;">'
             "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Dependency Vulnerabilities</h2>"
-            "<div><div>The following dependencies have "
+            "<div><div>The following dependency has "
             "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
             '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">'
-            "CVE-1</a> CVSS: 5.0</li>"
+            "CVE-1</a> <b>CVSS:</b> 5.0</li>"
+            "<ul><li> <b>Name:</b> Test</li><li> "
+            "<b>Summary:</b> Summary of Test</li><li> "
+            "<b>Solution:</b> Fix this</li></ul><br/>"
             '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">'
-            "CVE-2</a> CVSS: 6.0</li>"
-            "</ul></li>"
-            "<li>two >= 1.1, < 2.2<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3">'
-            "CVE-3</a></li>"
+            "CVE-2</a> <b>CVSS:</b> 6.0</li>"
+            "<ul><li> <b>Name:</b> Test2</li><li>"
+            " <b>Summary:</b> Summary of Test2</li><li>"
+            " <b>Solution:</b> Fix that</li></ul><br/>"
             "</ul></li></ol>"
             f"but got {file}",
         )
@@ -152,7 +183,16 @@ class TestHTMLGenerator(unittest.TestCase):
         """Test that multiple dependencies with vulnerabilities produces the correct
         html report."""
         vulnerability_data = pd.DataFrame(
-            index=["Name", "Version", "CVEs", "Mode", "CVSS"]
+            index=[
+                "Name",
+                "Version",
+                "CVEs",
+                "Mode",
+                "CVSS",
+                "CVEName",
+                "Summary",
+                "Solution",
+            ]
         )
         vulnerability_data["0"] = [
             "one",
@@ -160,6 +200,9 @@ class TestHTMLGenerator(unittest.TestCase):
             ["CVE-1", "CVE-2"],
             PackageIds.SINGLE,
             ["5.0", "6.0"],
+            ["Test", "Test2"],
+            ["Summary of Test", "Summary of Test2"],
+            ["Fix this", "Fix that"],
         ]
         vulnerability_data["1"] = [
             "two",
@@ -167,6 +210,9 @@ class TestHTMLGenerator(unittest.TestCase):
             ["CVE-3"],
             PackageIds.SINGLE,
             ["5.0"],
+            ["Test3"],
+            ["Summary of Test3"],
+            ["Change that"],
         ]
         self.html.add_dependency_vulnerability_data(vulnerability_data)
         file = self.html.get_html()
@@ -176,31 +222,37 @@ class TestHTMLGenerator(unittest.TestCase):
             "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Dependency Vulnerabilities</h2>"
             "<div><div>The following dependencies have "
-            "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1">'
-            "CVE-1</a> CVSS: 5.0</li>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2">'
-            "CVE-2</a> CVSS: 6.0</li>"
-            "</ul></li>"
-            "<li>two >= 1.1, < 2.2<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3">'
-            "CVE-3</a> CVSS: 5.0</li>"
-            "</ul></li></ol>",
+            "vulnerabilities:</div><ol><li>one == 1.1.1<ul><li><a "
+            'href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a> '
+            "<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test</li><li> "
+            "<b>Summary:</b> Summary of Test</li><li> <b>Solution:</b> Fix "
+            "this</li></ul><br/><li><a "
+            'href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a> '
+            "<b>CVSS:</b> 6.0</li><ul><li> <b>Name:</b> Test2</li><li> "
+            "<b>Summary:</b> Summary of Test2</li><li> <b>Solution:</b> Fix "
+            "that</li></ul><br/></ul></li><li>two >= 1.1, < 2.2<ul><li><a "
+            'href="https://nvd.nist.gov/vuln/detail/CVE-3">CVE-3</a> '
+            "<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test3</li><li> "
+            "<b>Summary:</b> Summary of Test3</li><li> <b>Solution:</b> "
+            "Change that</li></ul><br/></ul></li></ol>",
             file,
             '<h1 style="text-align: center; padding: 75px; '
             'background: #87cefa; color: white;">'
             "Data-Driven Software Security Assessment Report</h1>"
             "<h2>Dependency Vulnerabilities</h2>"
             "<div><div>The following dependencies have "
-            "vulnerabilities:</div><ol><li>one == 1.1.1<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-1>'
-            'CVE-1"</a> CVSS: 5.0</li>'
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2>'
-            'CVE-2"</a> CVSS: 6.0</li>'
-            "</ul></li>"
-            "<li>two >= 1.1, < 2.2<ul>"
-            '<li><a href="https://nvd.nist.gov/vuln/detail/CVE-3>'
-            '"CVE-3</a> CVSS: 5.0</li>'
-            "</ul></li></ol>"
+            "vulnerabilities:</div><ol><li>one == 1.1.1<ul><li><a "
+            'href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a> '
+            "<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test</li><li> "
+            "<b>Summary:</b> Summary of Test</li><li> <b>Solution:</b> Fix "
+            "this</li></ul><br/><li><a "
+            'href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a> '
+            "<b>CVSS:</b> 6.0</li><ul><li> <b>Name:</b> Test2</li><li> "
+            "<b>Summary:</b> Summary of Test2</li><li> <b>Solution:</b> Fix "
+            "that</li></ul><br/></ul></li><li>two >= 1.1, < 2.2<ul><li><a "
+            'href="https://nvd.nist.gov/vuln/detail/CVE-3">CVE-3</a> '
+            "<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test3</li><li> "
+            "<b>Summary:</b> Summary of Test3</li><li> <b>Solution:</b> "
+            "Change that</li></ul><br/></ul></li></ol>"
             f"but got {file}",
         )

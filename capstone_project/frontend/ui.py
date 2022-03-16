@@ -55,15 +55,14 @@ class UI(QMainWindow):
         self.worker = AnalysisWorker()
         self.worker.moveToThread(self.thread)
         self.worker.finished.connect(self._display_report)
-
-        # Set the icon
-        self.setWindowIcon(
-            QtGui.QIcon(
-                os.path.join(
-                    os.getcwd(), "capstone_project", "frontend", "assets", "icon.png"
-                )
+        self.icon = QtGui.QIcon(
+            os.path.join(
+                os.getcwd(), "capstone_project", "frontend", "assets", "icon.png"
             )
         )
+
+        # Set the icon
+        self.setWindowIcon(self.icon)
 
         # Prepare connections for menu actions and UI buttons
         self.ui.menu_action_help.triggered.connect(self._display_help)
@@ -110,6 +109,7 @@ class UI(QMainWindow):
         )
         if input_dir == "" or not os.path.isdir(input_dir):
             self.msg.setWindowTitle("Invalid Selection")
+            self.msg.setWindowIcon(self.icon)
             self.msg.setIcon(QMessageBox.Information)
             self.msg.setText("Please select a directory or .py file.")
             self.msg.setStandardButtons(QMessageBox.Ok)

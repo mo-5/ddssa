@@ -26,7 +26,6 @@ class AnalysisWorker(QtCore.QObject):
         tool = DDSSA([target], api_key)
         # Display our report after analysis
         html = tool.analyze()
-        print(end - start)
         self.finished.emit(html)
 
 

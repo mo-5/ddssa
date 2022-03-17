@@ -16,6 +16,7 @@ dparse = "^0.5.1"
 pycvesearch = "^1.0.1"
 jsonschema = "^4.4.0"
 numpy = "^1.22.2"
+libcst = "^0.4.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.12b0"

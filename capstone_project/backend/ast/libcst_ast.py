@@ -62,6 +62,7 @@ def main():
                         self.stall_dict[actual_line] = line
 
         def get_score(self):
+            print(self.stall_dict)
             return self.score
 
     stall_visitor = StallVisitor()

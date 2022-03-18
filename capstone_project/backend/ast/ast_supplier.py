@@ -2,6 +2,7 @@
 
 
 import ast
+import libcst
 
 from capstone_project.backend.metrics.sr_calculator import SRCalculator
 
@@ -13,6 +14,7 @@ class ASTSupplier:
         self._node = None
         self._loops = ast.For, ast.While, ast.AsyncFor
         self._sr_calculator = None
+        self._libcst_module = None
 
     def create_ast_from_file(self, file):
         """Read in a file and then create an AST"""
@@ -34,6 +36,16 @@ class ASTSupplier:
                 ast_bytes += curr_byte + b"\n"
 
             self._node = ast.parse(ast_bytes)
+        
+    def get_libcst_module_from_file(self, file):
+        """Return the libCST module"""
+        with open(
+        file,
+        "r",
+        encoding="UTF-8",
+        ) as file:
+            file_contents = file.read()
+        self._libcst_module = libcst.parse_module(file_contents)
 
     def get_ast_list(self):
         """Return the AST"""
@@ -84,7 +96,8 @@ class ASTSupplier:
             self._sr_calculator = SRCalculator(filename)
         else:
             self._sr_calculator.set_filename(filename)
-        sr_data = self._sr_calculator.calculate_sr(nodes)
+        self.get_libcst_module_from_file(file)
+        sr_data = self._sr_calculator.calculate_sr(nodes, self._libcst_module)
 
         return sr_data
 

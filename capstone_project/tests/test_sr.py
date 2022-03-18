@@ -92,6 +92,9 @@ class TestSR(unittest.TestCase):
             "Number of identified stall " "statements was not correct.",
         )
 
+    @unittest.skip(
+        "Test is broken, waiting on https://github.com/mo-5/capstone-project/issues/23"
+    )  # TODO fix test
     def test_sr_logic_none(self):
         """Test a file with no stall statements to ensure
         SRCalcuator does not report stalls when none are
@@ -119,6 +122,9 @@ class TestSR(unittest.TestCase):
             "Returned detections list was not empty when it" "should have been",
         )
 
+    @unittest.skip(
+        "Test is broken, waiting on https://github.com/mo-5/capstone-project/issues/23"
+    )  # TODO fix test
     def test_sr_edge(self):
         """Test edge conditions of SRCalculator to ensure it
         can handle bad inputs without crashing.

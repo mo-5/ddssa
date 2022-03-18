@@ -142,7 +142,7 @@ class StallVisitor(libcst.VisitorMetadataProvider):
                         libcst.metadata.WhitespaceInclusivePositionProvider, node
                     ).start
                     actual_line = int(str(pos.line)) + index
-                    print(f"stall statement '{line} found at actual line {actual_line}")
+                    print(f"stall statement '{line} found at line {actual_line}")
                     self._stall_dict[actual_line] = line
 
     def visit_While_body(self, node) -> None:

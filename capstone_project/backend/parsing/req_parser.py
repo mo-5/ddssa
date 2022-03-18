@@ -1,3 +1,6 @@
+"""This module contains the RequirementsParser class"""
+
+
 import pkg_resources
 
 from capstone_project.backend.parsing.package_parser import PackageParser
@@ -18,5 +21,5 @@ class RequirementsParser(PackageParser):
                 raise RuntimeError(
                     "requirements.txt file contains an unknown requirement"
                 ) from e
-            except IndexError:
+            except IndexError as e:
                 raise RuntimeError("requirements.txt file is invalid") from e

@@ -1,3 +1,5 @@
+""" This module contains the PackageParser class"""
+
 import pandas as pd
 import requirements
 

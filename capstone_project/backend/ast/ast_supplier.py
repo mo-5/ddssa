@@ -1,15 +1,21 @@
+"""This module contains the ASTSupplier class"""
+
+
 import ast
 
 from capstone_project.backend.metrics.sr_calculator import SRCalculator
 
 
 class ASTSupplier:
+    """Creates an AST from a file and sends it off to have SR calculated"""
+
     def __init__(self):
         self._node = None
         self._loops = ast.For, ast.While, ast.AsyncFor
         self._sr_calculator = None
 
     def create_ast_from_file(self, file):
+        """Read in a file and then create an AST"""
         with open(file, "rb") as f:
             # TODO  We need to preserve blank lines to keep accurate
             #       track of line numbers (AST parses them out).
@@ -30,6 +36,7 @@ class ASTSupplier:
             self._node = ast.parse(ast_bytes)
 
     def get_ast_list(self):
+        """Return the AST"""
         return self._node
 
     def get_loop_nodes_for_file(self):

@@ -1,3 +1,6 @@
+"""This module contains the TestPoetryLockParser test class"""
+
+
 import os
 import unittest
 

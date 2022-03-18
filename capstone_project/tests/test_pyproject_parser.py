@@ -1,3 +1,6 @@
+"""This module contains the TestPyProjectParser test class"""
+
+
 import os
 import unittest
 

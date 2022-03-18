@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main.ui'
+# Form implementation generated from reading ui file './capstone_project/frontend/main.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -38,7 +38,7 @@ class Ui_main_window(object):
         self.verticalLayout.addWidget(self.text_browser)
         main_window.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(main_window)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 27))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 24))
         self.menubar.setObjectName("menubar")
         self.menuOptions = QtWidgets.QMenu(self.menubar)
         self.menuOptions.setObjectName("menuOptions")
@@ -53,7 +53,11 @@ class Ui_main_window(object):
         self.menu_action_export_HTML.setObjectName("menu_action_export_HTML")
         self.menu_action_export_PDF = QtWidgets.QAction(main_window)
         self.menu_action_export_PDF.setObjectName("menu_action_export_PDF")
+        self.menu_action_add_api_key = QtWidgets.QAction(main_window)
+        self.menu_action_add_api_key.setCheckable(False)
+        self.menu_action_add_api_key.setObjectName("menu_action_add_api_key")
         self.menuOptions.addAction(self.menu_action_help)
+        self.menuOptions.addAction(self.menu_action_add_api_key)
         self.menuOptions.addAction(self.menu_action_quit)
         self.menuExport.addAction(self.menu_action_export_HTML)
         self.menuExport.addAction(self.menu_action_export_PDF)
@@ -76,5 +80,8 @@ class Ui_main_window(object):
         self.menuExport.setTitle(_translate("main_window", "Export"))
         self.menu_action_help.setText(_translate("main_window", "Help"))
         self.menu_action_quit.setText(_translate("main_window", "Quit"))
+        self.menu_action_quit.setToolTip(_translate("main_window", "Quit the program"))
         self.menu_action_export_HTML.setText(_translate("main_window", "HTML"))
         self.menu_action_export_PDF.setText(_translate("main_window", "PDF"))
+        self.menu_action_add_api_key.setText(_translate("main_window", "Add API Key"))
+        self.menu_action_add_api_key.setToolTip(_translate("main_window", "Add your NIST NVD API Key"))

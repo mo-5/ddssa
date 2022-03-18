@@ -36,13 +36,13 @@ class ASTSupplier:
                 ast_bytes += curr_byte + b"\n"
 
             self._node = ast.parse(ast_bytes)
-        
+
     def get_libcst_module_from_file(self, file):
         """Return the libCST module"""
         with open(
-        file,
-        "r",
-        encoding="UTF-8",
+            file,
+            "r",
+            encoding="UTF-8",
         ) as file:
             file_contents = file.read()
         self._libcst_module = libcst.parse_module(file_contents)

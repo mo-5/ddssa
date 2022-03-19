@@ -2,10 +2,10 @@
 
 
 class FileExport:
-    """Class for exporting files"""
+    """Class for exporting files."""
 
     @staticmethod
     def export_html(filename, content):
-        """Static method to export html report to a file"""
+        """Export an html report to a file."""
         with open(filename, "w", encoding="UTF-8") as f:
             f.write(content)

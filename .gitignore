@@ -140,5 +140,7 @@ dmypy.json
 .pptx
 .xlsx
 
-report.pdf
-report.html
+./*.pdf
+./*.html
+
+ThreadingAnalysis

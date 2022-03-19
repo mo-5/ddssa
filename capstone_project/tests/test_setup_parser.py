@@ -126,14 +126,7 @@ class TestSetupParser(unittest.TestCase):
             )
         )
 
-        try:
-            parser.begin_analysis()
-            self.fail(
-                "Analysis should not complete successfully for a file that "
-                "contains malformed requirements."
-            )
-        except configparser.ParsingError:
-            pass
+        self.assertRaises(RuntimeError, parser.begin_analysis)
 
     def test_setup_parser_py_bad(self):
         """Test that the parser fails when trying to extract package

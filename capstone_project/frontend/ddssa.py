@@ -9,7 +9,6 @@ import threading
 from pathlib import Path
 
 from capstone_project.backend.ast.ast_supplier import ASTSupplier
-from capstone_project.backend.file_generator.file_export import FileExport
 from capstone_project.backend.file_generator.html_generator import HTMLGenerator
 from capstone_project.backend.parsing.package_supplier import PackageSupplier
 from capstone_project.backend.parsing.path_parser import PathParser

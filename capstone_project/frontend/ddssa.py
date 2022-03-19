@@ -6,7 +6,10 @@ import os
 import sys
 import threading
 
+from pathlib import Path
+
 from capstone_project.backend.ast.ast_supplier import ASTSupplier
+from capstone_project.backend.file_generator.file_export import FileExport
 from capstone_project.backend.file_generator.html_generator import HTMLGenerator
 from capstone_project.backend.parsing.package_supplier import PackageSupplier
 from capstone_project.backend.parsing.path_parser import PathParser
@@ -23,12 +26,12 @@ class DDSSA:
     contained within those directories or files.
     """
 
-    def __init__(self, paths, api_key=None):
+    def __init__(self, paths, api_key=None) -> None:
         self._dir_parser = PathParser(paths)
         self._ast_supplier = ASTSupplier()
         self._package_supplier = PackageSupplier(api_key)
 
-    def analyze(self):
+    def analyze(self) -> str:
         """Perform both static and dependency vulnerability analysis on a
         target directory. Once analysis concludes, return the HTML to be
         displayed on the frontend to the user.
@@ -46,7 +49,7 @@ class DDSSA:
         html = html_file.get_html()
         return html
 
-    def _vulnerability_analysis(self, html_file):
+    def _vulnerability_analysis(self, html_file) -> None:
         # Add dependency vulnerability data
         html_file.add_dependency_vulnerability_data(
             self._package_supplier.package_request(
@@ -54,7 +57,7 @@ class DDSSA:
             )
         )
 
-    def _static_analysis(self, html_file):
+    def _static_analysis(self, html_file) -> None:
         sr_data = []
         for file in self._dir_parser.get_python_file_list():
             sr_data.append(
@@ -67,7 +70,8 @@ class DDSSA:
 
 
 def main():
-    """Use command-line arguments to to parse and analyze a project"""
+    """Provide a command line interface to the Data-Driven Software Security
+    Assessment Tool."""
 
     parser = argparse.ArgumentParser(
         description="Command line options for the Data-Driven Software "
@@ -86,11 +90,33 @@ def main():
         "--api-key",
         help="The NIST NVD API key. Optional.",
     )
+    parser.add_argument(
+        "-o",
+        "--output-path",
+        help="Output path for the generated report. Can be a relative or absolute path to a file.",
+        required=True,
+    )
 
     args = parser.parse_args()
 
-    tool = DDSSA(args.paths, args.api_key)
-    tool.analyze()
+    output_path = Path(args.output_path)
+
+    # Validate arguments
+    if output_path.exists():
+        parser.error(
+            "Output file for the report already exists, please choose a different file."
+        )
+
+    # Run the analysis
+    html = DDSSA(args.paths, args.api_key).analyze()
+
+    # Output the report
+    try:
+        output_path.write_text(html)
+    except FileNotFoundError as e:
+        raise RuntimeError(
+            f"The specified output path {output_path.resolve()} is invalid."
+        ) from e
 
 
 if __name__ == "__main__":

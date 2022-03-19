@@ -194,15 +194,29 @@ class UI(QMainWindow):
         """
         self.close()
 
+    def _export_prompt(self, type):
+        """Attempt to get the file path the user specifies"""
+        input_dir = QFileDialog.getSaveFileName(
+            None, "Select where to store the file", expanduser("."), type
+        )
+
+        return input_dir[0]
+
     def _export_html(self):
         """Export the HTML report to a file."""
-        FileExport.export_html("report.html", self.ui.text_browser.toHtml())
+        input_dir = self._export_prompt("HTML (*.html)")
+        if os.name == "nt":
+            input_dir = input_dir.replace("/", "\\")
+        FileExport.export_html(input_dir, self.ui.text_browser.toHtml())
 
     def _export_pdf(self):
         """Export the HTML report to a file."""
+        input_dir = self._export_prompt("PDF (*.pdf)")
+        if os.name == "nt":
+            input_dir = input_dir.replace("/", "\\")
         export = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
         export.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
-        export.setOutputFileName("report.pdf")
+        export.setOutputFileName(input_dir)
         self.ui.text_browser.print(export)
 
     def _loading_on(self):

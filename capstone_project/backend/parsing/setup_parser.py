@@ -24,10 +24,8 @@ class SetupParser(PackageParser):
             self._convert_to_cfg()
 
         # Format to a consistent format
-        args = sys.argv
-        args[0] = self._filename
         try:
-            setup_cfg_fmt.main(args)
+            setup_cfg_fmt.main([self._filename])
         except SystemExit:
             # Script exits on success, pass on it
             pass
@@ -51,10 +49,8 @@ class SetupParser(PackageParser):
     def _convert_to_cfg(self):
         """Converts a setup.py file to a setup.cfg file"""
         # The script needs the directory, not the file itself
-        args = sys.argv
-        args[0] = self._filename.rsplit(os.sep, 1)[0]
         try:
-            setup_py_upgrade.main(args)
+            setup_py_upgrade.main([self._filename.rsplit(os.sep, 1)[0]])
         except SystemExit as e:
             raise RuntimeError("Unsupported header in setup.cfg") from e
         self._filename = self._filename.rsplit(".", 1)[0] + ".cfg"

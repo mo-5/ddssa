@@ -4,8 +4,8 @@ import json
 from capstone_project.backend.metrics.stall_visitor import StallVisitor
 import unittest
 
-class TestLibCST(unittest.TestCase):
 
+class TestLibCST(unittest.TestCase):
     def setUp(self):
         self.value = None
 

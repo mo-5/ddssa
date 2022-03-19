@@ -6,6 +6,7 @@ import json
 import os
 from capstone_project.backend.metrics.stall_visitor import StallVisitor
 
+
 class SRCalculator:
     """SRCalculator is responsible for calculation the SR of
     loop statements.

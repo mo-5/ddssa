@@ -3,6 +3,7 @@
 
 import libcst
 
+
 class StallVisitor(libcst.VisitorMetadataProvider):
     METADATA_DEPENDENCIES = (libcst.metadata.WhitespaceInclusivePositionProvider,)
 

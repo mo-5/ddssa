@@ -24,10 +24,8 @@ class SetupParser(PackageParser):
             self._convert_to_cfg()
 
         # Format to a consistent format
-        args = sys.argv
-        args[0] = self._filename
         try:
-            setup_cfg_fmt.main(args)
+            setup_cfg_fmt.main([self._filename])
         except SystemExit:
             # Script exits on success, pass on it
             pass

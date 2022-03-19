@@ -9,7 +9,6 @@ import threading
 from pathlib import Path
 
 from capstone_project.backend.ast.ast_supplier import ASTSupplier
-from capstone_project.backend.file_generator.file_export import FileExport
 from capstone_project.backend.file_generator.html_generator import HTMLGenerator
 from capstone_project.backend.parsing.package_supplier import PackageSupplier
 from capstone_project.backend.parsing.path_parser import PathParser
@@ -38,14 +37,12 @@ class DDSSA:
         """
 
         html_file = HTMLGenerator()
-
         sr_thread = threading.Thread(target=self._static_analysis(html_file))
         vul_thread = threading.Thread(target=self._vulnerability_analysis(html_file))
         sr_thread.start()
         vul_thread.start()
         sr_thread.join()
         vul_thread.join()
-
         html = html_file.get_html()
         return html
 

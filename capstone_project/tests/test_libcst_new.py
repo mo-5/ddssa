@@ -27,7 +27,7 @@ class TestLibCST(unittest.TestCase):
 
     module = libcst.parse_module(file_contents)
 
-    stall_visitor = StallVisitor()
+    stall_visitor = StallVisitor(module, reference)
     wrapper_actual_file = libcst.metadata.MetadataWrapper(module)
     wrapper_actual_file.visit(stall_visitor)
-    assert_equivalent(stall_visitor.get_score() == 9)
+    assert(stall_visitor.get_score() == 9)

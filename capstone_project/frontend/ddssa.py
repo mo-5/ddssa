@@ -5,7 +5,6 @@ import argparse
 import os
 import sys
 import threading
-import weasyprint
 
 from pathlib import Path
 
@@ -92,12 +91,6 @@ def main():
         help="The NIST NVD API key. Optional.",
     )
     parser.add_argument(
-        "-t",
-        "--output-type",
-        help="Output type for the report. Must be one of {pdf, html}.",
-        required=True,
-    )
-    parser.add_argument(
         "-o",
         "--output-path",
         help="Output path for the generated report. Can be a relative or absolute path to a file.",
@@ -106,13 +99,10 @@ def main():
 
     args = parser.parse_args()
 
-    output_type = args.output_type.lower()
     output_path = Path(args.output_path)
 
     # Validate arguments
-    if output_type not in {"pdf", "html"}:
-        parser.error("Output type for the report must be one of {pdf, html}.")
-    elif output_path.exists():
+    if output_path.exists():
         parser.error(
             "Output file for the report already exists, please choose a different file."
         )
@@ -122,10 +112,7 @@ def main():
 
     # Output the report
     try:
-        if output_type == "html":
-            output_path.write_text(html)
-        elif output_type == "pdf":
-            weasyprint.HTML(string=html).write_pdf(output_path)
+        output_path.write_text(html)
     except FileNotFoundError as e:
         raise RuntimeError(
             f"The specified output path {output_path.resolve()} is invalid."

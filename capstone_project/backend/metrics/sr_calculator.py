@@ -51,7 +51,7 @@ class SRCalculator:
         stall_ratio = 0
         for node in nodes:
             score = 0
-            
+
             # Handle more complex cases for frivolous operations
             for sub_node in ast.walk(node):
                 if isinstance(sub_node, ast.BinOp):

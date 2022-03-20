@@ -30,4 +30,4 @@ class TestLibCST(unittest.TestCase):
     stall_visitor = StallVisitor(module, reference)
     wrapper_actual_file = libcst.metadata.MetadataWrapper(module)
     wrapper_actual_file.visit(stall_visitor)
-    assert(stall_visitor.get_score() == 9)
+    assert stall_visitor.get_score() == 9

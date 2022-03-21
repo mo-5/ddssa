@@ -226,13 +226,31 @@ class UI(QMainWindow):
         input_dir = self._export_prompt("HTML (*.html)")
         if os.name == "nt":
             input_dir = input_dir.replace("/", "\\")
-        FileExport.export_html(input_dir, self.ui.text_browser.toHtml())
+        if input_dir != "":
+            FileExport.export_html(input_dir, self.ui.text_browser.toHtml())
+        else:
+            self.msg.setWindowTitle("Invalid Selection")
+            self.msg.setWindowIcon(self.icon)
+            self.msg.setIcon(QMessageBox.Information)
+            self.msg.setText("Please add a file name and select a location")
+            self.msg.setStandardButtons(QMessageBox.Ok)
+            self.msg.exec_()
 
     def _export_pdf(self):
         """Export the HTML report to a file."""
         input_dir = self._export_prompt("PDF (*.pdf)")
         if os.name == "nt":
             input_dir = input_dir.replace("/", "\\")
+        if input_dir != "":
+            FileExport.export_html(input_dir, self.ui.text_browser.toHtml())
+        else:
+            self.msg.setWindowTitle("Invalid Selection")
+            self.msg.setWindowIcon(self.icon)
+            self.msg.setIcon(QMessageBox.Information)
+            self.msg.setText("Please add a file name and select a location")
+            self.msg.setStandardButtons(QMessageBox.Ok)
+            self.msg.exec_()
+            return
         export = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
         export.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
         export.setOutputFileName(input_dir)

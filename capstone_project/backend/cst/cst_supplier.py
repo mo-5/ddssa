@@ -1,4 +1,4 @@
-"""This module contains the ASTSupplier class"""
+"""This module contains the CSTSupplier class"""
 
 
 import ast
@@ -7,8 +7,8 @@ import libcst
 from capstone_project.backend.metrics.sr_calculator import SRCalculator
 
 
-class ASTSupplier:
-    """Creates an AST from a file and sends it off to have SR calculated"""
+class CSTSupplier:
+    """Creates an AST and CST from a file and sends it off to have SR calculated"""
 
     def __init__(self):
         self._node = None

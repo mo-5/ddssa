@@ -8,7 +8,7 @@ import threading
 
 from pathlib import Path
 
-from capstone_project.backend.ast.ast_supplier import ASTSupplier
+from capstone_project.backend.cst.cst_supplier import CSTSupplier
 from capstone_project.backend.file_generator.file_export import FileExport
 from capstone_project.backend.file_generator.html_generator import HTMLGenerator
 from capstone_project.backend.parsing.package_supplier import PackageSupplier
@@ -28,7 +28,7 @@ class DDSSA:
 
     def __init__(self, paths, api_key=None) -> None:
         self._dir_parser = PathParser(paths)
-        self._ast_supplier = ASTSupplier()
+        self._ast_supplier = CSTSupplier()
         self._package_supplier = PackageSupplier(api_key)
 
     def analyze(self) -> str:

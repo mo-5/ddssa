@@ -6,6 +6,7 @@ import libcst
 
 class StallVisitor(libcst.VisitorMetadataProvider):
     """This class is used to iterate over the LibCST tree to find stall statements"""
+
     METADATA_DEPENDENCIES = (libcst.metadata.WhitespaceInclusivePositionProvider,)
 
     def __init__(self, module, reference):
@@ -27,7 +28,7 @@ class StallVisitor(libcst.VisitorMetadataProvider):
                         libcst.metadata.WhitespaceInclusivePositionProvider, node
                     ).start
                     actual_line = int(str(pos.line)) + index
-                    if line.strip()[0:3] != '"""' and line.strip()[0] != '#':
+                    if line.strip()[0:3] != '"""' and line.strip()[0] != "#":
                         self._stall_dict[actual_line] = line.strip()
 
     def visit_While_body(self, node) -> None:
@@ -40,7 +41,7 @@ class StallVisitor(libcst.VisitorMetadataProvider):
                 if (pos.line + index) not in self._stall_dict:
                     self._score += 1
                     actual_line = pos.line + index
-                    if line.strip()[0:3] != '"""' and line.strip()[0] != '#':
+                    if line.strip()[0:3] != '"""' and line.strip()[0] != "#":
                         self._stall_dict[actual_line] = line.strip()
 
     def get_score(self):

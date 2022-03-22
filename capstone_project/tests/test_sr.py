@@ -40,7 +40,9 @@ class TestSR(unittest.TestCase):
                 "sr_simple.py",
             )
         )
-        nodes = test_calc.calculate_sr(cst_supp.get_loop_nodes_for_file(), cst_supp._libcst_module)
+        nodes = test_calc.calculate_sr(
+            cst_supp.get_loop_nodes_for_file(), cst_supp._libcst_module
+        )
         self.assertTrue(
             nodes[0] == "sr_simple.py",
             "File name did not match what was expected.",
@@ -83,7 +85,9 @@ class TestSR(unittest.TestCase):
                 "sr_advanced.py",
             )
         )
-        nodes = test_calc.calculate_sr(cst_supp.get_loop_nodes_for_file(), cst_supp._libcst_module)
+        nodes = test_calc.calculate_sr(
+            cst_supp.get_loop_nodes_for_file(), cst_supp._libcst_module
+        )
 
         self.assertTrue(
             nodes[0] == "sr_advanced.py",
@@ -122,7 +126,9 @@ class TestSR(unittest.TestCase):
                 "sr_none.py",
             )
         )
-        nodes = test_calc.calculate_sr(cst_supp.get_loop_nodes_for_file(), cst_supp._libcst_module)
+        nodes = test_calc.calculate_sr(
+            cst_supp.get_loop_nodes_for_file(), cst_supp._libcst_module
+        )
 
         self.assertTrue(
             nodes[0] == "sr_none.py",
@@ -180,7 +186,9 @@ class TestSR(unittest.TestCase):
                 "sr_medium.py",
             )
         )
-        nodes = test_calc.calculate_sr(cst_supp.get_loop_nodes_for_file(), cst_supp._libcst_module)
+        nodes = test_calc.calculate_sr(
+            cst_supp.get_loop_nodes_for_file(), cst_supp._libcst_module
+        )
 
         with open("module.txt", "w", encoding="UTF-8") as f:
             f.write(str(cst_supp._libcst_module))
@@ -198,4 +206,3 @@ class TestSR(unittest.TestCase):
             len(nodes[1]) == 9,
             "Number of identified stall " "statements was not correct.",
         )
-        

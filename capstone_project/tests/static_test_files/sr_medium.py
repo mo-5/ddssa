@@ -38,7 +38,7 @@ for i in range(8):
 
     """print('hello world')"""
 
-    #logging.info("another commented out stall statement")
+    # logging.info("another commented out stall statement")
 
 print("after loop")
 

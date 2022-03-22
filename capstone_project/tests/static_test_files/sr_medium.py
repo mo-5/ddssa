@@ -7,7 +7,7 @@ from threading import Event
 import os
 import logging
 
-# File contains 3 stall statements
+# File contains 9 stall statements
 
 print("before loop")
 
@@ -32,7 +32,13 @@ for i in range(8):
     os.system("pause")
     logging.basicConfig(level=logging.INFO)
 
-    logging.info("here is some info")
+    logging.info("#here is text that looks like a comment")
+
+    # print("Stall commented out")
+
+    """print('hello world')"""
+
+    #logging.info("another commented out stall statement")
 
 print("after loop")
 

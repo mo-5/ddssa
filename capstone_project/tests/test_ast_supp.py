@@ -34,6 +34,7 @@ class TestASTSupplier(unittest.TestCase):
                 "sr_simple.py",
             )
         )
+        self._ast_list = self._cst_supplier.get_ast_list()
 
     def test_has_loop_nodes(self):
         """Test to see if the supplier can find loop nodes in a file"""
@@ -57,3 +58,13 @@ class TestASTSupplier(unittest.TestCase):
             self._cst_supplier._print_unparsed_ast()
         s = f.getvalue()
         self.assertTrue("import time" in s)
+
+    def test_sr_request(self):
+        sr_data = self._cst_supplier.sr_request(
+            os.path.join(
+                self._test_path,
+                "static_test_files",
+                "sr_simple.py",
+            ), "sr_simple.py"
+        )
+        self.assertTrue(len(sr_data[1])== 3)

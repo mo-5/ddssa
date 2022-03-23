@@ -64,7 +64,6 @@ class DDSSA:
         with concurrent.futures.ProcessPoolExecutor() as executor:
             futures = [executor.submit(self._ast_supplier.sr_request, f) for f in files]
 
-
         results = [f.result() for f in futures]
         for r in results:
             for sr in r:
@@ -72,9 +71,7 @@ class DDSSA:
                     sr_data.append((sr[0][-1], sr[1]))
 
         # Add SR analysis data, filtering out files without stall statements
-        html_file.add_sr_data(
-            [sr_detection for sr_detection in sr_data]
-        )
+        html_file.add_sr_data([sr_detection for sr_detection in sr_data])
 
 
 def main():

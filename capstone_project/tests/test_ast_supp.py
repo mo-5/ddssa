@@ -65,6 +65,7 @@ class TestASTSupplier(unittest.TestCase):
                 self._test_path,
                 "static_test_files",
                 "sr_simple.py",
-            ), "sr_simple.py"
+            ),
+            "sr_simple.py",
         )
-        self.assertTrue(len(sr_data[1])== 3)
+        self.assertTrue(len(sr_data[1]) == 3)

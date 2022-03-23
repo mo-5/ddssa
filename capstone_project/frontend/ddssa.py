@@ -51,9 +51,7 @@ class DDSSA:
         req_list = self._dir_parser.get_requirement_file_list()
         if req_list:
             html_file.add_dependency_vulnerability_data(
-                self._package_supplier.package_request(
-                    req_list
-                )
+                self._package_supplier.package_request(req_list)
             )
 
     def _static_analysis(self, html_file) -> None:

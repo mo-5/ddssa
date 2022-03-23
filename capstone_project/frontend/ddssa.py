@@ -5,6 +5,8 @@ import argparse
 import os
 import sys
 import threading
+import numpy as np
+import concurrent.futures
 
 from pathlib import Path
 
@@ -56,13 +58,22 @@ class DDSSA:
 
     def _static_analysis(self, html_file) -> None:
         sr_data = []
-        for file in self._dir_parser.get_python_file_list():
-            sr_data.append(
-                self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1])
-            )
+        arr = np.array(self._dir_parser.get_python_file_list())
+        files = np.array_split(arr, 5)
+
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            futures = [executor.submit(self._ast_supplier.sr_request, f) for f in files]
+
+
+        results = [f.result() for f in futures]
+        for r in results:
+            for sr in r:
+                if len(sr[1]) > 0:
+                    sr_data.append((sr[0][-1], sr[1]))
+
         # Add SR analysis data, filtering out files without stall statements
         html_file.add_sr_data(
-            [sr_detection for sr_detection in sr_data if len(sr_detection[1]) > 0]
+            [sr_detection for sr_detection in sr_data]
         )
 
 

@@ -3,6 +3,7 @@
 
 import ast
 import libcst
+import os
 
 from capstone_project.backend.metrics.sr_calculator import SRCalculator
 
@@ -85,20 +86,21 @@ class CSTSupplier:
         nodes = ast.walk(self._node)
         return any(isinstance(node, self._loops) for node in nodes)
 
-    def sr_request(self, file, filename):
+    def sr_request(self, files):
         """Request for SR to be calculated. We employ this creation
         method to avoid needing to instantiate an SRCalculator unless
         we explicitly need it for analysis.
         """
-        self.create_ast_from_file(file)
-        nodes = self.get_loop_nodes_for_file()
-        if self._sr_calculator is None:
-            self._sr_calculator = SRCalculator(filename)
-        else:
-            self._sr_calculator.set_filename(filename)
-        self.get_libcst_module_from_file(file)
-        sr_data = self._sr_calculator.calculate_sr(nodes, self._libcst_module)
-
+        sr_data = []
+        for file in files:
+            self.create_ast_from_file(file)
+            nodes = self.get_loop_nodes_for_file()
+            if self._sr_calculator is None:
+                self._sr_calculator = SRCalculator(file.split((os.path.sep)[-1]))
+            else:
+                self._sr_calculator.set_filename(file.split((os.path.sep)[-1]))
+            self.get_libcst_module_from_file(file)
+            sr_data.append(self._sr_calculator.calculate_sr(nodes, self._libcst_module))
         return sr_data
 
     def _print_parsed_ast(self):

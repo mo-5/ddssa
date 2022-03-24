@@ -10,8 +10,7 @@ from pathlib import Path
 import numpy as np
 
 from capstone_project.backend.cst.cst_supplier import CSTSupplier
-from capstone_project.backend.file_generator.html_generator import \
-    HTMLGenerator
+from capstone_project.backend.file_generator.html_generator import HTMLGenerator
 from capstone_project.backend.parsing.package_supplier import PackageSupplier
 from capstone_project.backend.parsing.path_parser import PathParser
 

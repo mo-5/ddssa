@@ -22,7 +22,7 @@ class PackageSupplier:
 
     def package_request(self, path):
         """Handle a package request"""
-        path = path[0]
+        path = path[-1]
 
         # Pass it to the appropriate parser
         if path[-7:] == "Pipfile" or path[-12:] == "Pipfile.lock":

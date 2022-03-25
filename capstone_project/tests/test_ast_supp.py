@@ -61,10 +61,12 @@ class TestASTSupplier(unittest.TestCase):
 
     def test_sr_request(self):
         sr_data = self._cst_supplier.sr_request(
-            [os.path.join(
-                self._test_path,
-                "static_test_files",
-                "sr_simple.py",
-            )]
+            [
+                os.path.join(
+                    self._test_path,
+                    "static_test_files",
+                    "sr_simple.py",
+                )
+            ]
         )
         self.assertTrue(len(sr_data[0][1]) == 3)

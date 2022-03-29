@@ -219,40 +219,40 @@ class TestHTMLGenerator(unittest.TestCase):
         self.assertEqual(
             '<h1 style="text-align: center; padding: 75px; '
             'background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>'
-            '<h2>Dependency Vulnerabilities</h2>'
-            '<div><div>The following dependencies have '
-            'vulnerabilities:</div><ol><li>one == 1.1.1<ul><li><a '
+            "Data-Driven Software Security Assessment Report</h1>"
+            "<h2>Dependency Vulnerabilities</h2>"
+            "<div><div>The following dependencies have "
+            "vulnerabilities:</div><ol><li>one == 1.1.1<ul><li><a "
             'href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a> '
-            '<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test</li><li> '
-            '<b>Summary:</b> Summary of Test</li><li> <b>Solution:</b> Fix '
-            'this</li></ul><br/><li><a '
+            "<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test</li><li> "
+            "<b>Summary:</b> Summary of Test</li><li> <b>Solution:</b> Fix "
+            "this</li></ul><br/><li><a "
             'href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a> '
-            '<b>CVSS:</b> 6.0</li><ul><li> <b>Name:</b> Test2</li><li> '
-            '<b>Summary:</b> Summary of Test2</li><li> <b>Solution:</b> Fix '
-            'that</li></ul><br/></ul></li><li>two >= 1.1, &lt; 2.2<ul><li><a '
+            "<b>CVSS:</b> 6.0</li><ul><li> <b>Name:</b> Test2</li><li> "
+            "<b>Summary:</b> Summary of Test2</li><li> <b>Solution:</b> Fix "
+            "that</li></ul><br/></ul></li><li>two >= 1.1, &lt; 2.2<ul><li><a "
             'href="https://nvd.nist.gov/vuln/detail/CVE-3">CVE-3</a> '
-            '<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test3</li><li> '
-            '<b>Summary:</b> Summary of Test3</li><li> <b>Solution:</b> '
-            'Change that</li></ul><br/></ul></li></ol>',
+            "<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test3</li><li> "
+            "<b>Summary:</b> Summary of Test3</li><li> <b>Solution:</b> "
+            "Change that</li></ul><br/></ul></li></ol>",
             file,
             '<h1 style="text-align: center; padding: 75px; '
             'background: #87cefa; color: white;">'
-            'Data-Driven Software Security Assessment Report</h1>'
-            '<h2>Dependency Vulnerabilities</h2>'
-            '<div><div>The following dependencies have '
-            'vulnerabilities:</div><ol><li>one == 1.1.1<ul><li><a '
+            "Data-Driven Software Security Assessment Report</h1>"
+            "<h2>Dependency Vulnerabilities</h2>"
+            "<div><div>The following dependencies have "
+            "vulnerabilities:</div><ol><li>one == 1.1.1<ul><li><a "
             'href="https://nvd.nist.gov/vuln/detail/CVE-1">CVE-1</a> '
-            '<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test</li><li> '
-            '<b>Summary:</b> Summary of Test</li><li> <b>Solution:</b> Fix '
-            'this</li></ul><br/><li><a '
+            "<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test</li><li> "
+            "<b>Summary:</b> Summary of Test</li><li> <b>Solution:</b> Fix "
+            "this</li></ul><br/><li><a "
             'href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a> '
-            '<b>CVSS:</b> 6.0</li><ul><li> <b>Name:</b> Test2</li><li> '
-            '<b>Summary:</b> Summary of Test2</li><li> <b>Solution:</b> Fix '
-            'that</li></ul><br/></ul></li><li>two >= 1.1, &lt; 2.2<ul><li><a '
+            "<b>CVSS:</b> 6.0</li><ul><li> <b>Name:</b> Test2</li><li> "
+            "<b>Summary:</b> Summary of Test2</li><li> <b>Solution:</b> Fix "
+            "that</li></ul><br/></ul></li><li>two >= 1.1, &lt; 2.2<ul><li><a "
             'href="https://nvd.nist.gov/vuln/detail/CVE-3">CVE-3</a> '
-            '<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test3</li><li> '
-            '<b>Summary:</b> Summary of Test3</li><li> <b>Solution:</b> '
-            'Change that</li></ul><br/></ul></li></ol>'
+            "<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test3</li><li> "
+            "<b>Summary:</b> Summary of Test3</li><li> <b>Solution:</b> "
+            "Change that</li></ul><br/></ul></li></ol>"
             f"but got {file}",
         )

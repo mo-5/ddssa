@@ -1,18 +1,21 @@
-"""This module contains the ASTSupplier class"""
+"""This module contains the CSTSupplier class"""
 
 
 import ast
+import libcst
+import os
 
 from capstone_project.backend.metrics.sr_calculator import SRCalculator
 
 
-class ASTSupplier:
-    """Creates an AST from a file and sends it off to have SR calculated"""
+class CSTSupplier:
+    """Creates an AST and CST from a file and sends it off to have SR calculated"""
 
     def __init__(self):
         self._node = None
         self._loops = ast.For, ast.While, ast.AsyncFor
         self._sr_calculator = None
+        self._libcst_module = None
 
     def create_ast_from_file(self, file):
         """Read in a file and then create an AST"""
@@ -34,6 +37,16 @@ class ASTSupplier:
                 ast_bytes += curr_byte + b"\n"
 
             self._node = ast.parse(ast_bytes)
+
+    def get_libcst_module_from_file(self, file):
+        """Return the libCST module"""
+        with open(
+            file,
+            "r",
+            encoding="UTF-8",
+        ) as file:
+            file_contents = file.read()
+        self._libcst_module = libcst.parse_module(file_contents)
 
     def get_ast_list(self):
         """Return the AST"""
@@ -73,19 +86,21 @@ class ASTSupplier:
         nodes = ast.walk(self._node)
         return any(isinstance(node, self._loops) for node in nodes)
 
-    def sr_request(self, file, filename):
+    def sr_request(self, files):
         """Request for SR to be calculated. We employ this creation
         method to avoid needing to instantiate an SRCalculator unless
         we explicitly need it for analysis.
         """
-        self.create_ast_from_file(file)
-        nodes = self.get_loop_nodes_for_file()
-        if self._sr_calculator is None:
-            self._sr_calculator = SRCalculator(filename)
-        else:
-            self._sr_calculator.set_filename(filename)
-        sr_data = self._sr_calculator.calculate_sr(nodes)
-
+        sr_data = []
+        for file in files:
+            self.create_ast_from_file(file)
+            nodes = self.get_loop_nodes_for_file()
+            if self._sr_calculator is None:
+                self._sr_calculator = SRCalculator(file.split((os.path.sep)[-1]))
+            else:
+                self._sr_calculator.set_filename(file.split((os.path.sep)[-1]))
+            self.get_libcst_module_from_file(file)
+            sr_data.append(self._sr_calculator.calculate_sr(nodes, self._libcst_module))
         return sr_data
 
     def _print_parsed_ast(self):

@@ -1,9 +1,10 @@
 """This module contains the SRCalculator class"""
 
-
+import libcst
 import ast
 import json
 import os
+from capstone_project.backend.metrics.stall_visitor import StallVisitor
 
 
 class SRCalculator:
@@ -25,7 +26,7 @@ class SRCalculator:
         self._filename = filename
         self._sr_detections = (self._filename, [])
 
-    def calculate_sr(self, nodes):
+    def calculate_sr(self, nodes, libcst_module):
         """Calculate the Stall Ratio for a given file by identifying
         the stall statements contained within the file."""
         if nodes is None:
@@ -37,17 +38,20 @@ class SRCalculator:
         ) as file:
             reference = json.load(file)
 
+        # Handle simple cases with pattern matching
+        stall_visitor = StallVisitor(libcst_module, reference)
+        wrapper_actual_file = libcst.metadata.MetadataWrapper(libcst_module)
+        wrapper_actual_file.visit(stall_visitor)
+        stall_dict = stall_visitor.get_stall_dict()
+
+        for key, value in stall_dict.items():
+            self._sr_detections[-1].append((key, value))
+
         score_average = []
         stall_total = 0
         stall_ratio = 0
         for node in nodes:
             score = 0
-            # Handle simple cases with pattern matching
-            lines = ast.unparse(node).splitlines()
-            for index, line in enumerate(lines):
-                if any(stall in line for stall in reference[self._sr_access]):
-                    score += 1
-                    self._sr_detections[-1].append((node.lineno + index, line))
 
             # Handle more complex cases for frivolous operations
             for sub_node in ast.walk(node):

@@ -54,8 +54,17 @@ class HTMLGenerator:
     def _parse_version_list(self, version):
         """Parse the version tuple and return a neatly-formatted string"""
         if len(version) == 1:
-            return f" {version[0][0]} {version[0][1]}"
-        return f" {version[0][0]} {version[0][1]}, {version[1][0]} {version[1][1]}"
+            if version[0][0] == "<":
+                return f" &lt; {version[0][1]}"
+            elif version[0][0] == "<=":
+                return f" &lt;= {version[0][1]}"
+            else:
+                return f" {version[0][0]} {version[0][1]}"
+        else:
+            if version[1][0] == "<":
+                return f" {version[0][0]} {version[0][1]}, &lt; {version[1][1]}"
+            else:
+                return f" {version[0][0]} {version[0][1]}, &lt;= {version[1][1]}"
 
     def get_html(self):
         """Return html report"""

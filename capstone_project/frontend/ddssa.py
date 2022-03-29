@@ -2,13 +2,14 @@
 
 
 import argparse
+import concurrent.futures
 import os
 import sys
-import threading
-
 from pathlib import Path
 
-from capstone_project.backend.ast.ast_supplier import ASTSupplier
+import numpy as np
+
+from capstone_project.backend.cst.cst_supplier import CSTSupplier
 from capstone_project.backend.file_generator.html_generator import HTMLGenerator
 from capstone_project.backend.parsing.package_supplier import PackageSupplier
 from capstone_project.backend.parsing.path_parser import PathParser
@@ -27,7 +28,7 @@ class DDSSA:
 
     def __init__(self, paths, api_key=None) -> None:
         self._dir_parser = PathParser(paths)
-        self._ast_supplier = ASTSupplier()
+        self._ast_supplier = CSTSupplier()
         self._package_supplier = PackageSupplier(api_key)
 
     def analyze(self) -> str:
@@ -37,33 +38,45 @@ class DDSSA:
         """
 
         html_file = HTMLGenerator()
-        sr_thread = threading.Thread(target=self._static_analysis(html_file))
-        vul_thread = threading.Thread(target=self._vulnerability_analysis(html_file))
-        sr_thread.start()
-        vul_thread.start()
-        sr_thread.join()
-        vul_thread.join()
-        html = html_file.get_html()
-        return html
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            future_sr = executor.submit(self._static_analysis)
+            future_vul = executor.submit(self._vulnerability_analysis)
+            concurrent.futures.wait([future_sr, future_vul])
 
-    def _vulnerability_analysis(self, html_file) -> None:
+        sr_data = future_sr.result()
+        vul_data = future_vul.result()
+
+        if len(sr_data) > 0:
+            html_file.add_sr_data([sr_detection for sr_detection in sr_data])
+        if vul_data is not None:
+            html_file.add_dependency_vulnerability_data(vul_data)
+
+        return html_file.get_html()
+
+    def _vulnerability_analysis(self):
         # Add dependency vulnerability data
-        html_file.add_dependency_vulnerability_data(
-            self._package_supplier.package_request(
-                self._dir_parser.get_requirement_file_list()[-1]
-            )
-        )
+        req_list = self._dir_parser.get_requirement_file_list()
+        if req_list:
+            return self._package_supplier.package_request(req_list)
+        else:
+            return None
 
-    def _static_analysis(self, html_file) -> None:
+    def _static_analysis(self):
         sr_data = []
-        for file in self._dir_parser.get_python_file_list():
-            sr_data.append(
-                self._ast_supplier.sr_request(file, file.split(os.path.sep)[-1])
-            )
+        arr = np.array(self._dir_parser.get_python_file_list())
+        files = np.array_split(arr, 5)
+
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            futures = [executor.submit(self._ast_supplier.sr_request, f) for f in files]
+
+        results = [f.result() for f in futures]
+        for r in results:
+            for sr in r:
+                if len(sr[1]) > 0:
+                    sr_data.append((sr[0][-1], sr[1]))
+
         # Add SR analysis data, filtering out files without stall statements
-        html_file.add_sr_data(
-            [sr_detection for sr_detection in sr_data if len(sr_detection[1]) > 0]
-        )
+        return sr_data
 
 
 def main():

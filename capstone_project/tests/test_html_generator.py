@@ -230,7 +230,7 @@ class TestHTMLGenerator(unittest.TestCase):
             'href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a> '
             "<b>CVSS:</b> 6.0</li><ul><li> <b>Name:</b> Test2</li><li> "
             "<b>Summary:</b> Summary of Test2</li><li> <b>Solution:</b> Fix "
-            "that</li></ul><br/></ul></li><li>two >= 1.1, < 2.2<ul><li><a "
+            "that</li></ul><br/></ul></li><li>two >= 1.1, &lt; 2.2<ul><li><a "
             'href="https://nvd.nist.gov/vuln/detail/CVE-3">CVE-3</a> '
             "<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test3</li><li> "
             "<b>Summary:</b> Summary of Test3</li><li> <b>Solution:</b> "
@@ -249,7 +249,7 @@ class TestHTMLGenerator(unittest.TestCase):
             'href="https://nvd.nist.gov/vuln/detail/CVE-2">CVE-2</a> '
             "<b>CVSS:</b> 6.0</li><ul><li> <b>Name:</b> Test2</li><li> "
             "<b>Summary:</b> Summary of Test2</li><li> <b>Solution:</b> Fix "
-            "that</li></ul><br/></ul></li><li>two >= 1.1, < 2.2<ul><li><a "
+            "that</li></ul><br/></ul></li><li>two >= 1.1, &lt; 2.2<ul><li><a "
             'href="https://nvd.nist.gov/vuln/detail/CVE-3">CVE-3</a> '
             "<b>CVSS:</b> 5.0</li><ul><li> <b>Name:</b> Test3</li><li> "
             "<b>Summary:</b> Summary of Test3</li><li> <b>Solution:</b> "

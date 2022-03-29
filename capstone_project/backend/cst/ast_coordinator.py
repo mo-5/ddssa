@@ -3,7 +3,7 @@
 
 import ast
 
-from capstone_project.backend.ast.ast_supplier import ASTSupplier
+from capstone_project.backend.cst.cst_supplier import CSTSupplier
 
 
 class ASTCoordinator:
@@ -31,4 +31,4 @@ class ASTCoordinator:
                 print(loop)
 
     def _create_ast_suppliers(self):
-        self._ast_suppliers = ASTSupplier()
+        self._ast_suppliers = CSTSupplier()

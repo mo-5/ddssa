@@ -12,11 +12,11 @@ setup(
     author="johnbreton",
     author_email="johnbreton@cmail.carleton.ca",
     license="The Unlicence",
-    url="https://github.com/mo-5/capstone-project",
+    url="https://github.com/mo-5/ddssa",
     packages=find_packages(exclude=("tests*", "testing")),
     install_requires=["docutils", "jsonschema==4.1.*", "requests>=2"],
     python_requires="~=3.5",
     entry_points={
-        "console_scripts": ["setup-example = capstone-project.frontend.ui:main"]
+        "console_scripts": ["setup-example = ddssa.frontend.ui:main"]
     },
 )

@@ -15,10 +15,10 @@ This is a design for a software security assessment tool using a data-driven app
 1. From your terminal, run:
 
    ```bash
-   git clone https://github.com/mo-5/capstone-project/
+   git clone https://github.com/mo-5/ddssa/
    ```
 
-   This will create a folder called `capstone-project`.
+   This will create a folder called `ddssa`.
 
 2. Poetry
 

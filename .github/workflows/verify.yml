@@ -50,11 +50,11 @@ jobs:
 
       # Run linting
       - name: Run pylint
-        run: poetry run pylint capstone_project
+        run: poetry run pylint ddssa
 
       # Run tests
       - name: Run tests
         run: |
           source .venv/bin/activate
-          coverage run -m unittest discover -s capstone_project/tests
+          coverage run -m unittest discover -s ddssa/tests
           coverage report --fail-under=60

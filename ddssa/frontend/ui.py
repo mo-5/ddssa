@@ -56,9 +56,7 @@ class UI(QMainWindow):
         self.worker.moveToThread(self.thread)
         self.worker.finished.connect(self._display_report)
         self.icon = QtGui.QIcon(
-            os.path.join(
-                os.getcwd(), "ddssa", "frontend", "assets", "icon.png"
-            )
+            os.path.join(os.getcwd(), "ddssa", "frontend", "assets", "icon.png")
         )
 
         # Set the icon
@@ -140,9 +138,7 @@ class UI(QMainWindow):
         self.thread.terminate()
         self.ui.text_browser.setText(report_html)
         with open(
-            os.path.join(
-                os.getcwd(), "ddssa", "frontend", "assets", "report.css"
-            ),
+            os.path.join(os.getcwd(), "ddssa", "frontend", "assets", "report.css"),
             "r",
         ) as f:
             self.ui.text_browser.setStyleSheet(f.read())
@@ -251,8 +247,7 @@ class UI(QMainWindow):
             self.msg.setStandardButtons(QMessageBox.Ok)
             self.msg.exec_()
             return
-        export = QtPrintSupport.QPrinter(
-            QtPrintSupport.QPrinter.HighResolution)
+        export = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
         export.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
         export.setOutputFileName(input_dir)
         self.ui.text_browser.print(export)

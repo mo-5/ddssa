@@ -15,8 +15,7 @@ from ddssa.backend.parsing.package_supplier import PackageSupplier
 from ddssa.backend.parsing.path_parser import PathParser
 
 # Needed to add the capstone_project module to the system path
-sys.path.insert(0, os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "../..")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 
 class DDSSA:
@@ -68,8 +67,7 @@ class DDSSA:
         files = np.array_split(arr, 5)
 
         with concurrent.futures.ProcessPoolExecutor() as executor:
-            futures = [executor.submit(
-                self._ast_supplier.sr_request, f) for f in files]
+            futures = [executor.submit(self._ast_supplier.sr_request, f) for f in files]
 
         results = [f.result() for f in futures]
         for r in results:

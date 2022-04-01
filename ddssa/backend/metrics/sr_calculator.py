@@ -92,8 +92,7 @@ class SRCalculator:
                         score = self._complex_update_score(sub_node, score)
                     # Handle the case where 1 is being multiplied or divided
                     elif (
-                        isinstance(
-                            sub_node.op, (ast.Mult, ast.Div, ast.FloorDiv))
+                        isinstance(sub_node.op, (ast.Mult, ast.Div, ast.FloorDiv))
                         and isinstance(sub_node.value, ast.Constant)
                         and sub_node.value.value == 1
                     ):

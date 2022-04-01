@@ -42,8 +42,7 @@ class SetupParser(PackageParser):
             for i, req in enumerate(packages):
                 self.basic_req_parse(i, req)
         except pkg_resources.packaging.requirements.InvalidRequirement as e:
-            raise RuntimeError(
-                "setup.cfg file contains an unknown requirement") from e
+            raise RuntimeError("setup.cfg file contains an unknown requirement") from e
         except IndexError as e:
             raise RuntimeError("setup.cfg file is invalid") from e
 

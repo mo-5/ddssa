@@ -251,8 +251,7 @@ class UI(QMainWindow):
             self.msg.setStandardButtons(QMessageBox.Ok)
             self.msg.exec_()
             return
-        export = QtPrintSupport.QPrinter(
-            QtPrintSupport.QPrinter.HighResolution)
+        export = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
         export.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
         export.setOutputFileName(input_dir)
         self.ui.text_browser.print(export)

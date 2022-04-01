@@ -30,8 +30,7 @@ class TestHTMLGenerator(unittest.TestCase):
     def test_add_sr_data_with_list(self):
         """Test that the addition of one file with one sr statement includes a list in
         the html report."""
-        self.html.add_sr_data(
-            [("ast_coordinator.py", [(26, "    print(loop)")])])
+        self.html.add_sr_data([("ast_coordinator.py", [(26, "    print(loop)")])])
         file = self.html.get_html()
         self.assertEqual(
             '<h1 style="text-align: center; padding: 75px; '
@@ -60,8 +59,7 @@ class TestHTMLGenerator(unittest.TestCase):
         self.html.add_sr_data(
             [
                 ("ast_coordinator.py", [(26, "    print(loop)")]),
-                ("ast_supplier.py", [
-                 (27, "print(loop)"), (28, "time.sleep(1)")]),
+                ("ast_supplier.py", [(27, "print(loop)"), (28, "time.sleep(1)")]),
             ]
         )
         file = self.html.get_html()

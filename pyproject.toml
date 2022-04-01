@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "capstone-project"
+name = "ddssa"
 version = "0.1.0"
 description = "Data-Driven Software Security Assessment"
 authors = ["Samuel Gamelin <samuel.gamelin@carleton.ca>", "John Breton <john.breton@carleton.ca>", "Mohamed Radwan <mohamed.radwan@carleton.ca>", "Khalil Aalab <khalil.aalab@carleton.ca>"]

@@ -29,7 +29,7 @@ class LoadingScreen(QWidget):
 
         self.movie = QtGui.QMovie(
             os.path.join(
-                os.getcwd(), "capstone_project", "frontend", "assets", "Loading.gif"
+                os.getcwd(), "ddssa", "frontend", "assets", "Loading.gif"
             )
         )
         self.label_animation.setMovie(self.movie)

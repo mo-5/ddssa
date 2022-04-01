@@ -35,11 +35,11 @@ class UI(QMainWindow):
 
     This class relies on the main.py file that is generated
     by running the following command from the frontend directory:
-      pyuic5 -o ./capstone_project/frontend/main.py ./capstone_project/frontend/main.ui
+      pyuic5 -o ./ddssa/frontend/main.py ./ddssa/frontend/main.ui
 
     Run the application from the root project directory using
     the following command (note os.sep might need to change)
-      python ./capstone_project/frontend/ui.py
+      python ./ddssa/frontend/ui.py
     """
 
     def __init__(self):
@@ -57,7 +57,7 @@ class UI(QMainWindow):
         self.worker.finished.connect(self._display_report)
         self.icon = QtGui.QIcon(
             os.path.join(
-                os.getcwd(), "capstone_project", "frontend", "assets", "icon.png"
+                os.getcwd(), "ddssa", "frontend", "assets", "icon.png"
             )
         )
 
@@ -141,7 +141,7 @@ class UI(QMainWindow):
         self.ui.text_browser.setText(report_html)
         with open(
             os.path.join(
-                os.getcwd(), "capstone_project", "frontend", "assets", "report.css"
+                os.getcwd(), "ddssa", "frontend", "assets", "report.css"
             ),
             "r",
         ) as f:
@@ -251,7 +251,8 @@ class UI(QMainWindow):
             self.msg.setStandardButtons(QMessageBox.Ok)
             self.msg.exec_()
             return
-        export = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
+        export = QtPrintSupport.QPrinter(
+            QtPrintSupport.QPrinter.HighResolution)
         export.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
         export.setOutputFileName(input_dir)
         self.ui.text_browser.print(export)

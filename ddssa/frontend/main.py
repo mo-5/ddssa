@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './capstone_project/frontend/main.ui'
+# Form implementation generated from reading ui file './ddssa/frontend/main.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -15,25 +15,31 @@ class Ui_main_window(object):
     def setupUi(self, main_window):
         main_window.setObjectName("main_window")
         main_window.resize(1000, 750)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(main_window.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            main_window.sizePolicy().hasHeightForWidth())
         main_window.setSizePolicy(sizePolicy)
         self.centralwidget = QtWidgets.QWidget(main_window)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.centralwidget.sizePolicy().hasHeightForWidth())
         self.centralwidget.setSizePolicy(sizePolicy)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName("verticalLayout")
         self.dir_select_btn = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.dir_select_btn.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.dir_select_btn.sizePolicy().hasHeightForWidth())
         self.dir_select_btn.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -83,20 +89,26 @@ class Ui_main_window(object):
 
     def retranslateUi(self, main_window):
         _translate = QtCore.QCoreApplication.translate
-        main_window.setWindowTitle(_translate("main_window", "Data-Driven Software Security Assessment"))
-        self.dir_select_btn.setText(_translate("main_window", "Choose a Python Project Directory"))
-        self.file_select_btn.setText(_translate("main_window", "Choose a Python File"))
+        main_window.setWindowTitle(_translate(
+            "main_window", "Data-Driven Software Security Assessment"))
+        self.dir_select_btn.setText(_translate(
+            "main_window", "Choose a Python Project Directory"))
+        self.file_select_btn.setText(_translate(
+            "main_window", "Choose a Python File"))
         self.text_browser.setHtml(_translate("main_window", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Times New Roman\';\"><br /></p></body></html>"))
+                                             "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                             "p, li { white-space: pre-wrap; }\n"
+                                             "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+                                             "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Times New Roman\';\"><br /></p></body></html>"))
         self.menuOptions.setTitle(_translate("main_window", "Options"))
         self.menuExport.setTitle(_translate("main_window", "Export"))
         self.menu_action_help.setText(_translate("main_window", "Help"))
         self.menu_action_quit.setText(_translate("main_window", "Quit"))
-        self.menu_action_quit.setToolTip(_translate("main_window", "Quit the program"))
+        self.menu_action_quit.setToolTip(
+            _translate("main_window", "Quit the program"))
         self.menu_action_export_HTML.setText(_translate("main_window", "HTML"))
         self.menu_action_export_PDF.setText(_translate("main_window", "PDF"))
-        self.menu_action_add_api_key.setText(_translate("main_window", "Add API Key"))
-        self.menu_action_add_api_key.setToolTip(_translate("main_window", "Add your NIST NVD API Key"))
+        self.menu_action_add_api_key.setText(
+            _translate("main_window", "Add API Key"))
+        self.menu_action_add_api_key.setToolTip(
+            _translate("main_window", "Add your NIST NVD API Key"))

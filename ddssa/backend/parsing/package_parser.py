@@ -3,7 +3,7 @@
 import pandas as pd
 import requirements
 
-from capstone_project.backend.parsing.package_ids import PackageIds
+from ddssa.backend.parsing.package_ids import PackageIds
 
 
 class PackageParser:

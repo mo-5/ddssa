@@ -9,7 +9,7 @@ import pkg_resources
 import setup_cfg_fmt
 import setup_py_upgrade
 
-from capstone_project.backend.parsing.package_parser import PackageParser
+from ddssa.backend.parsing.package_parser import PackageParser
 
 
 class SetupParser(PackageParser):
@@ -42,7 +42,8 @@ class SetupParser(PackageParser):
             for i, req in enumerate(packages):
                 self.basic_req_parse(i, req)
         except pkg_resources.packaging.requirements.InvalidRequirement as e:
-            raise RuntimeError("setup.cfg file contains an unknown requirement") from e
+            raise RuntimeError(
+                "setup.cfg file contains an unknown requirement") from e
         except IndexError as e:
             raise RuntimeError("setup.cfg file is invalid") from e
 

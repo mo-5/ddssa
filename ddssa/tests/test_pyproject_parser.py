@@ -4,9 +4,9 @@
 import os
 import unittest
 
-from capstone_project.tests.test_utils import TestUtils
-from capstone_project.backend.parsing.package_ids import PackageIds
-from capstone_project.backend.parsing.pyproject_parser import PyProjectParser
+from ddssa.tests.test_utils import TestUtils
+from ddssa.backend.parsing.package_ids import PackageIds
+from ddssa.backend.parsing.pyproject_parser import PyProjectParser
 
 
 class TestPyProjectParser(unittest.TestCase):

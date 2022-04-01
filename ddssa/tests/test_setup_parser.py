@@ -4,9 +4,9 @@ import configparser
 import os
 import unittest
 
-from capstone_project.backend.parsing.package_ids import PackageIds
-from capstone_project.backend.parsing.setup_parser import SetupParser
-from capstone_project.tests.test_utils import TestUtils
+from ddssa.backend.parsing.package_ids import PackageIds
+from ddssa.backend.parsing.setup_parser import SetupParser
+from ddssa.tests.test_utils import TestUtils
 
 
 class TestSetupParser(unittest.TestCase):

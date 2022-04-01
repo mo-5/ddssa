@@ -3,9 +3,9 @@
 import os
 import unittest
 
-from capstone_project.backend.cst.cst_supplier import CSTSupplier
-from capstone_project.backend.metrics.sr_calculator import SRCalculator
-from capstone_project.tests.test_utils import TestUtils
+from ddssa.backend.cst.cst_supplier import CSTSupplier
+from ddssa.backend.metrics.sr_calculator import SRCalculator
+from ddssa.tests.test_utils import TestUtils
 
 
 class TestSR(unittest.TestCase):

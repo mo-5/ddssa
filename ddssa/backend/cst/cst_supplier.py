@@ -5,7 +5,7 @@ import ast
 import libcst
 import os
 
-from capstone_project.backend.metrics.sr_calculator import SRCalculator
+from ddssa.backend.metrics.sr_calculator import SRCalculator
 
 
 class CSTSupplier:
@@ -96,11 +96,13 @@ class CSTSupplier:
             self.create_ast_from_file(file)
             nodes = self.get_loop_nodes_for_file()
             if self._sr_calculator is None:
-                self._sr_calculator = SRCalculator(file.split((os.path.sep)[-1]))
+                self._sr_calculator = SRCalculator(
+                    file.split((os.path.sep)[-1]))
             else:
                 self._sr_calculator.set_filename(file.split((os.path.sep)[-1]))
             self.get_libcst_module_from_file(file)
-            sr_data.append(self._sr_calculator.calculate_sr(nodes, self._libcst_module))
+            sr_data.append(self._sr_calculator.calculate_sr(
+                nodes, self._libcst_module))
         return sr_data
 
     def _print_parsed_ast(self):

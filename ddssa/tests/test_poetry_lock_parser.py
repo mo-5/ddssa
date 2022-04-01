@@ -4,9 +4,9 @@
 import os
 import unittest
 
-from capstone_project.tests.test_utils import TestUtils
-from capstone_project.backend.parsing.package_ids import PackageIds
-from capstone_project.backend.parsing.poetry_lock_parser import PoetryLockParser
+from ddssa.tests.test_utils import TestUtils
+from ddssa.backend.parsing.package_ids import PackageIds
+from ddssa.backend.parsing.poetry_lock_parser import PoetryLockParser
 
 
 class TestPoetryLockParser(unittest.TestCase):

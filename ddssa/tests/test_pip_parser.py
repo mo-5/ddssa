@@ -3,9 +3,9 @@
 import os
 import unittest
 
-from capstone_project.backend.parsing.package_ids import PackageIds
-from capstone_project.backend.parsing.pip_parser import PipParser
-from capstone_project.tests.test_utils import TestUtils
+from ddssa.backend.parsing.package_ids import PackageIds
+from ddssa.backend.parsing.pip_parser import PipParser
+from ddssa.tests.test_utils import TestUtils
 
 
 class TestPipParser(unittest.TestCase):

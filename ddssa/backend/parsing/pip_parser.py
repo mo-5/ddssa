@@ -2,7 +2,7 @@
 
 
 from dparse import parse, filetypes
-from capstone_project.backend.parsing.package_parser import PackageParser
+from ddssa.backend.parsing.package_parser import PackageParser
 
 
 class PipParser(PackageParser):

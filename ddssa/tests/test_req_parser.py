@@ -3,9 +3,9 @@
 import os
 import unittest
 
-from capstone_project.backend.parsing.package_ids import PackageIds
-from capstone_project.backend.parsing.req_parser import RequirementsParser
-from capstone_project.tests.test_utils import TestUtils
+from ddssa.backend.parsing.package_ids import PackageIds
+from ddssa.backend.parsing.req_parser import RequirementsParser
+from ddssa.tests.test_utils import TestUtils
 
 
 class TestReqParser(unittest.TestCase):

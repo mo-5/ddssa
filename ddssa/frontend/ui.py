@@ -12,10 +12,10 @@ from PyQt5.QtWidgets import (
     QInputDialog,
 )
 
-from capstone_project.frontend import main
-from capstone_project.frontend.ddssa import DDSSA
-from capstone_project.backend.file_generator.file_export import FileExport
-from capstone_project.frontend.loading import LoadingScreen
+from ddssa.frontend import main
+from ddssa.frontend.ddssa import DDSSA
+from ddssa.backend.file_generator.file_export import FileExport
+from ddssa.frontend.loading import LoadingScreen
 
 
 class AnalysisWorker(QtCore.QObject):
@@ -251,7 +251,8 @@ class UI(QMainWindow):
             self.msg.setStandardButtons(QMessageBox.Ok)
             self.msg.exec_()
             return
-        export = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
+        export = QtPrintSupport.QPrinter(
+            QtPrintSupport.QPrinter.HighResolution)
         export.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
         export.setOutputFileName(input_dir)
         self.ui.text_browser.print(export)

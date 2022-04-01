@@ -3,7 +3,7 @@
 
 import pkg_resources
 
-from capstone_project.backend.parsing.package_parser import PackageParser
+from ddssa.backend.parsing.package_parser import PackageParser
 
 
 class RequirementsParser(PackageParser):

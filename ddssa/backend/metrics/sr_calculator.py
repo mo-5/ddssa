@@ -4,7 +4,7 @@ import libcst
 import ast
 import json
 import os
-from capstone_project.backend.metrics.stall_visitor import StallVisitor
+from ddssa.backend.metrics.stall_visitor import StallVisitor
 
 
 class SRCalculator:
@@ -92,7 +92,8 @@ class SRCalculator:
                         score = self._complex_update_score(sub_node, score)
                     # Handle the case where 1 is being multiplied or divided
                     elif (
-                        isinstance(sub_node.op, (ast.Mult, ast.Div, ast.FloorDiv))
+                        isinstance(
+                            sub_node.op, (ast.Mult, ast.Div, ast.FloorDiv))
                         and isinstance(sub_node.value, ast.Constant)
                         and sub_node.value.value == 1
                     ):

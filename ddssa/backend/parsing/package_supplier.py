@@ -1,12 +1,12 @@
 """ This module contains the PackageSupplier class"""
-from capstone_project.backend.api.vulnerability_aggregator import (
+from ddssa.backend.api.vulnerability_aggregator import (
     VulnerabilityAggregator,
 )
-from capstone_project.backend.parsing.pip_parser import PipParser
-from capstone_project.backend.parsing.poetry_lock_parser import PoetryLockParser
-from capstone_project.backend.parsing.pyproject_parser import PyProjectParser
-from capstone_project.backend.parsing.req_parser import RequirementsParser
-from capstone_project.backend.parsing.setup_parser import SetupParser
+from ddssa.backend.parsing.pip_parser import PipParser
+from ddssa.backend.parsing.poetry_lock_parser import PoetryLockParser
+from ddssa.backend.parsing.pyproject_parser import PyProjectParser
+from ddssa.backend.parsing.req_parser import RequirementsParser
+from ddssa.backend.parsing.setup_parser import SetupParser
 
 
 class PackageSupplier:

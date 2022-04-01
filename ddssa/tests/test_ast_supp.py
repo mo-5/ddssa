@@ -2,8 +2,8 @@
 """
 import unittest
 import os
-from capstone_project.backend.cst.cst_supplier import CSTSupplier
-from capstone_project.tests.test_utils import TestUtils
+from ddssa.backend.cst.cst_supplier import CSTSupplier
+from ddssa.tests.test_utils import TestUtils
 import io
 import unittest.mock
 from contextlib import redirect_stdout

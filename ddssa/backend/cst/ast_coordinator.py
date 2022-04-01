@@ -3,7 +3,7 @@
 
 import ast
 
-from capstone_project.backend.cst.cst_supplier import CSTSupplier
+from ddssa.backend.cst.cst_supplier import CSTSupplier
 
 
 class ASTCoordinator:

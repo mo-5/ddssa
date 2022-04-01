@@ -3,8 +3,8 @@
 
 import tomli
 
-from capstone_project.backend.parsing.package_ids import PackageIds
-from capstone_project.backend.parsing.package_parser import PackageParser
+from ddssa.backend.parsing.package_ids import PackageIds
+from ddssa.backend.parsing.package_parser import PackageParser
 
 
 class PoetryLockParser(PackageParser):

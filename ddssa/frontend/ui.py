@@ -12,6 +12,14 @@ from PyQt5.QtWidgets import (
     QInputDialog,
 )
 
+# Add the ddssa module to the system path if this is the entry point
+if __name__ == "__main__":
+    import sys
+
+    sys.path.insert(
+        0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+    )
+
 from ddssa.frontend import main
 from ddssa.frontend.ddssa import DDSSA
 from ddssa.backend.file_generator.file_export import FileExport

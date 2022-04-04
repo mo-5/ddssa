@@ -1,6 +1,6 @@
 # Data-Driven Software Security Assessment
 
-This is a design for a software security assessment tool using a data-driven approach.
+This project provides a software security assessment tool using a data-driven approach.
 
 ## Development
 
@@ -9,24 +9,33 @@ This is a design for a software security assessment tool using a data-driven app
 - Code editor: [VSCode](https://code.visualstudio.com/)
 - Python: [3.10](https://www.python.org/downloads/)
 - Python package manager: [Poetry](https://www.python-poetry.org/)
+- GUI design: [Qt Designer](https://build-system.fman.io/qt-designer-download)
 
 ### Getting Started
 
-1. From your terminal, run:
-
-   ```bash
-   git clone https://github.com/mo-5/ddssa/
-   ```
-
-   This will create a folder called `ddssa`.
+1. Clone the repository
 
 2. Poetry
 
    1. Install poetry: [instructions](https://python-poetry.org/docs/#installation)
-   2. Add the poetry path after installation
-   3. Run `poetry install`
+   2. Add the poetry path to your environment variables after installation
+   3. Run `poetry install` in the project's root directory
+   4. To activate the project's virtual environment, run `poetry shell`
 
-3. Open the project in VSCode.
+3. To use the GUI, run the following from the project's root directory:
+
+   ```bash
+   poetry run python ./ddssa/frontend/ui.py
+   ```
+   If the Poetry virtual environment is active, this simplifies to:
+   ```bash
+   python ./ddssa/frontend/ui.py
+   ```
+   Further instructions will assume that the Poetry virtual environment is active.
+
+4. To make changes to the user interface, open the [main.ui](./ddssa/frontend/main.ui) in Qt Designer. To synchronize changes to the Python GUI file run `pyuic5 -o ./ddssa/frontend/main.py ./ddssa/frontend/main.ui`.
+
+5. To make changes to the code, open the project's root directory in VSCode.
 
 ### Additional Tools
 

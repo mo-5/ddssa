@@ -4,18 +4,22 @@
 import argparse
 import concurrent.futures
 import os
-import sys
 from pathlib import Path
 
 import numpy as np
+
+# Add the ddssa module to the system path if this is the entry point
+if __name__ == "__main__":
+    import sys
+
+    sys.path.insert(
+        0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+    )
 
 from ddssa.backend.cst.cst_supplier import CSTSupplier
 from ddssa.backend.file_generator.html_generator import HTMLGenerator
 from ddssa.backend.parsing.package_supplier import PackageSupplier
 from ddssa.backend.parsing.path_parser import PathParser
-
-# Needed to add the ddssa module to the system path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 
 class DDSSA:

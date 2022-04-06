@@ -33,9 +33,17 @@ This project provides a software security assessment tool using a data-driven ap
    ```
    Further instructions will assume that the Poetry virtual environment is active.
 
-4. To make changes to the user interface, open the [main.ui](./ddssa/frontend/main.ui) in Qt Designer. To synchronize changes to the Python GUI file run `pyuic5 -o ./ddssa/frontend/main.py ./ddssa/frontend/main.ui`.
+4. To use the CLI, run the following command from the project's root directory:
+   ```bash
+   python ./ddssa/frontend/ddssa.py
+   ```
+   In order to see the list of commands that are accepted the following command can be used: 
+   ```bash
+   python ./ddssa/frontend/ddssa.py --help
+   ```
+5. To make changes to the user interface, open the [main.ui](./ddssa/frontend/main.ui) in Qt Designer. To synchronize changes to the Python GUI file run `pyuic5 -o ./ddssa/frontend/main.py ./ddssa/frontend/main.ui`.
 
-5. To make changes to the code, open the project's root directory in VSCode.
+6. To make changes to the code, open the project's root directory in VSCode.
 
 ### Additional Tools
 

@@ -190,9 +190,6 @@ class TestSR(unittest.TestCase):
             cst_supp.get_loop_nodes_for_file(), cst_supp._libcst_module
         )
 
-        with open("module.txt", "w", encoding="UTF-8") as f:
-            f.write(str(cst_supp._libcst_module))
-
         self.assertTrue(
             nodes[0] == "sr_medium.py",
             "File name did not match what was expected.",

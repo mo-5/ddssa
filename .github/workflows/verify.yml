@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10"]
+        python-version: ["3.9"]
     steps:
       # Check out the repo
       - name: Check out repository
@@ -55,6 +55,5 @@ jobs:
       # Run tests
       - name: Run tests
         run: |
-          source .venv/bin/activate
-          coverage run -m unittest discover -s ddssa/tests
-          coverage report --fail-under=60
+          poetry run coverage run -m unittest discover -s ddssa/tests
+          poetry run coverage report --fail-under=70

@@ -7,7 +7,7 @@ This project provides a software security assessment tool using a data-driven ap
 ### Tools
 
 - Code editor: [VSCode](https://code.visualstudio.com/)
-- Python: [3.10](https://www.python.org/downloads/)
+- Python: [3.9+](https://www.python.org/downloads/)
 - Python package manager: [Poetry](https://www.python-poetry.org/)
 - GUI design: [Qt Designer](https://build-system.fman.io/qt-designer-download)
 

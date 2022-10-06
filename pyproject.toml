@@ -5,7 +5,7 @@ description = "Data-Driven Software Security Assessment"
 authors = ["Khalil Aalab <khalil.aalab@carleton.ca>", "John Breton <john.breton@carleton.ca>", "Samuel Gamelin <samuel.gamelin@carleton.ca>", "Mohamed Radwan <mohamed.radwan@carleton.ca>"]
 
 [tool.poetry.dependencies]
-dparse = "^0.5.1"
+dparse = "^0.5.2"
 jsonschema = "^4.4.0"
 libcst = "^0.4.1"
 numpy = "^1.22.3"

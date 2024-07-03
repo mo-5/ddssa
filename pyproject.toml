@@ -19,7 +19,7 @@ setup-py-upgrade = "^1.2.1"
 setup-cfg-fmt = "^1.20.1"
 
 [tool.poetry.dev-dependencies]
-black = "^22.3.0"
+black = "^24.3.0"
 coverage = "^6.3"
 pylint = "^2.13.5"
 

@@ -39,9 +39,9 @@ This project provides a software security assessment tool using a data-driven ap
    ```
 5. To make changes to the user interface, open the [main.ui](./ddssa/frontend/main.ui) in Qt Designer. To synchronize changes to the Python GUI file run `pyuic5 -o ./ddssa/frontend/main.py ./ddssa/frontend/main.ui`.
 
-5. To run tests: `pytest`
+6. To run tests: `pytest`
 
-6. To make changes to the code, open the project's root directory in VSCode.
+7. To make changes to the code, open the project's root directory in VSCode.
 
 ### Additional Tools
 

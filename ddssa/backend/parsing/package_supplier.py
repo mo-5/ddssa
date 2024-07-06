@@ -1,4 +1,5 @@
 """ This module contains the PackageSupplier class"""
+
 from ddssa.backend.api.vulnerability_aggregator import (
     VulnerabilityAggregator,
 )

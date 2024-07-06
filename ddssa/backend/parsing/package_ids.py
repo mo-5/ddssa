@@ -1,6 +1,5 @@
 """This module contains the PackageIds enum class"""
 
-
 from enum import Enum
 
 

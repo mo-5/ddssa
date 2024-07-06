@@ -7,31 +7,27 @@ This project provides a software security assessment tool using a data-driven ap
 ### Tools
 
 - Code editor: [VSCode](https://code.visualstudio.com/)
-- Python: [3.9+](https://www.python.org/downloads/)
-- Python package manager: [Poetry](https://www.python-poetry.org/)
+- Python: [3.12](https://www.python.org/downloads/)
 - GUI design: [Qt Designer](https://build-system.fman.io/qt-designer-download)
 
 ### Getting Started
 
 1. Clone the repository
 
-2. Poetry
+2. Create and activate a virtual environemnt
 
-   1. Install poetry: [instructions](https://python-poetry.org/docs/#installation)
-   2. Add the poetry path to your environment variables after installation
-   3. Run `poetry install` in the project's root directory
-   4. To activate the project's virtual environment, run `poetry shell`
+   1. `python -m venv venv`
+   2. * `source venv/bin/activate` (Unix)
+      * `venv\Scripts\activate` (Windows, Command prompt)
+      * `venv\Scripts\Activate.ps1` (Windows, PowerShell)
+   3. `pip install --upgrade pip`
+   4. `pip install -r requirements.txt -r requirements-dev.txt` OR `pip install -e ".[dev]"` (to install from `setup.py`)
 
 3. To use the GUI, run the following from the project's root directory:
 
    ```bash
-   poetry run python ./ddssa/frontend/ui.py
-   ```
-   If the Poetry virtual environment is active, this simplifies to:
-   ```bash
    python ./ddssa/frontend/ui.py
    ```
-   Further instructions will assume that the Poetry virtual environment is active.
 
 4. To use the CLI, run the following command from the project's root directory:
    ```bash
@@ -42,6 +38,8 @@ This project provides a software security assessment tool using a data-driven ap
    python ./ddssa/frontend/ddssa.py --help
    ```
 5. To make changes to the user interface, open the [main.ui](./ddssa/frontend/main.ui) in Qt Designer. To synchronize changes to the Python GUI file run `pyuic5 -o ./ddssa/frontend/main.py ./ddssa/frontend/main.ui`.
+
+5. To run tests: `pytest`
 
 6. To make changes to the code, open the project's root directory in VSCode.
 

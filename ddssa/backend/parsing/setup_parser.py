@@ -1,6 +1,5 @@
 """This module contains the SetupParser class"""
 
-
 import configparser
 import os
 import sys

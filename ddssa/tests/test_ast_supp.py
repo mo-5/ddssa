@@ -1,9 +1,10 @@
 """ tests contains any unit tests for backend files
 """
+
 import unittest
 import os
 from ddssa.backend.cst.cst_supplier import CSTSupplier
-from ddssa.tests.test_utils import TestUtils
+from ddssa.tests.utils import Utils
 import io
 import unittest.mock
 from contextlib import redirect_stdout
@@ -17,7 +18,7 @@ class TestASTSupplier(unittest.TestCase):
 
     def setUp(self):
         # Clear object instance for each test
-        self._test_path = TestUtils().get_test_path()
+        self._test_path = Utils().get_test_path()
         self._cst_supplier = CSTSupplier()
         self._cst_supplier.create_ast_from_file(
             os.path.join(

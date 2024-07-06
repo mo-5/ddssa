@@ -1,11 +1,12 @@
 """ tests contains any unit tests for backend files
 """
+
 import os
 import unittest
 
 from ddssa.backend.parsing.package_ids import PackageIds
 from ddssa.backend.parsing.pip_parser import PipParser
-from ddssa.tests.test_utils import TestUtils
+from ddssa.tests.utils import Utils
 
 
 class TestPipParser(unittest.TestCase):
@@ -13,7 +14,7 @@ class TestPipParser(unittest.TestCase):
     and Pipfile.lock package parser."""
 
     def setUp(self):
-        self._test_path = TestUtils().get_test_path()
+        self._test_path = Utils().get_test_path()
 
     def test_pipfile_parser(self):
         """Test that the parser can extract all requirements from a

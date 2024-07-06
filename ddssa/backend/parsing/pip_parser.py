@@ -1,6 +1,5 @@
 """This module contains the PipParser class"""
 
-
 from dparse import parse, filetypes
 from ddssa.backend.parsing.package_parser import PackageParser
 

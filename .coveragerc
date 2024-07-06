@@ -1,3 +1,6 @@
 [run]
-omit = 
-  *tests*
+source = ddssa
+omit = ddssa/tests
+
+[report]
+fail_under = 36

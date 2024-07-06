@@ -1,6 +1,5 @@
 """This module contains the DDSSA class and a main method"""
 
-
 import argparse
 import concurrent.futures
 import os

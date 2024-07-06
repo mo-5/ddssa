@@ -1,6 +1,5 @@
 """This module contains the ASTCoordinator class"""
 
-
 import ast
 
 from ddssa.backend.cst.cst_supplier import CSTSupplier

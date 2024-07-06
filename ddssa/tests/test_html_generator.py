@@ -1,6 +1,5 @@
 """This module containts the TestHTMLGenerator test class"""
 
-
 import unittest
 import pandas as pd
 

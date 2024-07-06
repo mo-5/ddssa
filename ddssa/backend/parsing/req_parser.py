@@ -1,6 +1,5 @@
 """This module contains the RequirementsParser class"""
 
-
 import pkg_resources
 
 from ddssa.backend.parsing.package_parser import PackageParser
@@ -17,7 +16,7 @@ class RequirementsParser(PackageParser):
             try:
                 for i, req in enumerate(f.readlines()):
                     self.basic_req_parse(i, req)
-            except pkg_resources.packaging.requirements.InvalidRequirement as e:
+            except pkg_resources._vendor.packaging.requirements.InvalidRequirement as e:
                 raise RuntimeError(
                     "requirements.txt file contains an unknown requirement"
                 ) from e

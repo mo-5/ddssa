@@ -1,6 +1,5 @@
 """This module contains the CSTSupplier class"""
 
-
 import ast
 import libcst
 import os

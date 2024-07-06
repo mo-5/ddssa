@@ -1,11 +1,12 @@
 """ tests contains any unit tests for backend files
 """
+
 import os
 import unittest
 
 from ddssa.backend.cst.cst_supplier import CSTSupplier
 from ddssa.backend.metrics.sr_calculator import SRCalculator
-from ddssa.tests.test_utils import TestUtils
+from ddssa.tests.utils import Utils
 
 
 class TestSR(unittest.TestCase):
@@ -15,7 +16,7 @@ class TestSR(unittest.TestCase):
 
     def setUp(self):
         # Clear object instance for each test
-        self._test_path = TestUtils().get_test_path()
+        self._test_path = Utils().get_test_path()
         self._calculator = SRCalculator("test_file"), CSTSupplier()
 
     def test_sr_logic_simple(self):
@@ -52,13 +53,13 @@ class TestSR(unittest.TestCase):
             "Returned detections list was empty when it " "should be of size 3",
         )
         self.assertTrue(
-            nodes[1][0][0] == 11,
+            nodes[1][0][0] == 12,
             "Line number of first match did" " not match what was expected.",
         )
         # Specifically check if blank lines are being preserved in
         # the line numbering (currently failing due to known issue).
         self.assertTrue(
-            nodes[1][1][0] == 13,
+            nodes[1][1][0] == 14,
             "Line number of next match did" " not match what was expected.",
         )
 
@@ -94,7 +95,7 @@ class TestSR(unittest.TestCase):
             "File name did not match what was expected.",
         )
         self.assertTrue(
-            nodes[1][0][0] == 15,
+            nodes[1][0][0] == 16,
             "Line number of first match did" " not match what was expected.",
         )
         # Check to ensure we got all of the stall statements
@@ -195,7 +196,7 @@ class TestSR(unittest.TestCase):
             "File name did not match what was expected.",
         )
         self.assertTrue(
-            nodes[1][0][0] == 16,
+            nodes[1][0][0] == 17,
             "Line number of first match did" " not match what was expected.",
         )
         # Check to ensure we got all of the stall statements

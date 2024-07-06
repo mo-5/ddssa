@@ -1,12 +1,13 @@
 """ tests contains any unit tests for backend files
 """
+
 import configparser
 import os
 import unittest
 
 from ddssa.backend.parsing.package_ids import PackageIds
 from ddssa.backend.parsing.setup_parser import SetupParser
-from ddssa.tests.test_utils import TestUtils
+from ddssa.tests.utils import Utils
 
 
 class TestSetupParser(unittest.TestCase):
@@ -14,7 +15,7 @@ class TestSetupParser(unittest.TestCase):
     and setup.cfg package parser."""
 
     def setUp(self):
-        self._test_path = TestUtils().get_test_path()
+        self._test_path = Utils().get_test_path()
 
     def test_setup_parser_cfg(self):
         """Test that the parser can extract all requirements from a

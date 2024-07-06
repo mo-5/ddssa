@@ -1,6 +1,5 @@
 """This module contains the StallVisitor class"""
 
-
 import libcst
 
 

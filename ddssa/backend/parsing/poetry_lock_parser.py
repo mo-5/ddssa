@@ -1,6 +1,5 @@
 """This module contains the PoetryLockParser class"""
 
-
 import tomli
 
 from ddssa.backend.parsing.package_ids import PackageIds

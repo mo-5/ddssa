@@ -1,11 +1,12 @@
 """ tests contains any unit tests for backend files
 """
+
 import os
 import unittest
 
 from ddssa.backend.parsing.package_ids import PackageIds
 from ddssa.backend.parsing.req_parser import RequirementsParser
-from ddssa.tests.test_utils import TestUtils
+from ddssa.tests.utils import Utils
 
 
 class TestReqParser(unittest.TestCase):
@@ -13,7 +14,7 @@ class TestReqParser(unittest.TestCase):
     package parser."""
 
     def setUp(self):
-        self._test_path = TestUtils().get_test_path()
+        self._test_path = Utils().get_test_path()
 
     def test_req_parser(self):
         """Test a typical requirements.txt file to ensure all packages,

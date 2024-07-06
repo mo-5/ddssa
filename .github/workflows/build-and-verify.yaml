@@ -1,0 +1,25 @@
+name: Build and verify
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+          cache: pip
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Formatting check [black]
+        run: black --check .
+
+      - name: Linting check [pylint]
+        run: pylint ddssa
+
+      - name: Run tests
+        run: pytest

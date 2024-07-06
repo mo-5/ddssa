@@ -1,6 +1,5 @@
 """"This module contians the PyProjectParser class"""
 
-
 import tomli
 
 from ddssa.backend.parsing.package_parser import PackageParser

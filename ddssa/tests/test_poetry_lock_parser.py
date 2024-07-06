@@ -1,10 +1,9 @@
 """This module contains the TestPoetryLockParser test class"""
 
-
 import os
 import unittest
 
-from ddssa.tests.test_utils import TestUtils
+from ddssa.tests.utils import Utils
 from ddssa.backend.parsing.package_ids import PackageIds
 from ddssa.backend.parsing.poetry_lock_parser import PoetryLockParser
 
@@ -14,7 +13,7 @@ class TestPoetryLockParser(unittest.TestCase):
     parser."""
 
     def setUp(self):
-        self._test_path = TestUtils().get_test_path()
+        self._test_path = Utils().get_test_path()
 
     def test_poetry_lock_parser(self):
         """Test that the parser can extract all requirements from a properly-formatted

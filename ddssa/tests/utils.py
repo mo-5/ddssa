@@ -1,9 +1,10 @@
 """ tests contains any unit tests for backend files
 """
+
 import os
 
 
-class TestUtils:
+class Utils:
     """This class contains common resources that appear across unit tests"""
 
     def __init__(self):
